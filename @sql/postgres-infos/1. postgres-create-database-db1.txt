@@ -1,0 +1,36 @@
+
+
+sudo apt-get install postgresql postgresql-contrib
+dpkg-query -L postgresql
+sudo -u postgres
+create database mydb1;
+create user myuser with encrypted password 'mypass';
+grant all privileges on database mydb to myuser;
+
+RUN....
+isc-duc@eap0217:~$ sudo apt-get install postgresql postgresql-contrib
+Reading package lists... Done
+Building dependency tree
+...
+
+RUN...
+isc-duc@eap0217:~$ dpkg-query -L postgresql
+/.
+/usr
+/usr/share
+/usr/share/doc
+/usr/share/doc/postgresql
+/usr/share/doc/postgresql/changelog.gz
+/usr/share/doc/postgresql/copyright
+isc-duc@eap0217:~$
+
+postgres=# create database mydb1;
+CREATE DATABASE
+postgres=# create user myuser with encrypted password 'mypass';
+CREATE ROLE
+postgres=# grant all privileges on database mydb to myuser;
+ERROR:  database "mydb" does not exist
+postgres=# grant all privileges on database mydb1 to myuser;
+GRANT
+
+

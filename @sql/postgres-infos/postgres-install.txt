@@ -1,0 +1,139 @@
+In this tutoriayou will learn about two different ways of installing the newest PostgreSQL on Ubuntu 18.04.
+
+How to Install PostgreSQL on Ubuntu.
+Prerequisites
+
+An Ubuntu 18.04Linux system
+Access to a command-line/terminal window (Ctrl+Alt+T)
+A user account with sudo privileges
+Install PostgreSQL from PostgreSQL Apt Repository
+PostgreSQL is available in all Ubuntu versions by default, but it doesn’t guarantee automatic updates when new releases come out. The local repository only has "snapshots" of a specific version. The best practice is to install the software from the PostgreSQL Apt Repository.
+
+The PostgreSQL Apt Repository provides the latest PostgreSQL version, as well as all previous server packages, extensions, and modules.
+
+------------------------------------
+Step 1: Add PostgreSQL Repository
+To install from the official repository, you first need to add it to your system.
+Import the GPG repository key with the commands:
+------------------------------------
+
+sudo apt-get install wget ca-certificates
+
+wget --quiet -O - https://www.postgresql.org/media/keys/ACCC4CF8.asc | sudo apt-key add -
+
+------------------------------------
+import postgresql apt repository
+Then, add the PostgreSQL repository by typing:
+------------------------------------
+
+sudo sh -c 'echo "deb http://apt.postgresql.org/pub/repos/apt $(lsb_release -cs)-pgdg main" > /etc/apt/sources.list.d/pgdg.list'
+
+------------------------------------
+Step 2: Update the Package List
+After adding the official PostgreSQL repository, make sure to update the package list. Doing this ensures you install the latest PostgreSQL package.
+------------------------------------
+
+sudo apt-get update
+
+------------------------------------
+Step 3: Install PostgreSQL
+To install PostgreSQL and the PostgreSQL contrib package (which provides additional features), use the following command:
+------------------------------------
+
+sudo apt-get install postgresql postgresql-contrib
+
+------------------------------------
+command to install postgresql on ubuntu
+By default, the software creates a postgres user, once you successfully install the database system. This user account has the default ‘postgres’ role.
+Install PostgreSQL from Local Ubuntu Repository
+
+------------------------------------
+If you prefer installing PostgreSQL from the local Ubuntu repository, bear in mind that it is most likely not going to be the latest version of the package.
+Step 1: Check Available PostgreSQL Version
+Before you decide whether you want to set up PostgreSQL from the Ubuntu repository, verify which versions are available. Update the repository and then run the command:
+------------------------------------
+
+apt show postgresql
+
+------------------------------------
+The output provides all the necessary information about the package, including the release number and size.
+Command for checking PostgreSQL version on Ubuntu.
+Step 2: Install PostgreSQL Package
+If you are happy with the PostgreSQL version accessible from the local repository, use the following command to install the package:
+------------------------------------
+
+sudo apt install postgresql postgresql-contrib
+
+------------------------------------
+With these simple steps, you have successfully installed PostgreSQL on Ubuntu 18.04.
+Connect to PostgreSQL
+To establish a connection with the newly set-up database, log into the postgres account with:
+------------------------------------
+
+sudo su - postgres
+
+------------------------------------
+Now open a postgress prompt using the command:
+------------------------------------
+
+psql
+
+------------------------------------
+Accessing Postgres through terminal.
+Check Connection Information
+If you are connected to PostgreSQL and want to see details of the connection, use the command:
+------------------------------------
+
+\conninfo
+
+--------------------------------------
+The output displays information on the database name, the account you are logged in, the socket path, and port number.
+--------------------------------------
+
+isc-duc@eap0217:~$ sudo su - postgres
+postgres@eap0217:~$ psql
+psql (14.3 (Ubuntu 14.3-1.pgdg18.04+1))
+Type "help" for help.
+postgres=# \conninfo
+
+You are connected to database "postgres" as user "postgres"
+via socket in "/var/run/postgresql" at port "5432".
+postgres=#
+
+-----------------------
+show postgresql
+-----------------------
+
+postgres=# apt show postgresql
+postgres-# end
+postgres-# exit
+Use \q to quit.
+postgres-# \q
+
+postgres@eap0217:~$ apt show postgresql
+Package: postgresql
+Version: 14+241.pgdg18.04+1
+Priority: optional
+Section: database
+Source: postgresql-common (241.pgdg18.04+1)
+Maintainer: Debian PostgreSQL Maintainers <team+postgresql@tracker.debian.org>
+Installed-Size: 71.7 kB
+Depends: postgresql-14
+Suggests: postgresql-doc
+Download-Size: 66.7 kB
+APT-Manual-Installed: yes
+APT-Sources: http://apt.postgresql.org/pub/repos/apt bionic-pgdg/main amd64 Packages
+Description: object-relational SQL database (supported version)
+ This metapackage always depends on the currently supported PostgreSQL
+ database server version.
+ .
+ PostgreSQL is a fully featured object-relational database management
+ system.  It supports a large part of the SQL standard and is designed
+ to be extensible by users in many aspects.  Some of the features are:
+ ACID transactions, foreign keys, views, sequences, subqueries,
+ triggers, user-defined types and functions, outer joins, multiversion
+ concurrency control.  Graphical user interfaces and bindings for many
+ programming languages are available as well.
+
+N: There are 2 additional records. Please use the '-a' switch to see them.
+postgres@eap0217:~$

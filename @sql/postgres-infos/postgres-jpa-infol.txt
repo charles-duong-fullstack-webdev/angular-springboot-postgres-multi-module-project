@@ -1,0 +1,2 @@
+
+https://stackoverflow.com/questions/32843115/how-to-configure-spring-data-to-use-postgres-with-hibernate-without-xml

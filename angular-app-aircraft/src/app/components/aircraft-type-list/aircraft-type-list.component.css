@@ -1,0 +1,8 @@
+tr {
+  border-top-style: dotted;
+  border-right-style: dotted;
+  border-bottom-style: dotted;
+  border-left-style: dotted;
+  border-width: 1px;
+  border-color: lightgray;
+}

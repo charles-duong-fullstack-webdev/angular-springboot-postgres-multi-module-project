@@ -1,0 +1,50 @@
+check postgres process in mac” Code Answer’s
+ps -ef | grep postgres
+
+isc-duc@eap0217:~$ ps -ef | grep postgres
+postgres 10447     1  0 09:21 ?        00:00:00 /usr/lib/postgresql/12/bin/postgres -D /var/lib/postgresql/12/main -c config_file=/etc/postgresql/12/main/postgresql.conf
+postgres 10449 10447  0 09:21 ?        00:00:00 postgres: 12/main: checkpointer   
+postgres 10450 10447  0 09:21 ?        00:00:00 postgres: 12/main: background writer   
+postgres 10451 10447  0 09:21 ?        00:00:00 postgres: 12/main: walwriter   
+postgres 10452 10447  0 09:21 ?        00:00:00 postgres: 12/main: autovacuum launcher   
+postgres 10453 10447  0 09:21 ?        00:00:00 postgres: 12/main: stats collector   
+postgres 10454 10447  0 09:21 ?        00:00:00 postgres: 12/main: logical replication launcher   
+root     10911 10317  0 09:26 pts/0    00:00:00 sudo -i -u postgres
+postgres 10912 10911  0 09:26 pts/0    00:00:00 -bash
+postgres 12185 10912  0 10:55 pts/0    00:00:00 /usr/lib/postgresql/12/bin/psql
+postgres 12193 10447  0 10:55 ?        00:00:00 postgres: 12/main: postgres postgres [local] idle
+isc-duc  13311 13003  0 11:24 pts/1    00:00:00 grep --color=auto postgres
+isc-duc@eap0217:~$
+
+
+
+isc-duc@eap0217:~$ ps aux | grep postgres
+postgres 10447  0.0  0.0 320552 27124 ?        Ss   09:21   0:00 /usr/lib/postgresql/12/bin/postgres -D /var/lib/postgresql/12/main -c config_file=/etc/postgresql/12/main/postgresql.conf
+postgres 10449  0.0  0.0 320664  5976 ?        Ss   09:21   0:00 postgres: 12/main: checkpointer
+postgres 10450  0.0  0.0 320552  6364 ?        Ss   09:21   0:00 postgres: 12/main: background writer
+postgres 10451  0.0  0.0 320552  9624 ?        Ss   09:21   0:00 postgres: 12/main: walwriter
+postgres 10452  0.0  0.0 321236  6688 ?        Ss   09:21   0:00 postgres: 12/main: autovacuum launcher
+postgres 10453  0.0  0.0 175052  4216 ?        Ss   09:21   0:00 postgres: 12/main: stats collector
+postgres 10454  0.0  0.0 321104  6752 ?        Ss   09:21   0:00 postgres: 12/main: logical replication launcher
+root     10911  0.0  0.0  63512  4332 pts/0    S    09:26   0:00 sudo -i -u postgres
+postgres 10912  0.0  0.0  15876  5116 pts/0    S    09:26   0:00 -bash
+postgres 12185  0.0  0.0 111608  9464 pts/0    S+   10:55   0:00 /usr/lib/postgresql/12/bin/psql
+postgres 12193  0.0  0.0 321764 12544 ?        Ss   10:55   0:00 postgres: 12/main: postgres postgres [local] idle
+isc-duc  13376  0.0  0.0   9220   932 pts/1    S+   11:32   0:00 grep --color=auto postgres
+isc-duc@eap0217:~$
+
+
+isc-duc@eap0217:~$ ps -ef | grep postgresql.jar
+isc-duc  13322 13003  0 11:25 pts/1    00:00:00 grep --color=auto postgresql.jar
+isc-duc@eap0217:~$
+
+isc-duc@eap0217:~$ whereis postgresql
+postgresql: /usr/lib/postgresql /etc/postgresql /usr/share/postgresql
+isc-duc@eap0217:~$
+
+isc-duc@eap0217:~$ which psql
+/usr/bin/psql
+isc-duc@eap0217:~$
+
+isc-duc@eap0217:~$ ll /usr/bin/psql
+lrwxrwxrwx 1 root root 37 Feb 10 11:02 /usr/bin/psql -> ../share/postgresql-common/pg_wrapper*

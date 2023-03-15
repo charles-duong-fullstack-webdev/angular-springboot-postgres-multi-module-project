@@ -1,0 +1,4 @@
+
+
+1. run spring: ExpensetrackerApplication
+2. run ng serve

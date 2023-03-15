@@ -1,0 +1,41 @@
+
+<!--<html><head><meta http-equiv="Content-Type" content="text/html; charset=windows-1252"></head><body>-->
+<div class="container">
+  <p *ngIf="instances.length<1">No Aircraft Type records available.</p>
+  <div class="alert alert-success" *ngIf="deleteSuccess">Deleted Successfully</div>
+  <div class="alert alert-danger"  *ngIf="deleteFailure" style="text-emphasis-color: red">Delete failed!</div>
+
+  <table>
+  <thead>
+  <th width="20%">Select from existing {{ title }}</th>
+  <th width="10%" style="text-align: right">or </th>
+  <th width="10%"><button class="btn btn-primary btn-sm" [routerLink]="['/fboace04', 'AircraftType', 'new']">Create New</button></th>
+  </thead>
+</table>
+  <div>
+    <Table *ngIf="instances.length>0" className="mt-4">
+      <thead>
+      <tr>
+        <th width="20%">Name</th>
+        <th width="10%"></th>
+        <th width="10%">Actions</th>
+      </tr>
+      </thead>
+      <tbody>
+        <tr *ngFor="let instance of instances">
+          <td >{{instance.longName}}</td>
+          <td></td>
+          <td>
+            <div class="btn-group" role="group">
+            <button class="btn btn-primary btn-sm" [routerLink]="['/fboace04', 'AircraftType', instance.aircraftTypeId]">Edit</button>
+<!--            <button size="sm" color="primary" tag={Link} to={editPath + instance.aircraftTypeId} listRoutePath={listRoutePath}>Edit</button>-->
+              <button class="btn btn-danger btn-sm" (click)="onDelete(instance.aircraftTypeId)">Delete</button>
+            </div>
+          </td>
+        </tr>
+      </tbody>
+    </Table>
+</div>
+
+</div>
+

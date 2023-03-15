@@ -1,0 +1,15 @@
+Step 1: Update System
+We need to work on an updated system to ensure we don’t get any dependency issues.
+
+
+sudo apt update
+sudo apt -y full-upgrade
+
+REN...
+Reboot
+
+
+Step 2: Install PostgreSQL Database Server
+We’ll install the default version of PostgreSQL database server available on Ubuntu 20.04|22.04 without configuring the project’s upstream repositories.
+
+sudo apt install postgresql postgresql-client
