@@ -1,29 +1,24 @@
 package in.bushansirgur.expensetracker.model;
 
-import java.math.BigDecimal;
-
-import javax.persistence.Entity;
-import javax.persistence.GeneratedValue;
-import javax.persistence.GenerationType;
-import javax.persistence.Id;
-import javax.persistence.Table;
-
 import lombok.Getter;
 import lombok.Setter;
 
+import javax.persistence.*;
+import java.math.BigDecimal;
+
 @Entity
-@Table(name="tbl_expenses")
+@Table(name = "expenses")
 @Setter
 @Getter
 public class Expense {
-	
-	@Id
-	@GeneratedValue(strategy=GenerationType.IDENTITY)
-	private Long id;
-	
-	private String expense;
-	
-	private String description;
-	
-	private BigDecimal amount;
+
+    @Id
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
+    private Long id;
+
+    private String expense;
+
+    private String description;
+
+    private BigDecimal amount;
 }

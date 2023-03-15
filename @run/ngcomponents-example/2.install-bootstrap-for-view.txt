@@ -1,0 +1,27 @@
+
+cd angular-example
+ng serve
+
+cd spring-example
+
+iscpkg update yarn;
+yarn global remove @angular/cli; yarn global add @angular/cli@11;
+ng --version
+
+
+
+npm install -g @angular/cli
+ng new my-app
+cd my-app
+ng serve --open
+** Angular Live Development Server is listening on localhost:4200, open your browser on http://localhost:4200/ **
+
+
+
+ng new
+
+===============================
+-- bootstrap
+===============================
+npm install bootstrap --save
+ng add @ng-bootstrap/ng-bootstrap
