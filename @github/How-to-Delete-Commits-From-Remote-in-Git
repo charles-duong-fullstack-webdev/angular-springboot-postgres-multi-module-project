@@ -1,0 +1,13 @@
+
+
+Clean first one
+git reset --hard HEAD~1
+
+Clean second one
+git reset --hard HEAD~2
+
+etc...
+git reset --hard HEAD~3
+git reset --hard HEAD~4
+
+
