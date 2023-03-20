@@ -1,0 +1,7 @@
+Useful Resources & Links
+
+Official Deployment Guide: 
+https://angular.io/guide/deployment
+
+Official Firebase Hosting Docs: 
+https://firebase.google.com/docs/hosting/

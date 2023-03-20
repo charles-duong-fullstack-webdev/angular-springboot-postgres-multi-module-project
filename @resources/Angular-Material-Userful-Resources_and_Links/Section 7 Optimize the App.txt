@@ -1,0 +1,7 @@
+Useful Resources & Links
+
+More on Modules: 
+https://angular.io/guide/ngmodules
+
+More on Lazy Loading: 
+https://angular.io/guide/lazy-loading-ngmodules

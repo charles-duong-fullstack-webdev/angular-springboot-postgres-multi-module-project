@@ -1,0 +1,7 @@
+Useful Resources & Links
+
+NgRx Official Repo & Docs: 
+https://github.com/ngrx/platform
+
+RxJS in Detail: 
+https://academind.com/learn/javascript/understanding-rxjs/

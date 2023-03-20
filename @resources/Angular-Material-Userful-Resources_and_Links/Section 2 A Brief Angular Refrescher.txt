@@ -1,0 +1,7 @@
+Useful Resources & Links
+
+Official Angular Docs: 
+https://angular.io/docs
+
+Collection of useful Angular Resources: 
+https://academind.com/learn/angular

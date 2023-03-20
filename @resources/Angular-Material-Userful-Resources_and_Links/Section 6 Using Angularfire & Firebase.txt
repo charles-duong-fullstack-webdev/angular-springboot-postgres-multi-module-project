@@ -1,0 +1,13 @@
+Useful Resources & Links
+
+Angularfire Setup Docs: 
+https://github.com/angular/angularfire2/blob/master/docs/install-and-setup.md
+
+Angularfire Official Docs: 
+https://github.com/angular/angularfire2/blob/master/docs/firestore/collections.md
+
+Firebase Docs: 
+https://firebase.google.com/docs/web/setup
+
+More on RxJS Observables: 
+https://academind.com/learn/javascript/understanding-rxjs/
