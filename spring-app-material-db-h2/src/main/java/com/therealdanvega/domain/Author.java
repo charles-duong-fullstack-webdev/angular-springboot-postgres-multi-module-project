@@ -2,20 +2,21 @@ package com.therealdanvega.domain;
 
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
+import javax.persistence.GenerationType;
 import javax.persistence.Id;
 
 @Entity
 public class Author {
 	
 	@Id
-	@GeneratedValue
+	@GeneratedValue(strategy= GenerationType.AUTO)
 	private Long id;
 	private String firstName;
 	private String lastName;
 	private String email;
 
 	@SuppressWarnings("unused")
-	private Author(){}
+	public Author(){}
 	
 	public Author(String first, String last){
 		this.setFirstName(first);
