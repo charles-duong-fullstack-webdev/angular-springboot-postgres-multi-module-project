@@ -1,0 +1,91 @@
+
+1. mvn clean install
+2. run DatatLoader using @PostConstruct to load data into H2 tables. See an example below:
+
+ .   ____          _            __ _ _
+ /\\ / ___'_ __ _ _(_)_ __  __ _ \ \ \ \
+( ( )\___ | '_ | '_| | '_ \/ _` | \ \ \ \
+ \\/  ___)| |_)| | | | | || (_| |  ) ) ) )
+  '  |____| .__|_| |_|_| |_\__, | / / / /
+ =========|_|==============|___/=/_/_/_/
+ :: Spring Boot ::                (v2.4.2)
+
+2023-03-30 08:20:17.509  INFO 147027 --- [           main] c.db.h2.console.H2demoApplicationTests   : Starting H2demoApplicationTests using Java 17.0.6 on eap0217 with PID 147027 (started by isc-duc in /home/isc-duc/my_git_checkout/github-branche/angular-springboot-postgres-multi-module-project/spring-app-db-h2-console)
+2023-03-30 08:20:17.512  INFO 147027 --- [           main] c.db.h2.console.H2demoApplicationTests   : No active profile set, falling back to default profiles: default
+2023-03-30 08:20:17.863  INFO 147027 --- [           main] .s.d.r.c.RepositoryConfigurationDelegate : Bootstrapping Spring Data JPA repositories in DEFAULT mode.
+2023-03-30 08:20:17.945  INFO 147027 --- [           main] .s.d.r.c.RepositoryConfigurationDelegate : Finished Spring Data repository scanning in 76 ms. Found 2 JPA repository interfaces.
+2023-03-30 08:20:18.081  INFO 147027 --- [           main] faultConfiguringBeanFactoryPostProcessor : No bean named 'errorChannel' has been explicitly defined. Therefore, a default PublishSubscribeChannel will be created.
+2023-03-30 08:20:18.083  INFO 147027 --- [           main] faultConfiguringBeanFactoryPostProcessor : No bean named 'taskScheduler' has been explicitly defined. Therefore, a default ThreadPoolTaskScheduler will be created.
+2023-03-30 08:20:18.086  INFO 147027 --- [           main] faultConfiguringBeanFactoryPostProcessor : No bean named 'integrationHeaderChannelRegistry' has been explicitly defined. Therefore, a default DefaultHeaderChannelRegistry will be created.
+2023-03-30 08:20:18.181  INFO 147027 --- [           main] trationDelegate$BeanPostProcessorChecker : Bean 'org.springframework.integration.config.IntegrationManagementConfiguration' of type [org.springframework.integration.config.IntegrationManagementConfiguration] is not eligible for getting processed by all BeanPostProcessors (for example: not eligible for auto-proxying)
+2023-03-30 08:20:18.195  INFO 147027 --- [           main] trationDelegate$BeanPostProcessorChecker : Bean 'integrationChannelResolver' of type [org.springframework.integration.support.channel.BeanFactoryChannelResolver] is not eligible for getting processed by all BeanPostProcessors (for example: not eligible for auto-proxying)
+2023-03-30 08:20:18.198  INFO 147027 --- [           main] trationDelegate$BeanPostProcessorChecker : Bean 'integrationDisposableAutoCreatedBeans' of type [org.springframework.integration.config.annotation.Disposables] is not eligible for getting processed by all BeanPostProcessors (for example: not eligible for auto-proxying)
+2023-03-30 08:20:18.339  INFO 147027 --- [           main] com.zaxxer.hikari.HikariDataSource       : HikariPool-1 - Starting...
+2023-03-30 08:20:18.447  INFO 147027 --- [           main] com.zaxxer.hikari.HikariDataSource       : HikariPool-1 - Start completed.
+2023-03-30 08:20:18.483  INFO 147027 --- [           main] o.hibernate.jpa.internal.util.LogHelper  : HHH000204: Processing PersistenceUnitInfo [name: default]
+2023-03-30 08:20:18.509  INFO 147027 --- [           main] org.hibernate.Version                    : HHH000412: Hibernate ORM core version 5.4.27.Final
+2023-03-30 08:20:18.580  INFO 147027 --- [           main] o.hibernate.annotations.common.Version   : HCANN000001: Hibernate Commons Annotations {5.1.2.Final}
+2023-03-30 08:20:18.648  INFO 147027 --- [           main] org.hibernate.dialect.Dialect            : HHH000400: Using dialect: org.hibernate.dialect.H2Dialect
+2023-03-30 08:20:18.981  INFO 147027 --- [           main] o.h.e.t.j.p.i.JtaPlatformInitiator       : HHH000490: Using JtaPlatform implementation: [org.hibernate.engine.transaction.jta.platform.internal.NoJtaPlatform]
+2023-03-30 08:20:18.984  INFO 147027 --- [           main] j.LocalContainerEntityManagerFactoryBean : Initialized JPA EntityManagerFactory for persistence unit 'default'
+====> DataLoader: PostConstruct. GOOD JOB TO LOAD THE DATA... :-)
+====> DataLoader: createAuthors
+====> DataLoader: createPosts
+===> DataLoader: getTeaser: ): return <p>Lorem ipsum dolor...
+===> DataLoader: getBody: ): <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Vestibulum tincidunt et turpis non lobortis. Nullam pellentesque magna eros, et ultricies elit aliquet ut. Nunc et eros ligula. In purus nunc, iaculis quis aliquet ut, rutrum sed dolor. Proin ante turpis, euismod nec varius id, dapibus vel nisi. In bibendum mi in metus ultricies, fringilla gravida mi cursus. Integer nec sapien libero. Ut arcu ex, volutpat sed ex finibus, sodales efficitur eros. Sed sapien justo, tincidunt nec pharetra non, ultricies ac nunc. Mauris ac semper dui. Sed eleifend sit amet erat accumsan suscipit. Aliquam sit amet ipsum mauris. Maecenas sollicitudin, nibh sagittis vulputate tincidunt, neque neque vehicula augue, et lacinia dui nisi vulputate velit. Maecenas sit amet augue interdum, suscipit velit malesuada, fermentum orci.</p><p>In sit amet mi sollicitudin, iaculis erat venenatis, fringilla turpis. Suspendisse potenti. Curabitur sed molestie eros. Phasellus ultrices, nisi a egestas commodo, ante nisl lobortis diam, at molestie quam lorem eget tellus. Maecenas venenatis sapien ut euismod tempus. Nunc gravida vitae ante faucibus iaculis. Donec nulla dolor, placerat sit amet iaculis at, ornare quis turpis. Proin pharetra vel massa at vulputate. Phasellus efficitur pretium auctor. Mauris tincidunt velit metus, ac varius ante porta vel.</p><p>Pellentesque habitant morbi tristique senectus et netus et malesuada fames ac turpis egestas. Donec quis diam elementum, feugiat elit a, vestibulum neque. Proin in augue fringilla, sollicitudin dolor vel, fringilla libero. Aenean iaculis ante ligula, sit amet maximus ante viverra at. Quisque auctor arcu et ante consectetur vulputate. Suspendisse iaculis libero eu enim eleifend, non mattis leo aliquet. Fusce id nibh euismod, convallis leo ac, rutrum arcu. Nullam at urna commodo diam pharetra vulputate sed vitae mi. Aenean molestie ante nec finibus aliquet. Suspendisse ac turpis vehicula, semper tortor sit amet, sollicitudin ante. Morbi vehicula sem non elit tempor molestie. In convallis, quam ut porta sagittis, tortor nibh euismod dolor, eget sollicitudin massa mauris nec mi. Proin consectetur lacinia commodo. Quisque at consectetur velit. Pellentesque vel sagittis orci, sed scelerisque diam.</p>
+===> DataLoader: getSpringKeywords: ): [Spring, Spring Data]
+===> DataLoader: postRepository.save(post): ): Post [title=Spring Data Rocks!]
+===> DataLoader: getTeaser: ): return <p>Lorem ipsum dolor...
+===> DataLoader: getBody: ): <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Vestibulum tincidunt et turpis non lobortis. Nullam pellentesque magna eros, et ultricies elit aliquet ut. Nunc et eros ligula. In purus nunc, iaculis quis aliquet ut, rutrum sed dolor. Proin ante turpis, euismod nec varius id, dapibus vel nisi. In bibendum mi in metus ultricies, fringilla gravida mi cursus. Integer nec sapien libero. Ut arcu ex, volutpat sed ex finibus, sodales efficitur eros. Sed sapien justo, tincidunt nec pharetra non, ultricies ac nunc. Mauris ac semper dui. Sed eleifend sit amet erat accumsan suscipit. Aliquam sit amet ipsum mauris. Maecenas sollicitudin, nibh sagittis vulputate tincidunt, neque neque vehicula augue, et lacinia dui nisi vulputate velit. Maecenas sit amet augue interdum, suscipit velit malesuada, fermentum orci.</p><p>In sit amet mi sollicitudin, iaculis erat venenatis, fringilla turpis. Suspendisse potenti. Curabitur sed molestie eros. Phasellus ultrices, nisi a egestas commodo, ante nisl lobortis diam, at molestie quam lorem eget tellus. Maecenas venenatis sapien ut euismod tempus. Nunc gravida vitae ante faucibus iaculis. Donec nulla dolor, placerat sit amet iaculis at, ornare quis turpis. Proin pharetra vel massa at vulputate. Phasellus efficitur pretium auctor. Mauris tincidunt velit metus, ac varius ante porta vel.</p><p>Pellentesque habitant morbi tristique senectus et netus et malesuada fames ac turpis egestas. Donec quis diam elementum, feugiat elit a, vestibulum neque. Proin in augue fringilla, sollicitudin dolor vel, fringilla libero. Aenean iaculis ante ligula, sit amet maximus ante viverra at. Quisque auctor arcu et ante consectetur vulputate. Suspendisse iaculis libero eu enim eleifend, non mattis leo aliquet. Fusce id nibh euismod, convallis leo ac, rutrum arcu. Nullam at urna commodo diam pharetra vulputate sed vitae mi. Aenean molestie ante nec finibus aliquet. Suspendisse ac turpis vehicula, semper tortor sit amet, sollicitudin ante. Morbi vehicula sem non elit tempor molestie. In convallis, quam ut porta sagittis, tortor nibh euismod dolor, eget sollicitudin massa mauris nec mi. Proin consectetur lacinia commodo. Quisque at consectetur velit. Pellentesque vel sagittis orci, sed scelerisque diam.</p>
+===> DataLoader: getGrailsKeywords: ): [Grails, Groovy]
+===> DataLoader: postRepository.save(grails): ): Post [title=Grails is awesome!]
+2023-03-30 08:20:19.428  WARN 147027 --- [           main] JpaBaseConfiguration$JpaWebConfiguration : spring.jpa.open-in-view is enabled by default. Therefore, database queries may be performed during view rendering. Explicitly configure spring.jpa.open-in-view to disable this warning
+2023-03-30 08:20:19.565  INFO 147027 --- [           main] o.s.s.concurrent.ThreadPoolTaskExecutor  : Initializing ExecutorService 'applicationTaskExecutor'
+2023-03-30 08:20:19.590  INFO 147027 --- [           main] o.s.b.a.h2.H2ConsoleAutoConfiguration    : H2 console available at '/console'. Database available at 'jdbc:h2:mem:testdb'
+2023-03-30 08:20:19.806  INFO 147027 --- [           main] o.s.s.c.ThreadPoolTaskScheduler          : Initializing ExecutorService 'taskScheduler'
+2023-03-30 08:20:19.841  INFO 147027 --- [           main] o.s.i.endpoint.EventDrivenConsumer       : Adding {logging-channel-adapter:_org.springframework.integration.errorLogger} as a subscriber to the 'errorChannel' channel
+2023-03-30 08:20:19.841  INFO 147027 --- [           main] o.s.i.channel.PublishSubscribeChannel    : Channel 'application.errorChannel' has 1 subscriber(s).
+2023-03-30 08:20:19.842  INFO 147027 --- [           main] o.s.i.endpoint.EventDrivenConsumer       : started bean '_org.springframework.integration.errorLogger'
+2023-03-30 08:20:19.846  INFO 147027 --- [           main] c.db.h2.console.H2demoApplicationTests   : Started H2demoApplicationTests in 2.486 seconds (JVM running for 3.046)
+===> postRepository.findBySlug("grails-is-awesome"): Post [title=Grails is awesome!]
+[INFO] Tests run: 2, Failures: 0, Errors: 0, Skipped: 0, Time elapsed: 2.844 s - in com.db.h2.console.H2demoApplicationTests
+2023-03-30 08:20:19.975  INFO 147027 --- [extShutdownHook] o.s.i.endpoint.EventDrivenConsumer       : Removing {logging-channel-adapter:_org.springframework.integration.errorLogger} as a subscriber to the 'errorChannel' channel
+2023-03-30 08:20:19.976  INFO 147027 --- [extShutdownHook] o.s.i.channel.PublishSubscribeChannel    : Channel 'application.errorChannel' has 0 subscriber(s).
+2023-03-30 08:20:19.976  INFO 147027 --- [extShutdownHook] o.s.i.endpoint.EventDrivenConsumer       : stopped bean '_org.springframework.integration.errorLogger'
+2023-03-30 08:20:19.976  INFO 147027 --- [extShutdownHook] o.s.s.c.ThreadPoolTaskScheduler          : Shutting down ExecutorService 'taskScheduler'
+2023-03-30 08:20:19.977  INFO 147027 --- [extShutdownHook] o.s.s.concurrent.ThreadPoolTaskExecutor  : Shutting down ExecutorService 'applicationTaskExecutor'
+2023-03-30 08:20:19.978  INFO 147027 --- [extShutdownHook] j.LocalContainerEntityManagerFactoryBean : Closing JPA EntityManagerFactory for persistence unit 'default'
+2023-03-30 08:20:19.978  INFO 147027 --- [extShutdownHook] .SchemaDropperImpl$DelayedDropActionImpl : HHH000477: Starting delayed evictData of schema as part of SessionFactory shut-down'
+2023-03-30 08:20:19.979  WARN 147027 --- [extShutdownHook] o.h.engine.jdbc.spi.SqlExceptionHelper   : SQL Error: 90121, SQLState: 90121
+2023-03-30 08:20:19.980 ERROR 147027 --- [extShutdownHook] o.h.engine.jdbc.spi.SqlExceptionHelper   : Database is already closed (to disable automatic closing at VM shutdown, add ";DB_CLOSE_ON_EXIT=FALSE" to the db URL) [90121-200]
+2023-03-30 08:20:19.980  WARN 147027 --- [extShutdownHook] o.h.engine.jdbc.spi.SqlExceptionHelper   : SQL Error: 90121, SQLState: 90121
+2023-03-30 08:20:19.980 ERROR 147027 --- [extShutdownHook] o.h.engine.jdbc.spi.SqlExceptionHelper   : Database is already closed (to disable automatic closing at VM shutdown, add ";DB_CLOSE_ON_EXIT=FALSE" to the db URL) [90121-200]
+2023-03-30 08:20:19.980  WARN 147027 --- [extShutdownHook] o.s.b.f.support.DisposableBeanAdapter    : Invocation of destroy method failed on bean with name 'entityManagerFactory': org.hibernate.exception.JDBCConnectionException: Unable to release JDBC Connection used for DDL execution
+2023-03-30 08:20:19.981  INFO 147027 --- [extShutdownHook] com.zaxxer.hikari.HikariDataSource       : HikariPool-1 - Shutdown initiated...
+2023-03-30 08:20:19.982  INFO 147027 --- [extShutdownHook] com.zaxxer.hikari.HikariDataSource       : HikariPool-1 - Shutdown completed.
+[INFO]
+[INFO] Results:
+[INFO]
+[INFO] Tests run: 2, Failures: 0, Errors: 0, Skipped: 0
+[INFO]
+[INFO]
+[INFO] --- maven-jar-plugin:3.2.0:jar (default-jar) @ crud-create ---
+[INFO] Building jar: /home/isc-duc/my_git_checkout/github-branche/angular-springboot-postgres-multi-module-project/spring-app-db-h2-console/target/crud-create-0.0.1-SNAPSHOT.jar
+[INFO]
+[INFO] --- spring-boot-maven-plugin:2.4.2:repackage (repackage) @ crud-create ---
+[INFO] Replacing main artifact with repackaged archive
+[INFO]
+[INFO] --- maven-install-plugin:2.5.2:install (default-install) @ crud-create ---
+[INFO] Installing /home/isc-duc/my_git_checkout/github-branche/angular-springboot-postgres-multi-module-project/spring-app-db-h2-console/target/crud-create-0.0.1-SNAPSHOT.jar to /home/isc-duc/mavenrepo/com/db-h2-console/crud-create/0.0.1-SNAPSHOT/crud-create-0.0.1-SNAPSHOT.jar
+[INFO] Installing /home/isc-duc/my_git_checkout/github-branche/angular-springboot-postgres-multi-module-project/spring-app-db-h2-console/pom.xml to /home/isc-duc/mavenrepo/com/db-h2-console/crud-create/0.0.1-SNAPSHOT/crud-create-0.0.1-SNAPSHOT.pom
+[INFO] ------------------------------------------------------------------------
+[INFO] BUILD SUCCESS
+[INFO] ------------------------------------------------------------------------
+[INFO] Total time:  5.989 s
+[INFO] Finished at: 2023-03-30T08:20:21+02:00
+[INFO] ------------------------------------------------------------------------
+
+Process finished with exit code 0
+
+2. run spring: DbH2Application
+
