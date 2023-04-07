@@ -47,18 +47,19 @@ public class ExerciseController {
 
     @RequestMapping("/mattableh2/exercises")
     public List<Exercise> list(Model model) {
-        List<Exercise> exercises = new ArrayList<Exercise>();
-        Exercise e1 = new Exercise();
-        e1.setId(1L);
-        e1.setCalories(3L);
-        e1.setName("name");
-        e1.setDuration(2L);
-        exercises.add(e1);
-        exercises.add(e1);
 
-        //model.addAttribute("exercises", exercises);
-        //model.addAttribute("exercises", exerciseService.list());
-        return exercises;
+//        TODO This works fine
+//        List<Exercise> exercises = new ArrayList<Exercise>();
+//        Exercise e1 = new Exercise();
+//        e1.setId(1L);
+//        e1.setCalories(3L);
+//        e1.setName("name");
+//        e1.setDuration(2L);
+//        exercises.add(e1);
+//        exercises.add(e1);
+//        return exercises;
+
+        return exerciseService.list();
     }
 
 }
