@@ -1,56 +1,26 @@
-import { Subject } from 'rxjs/Subject';
-import 'rxjs/add/operator/map';
 import {Exercise} from '../training/exercise.model';
+import {HttpClient} from '@angular/common/http';
+import {Injectable} from '@angular/core';
+import {map} from 'rxjs/operators';
+import {Observable} from "rxjs";
 
+/**
+ * see training.service.ts
+ */
+@Injectable({
+  providedIn: 'root'
+})
 export class Matableh2Service {
-  exerciseChanged = new Subject<Exercise>();
-  private availableExercises: Exercise[] = [
-    { id: 'crunches', name: 'Crunches', duration: 30, calories: 8 },
-    { id: 'touch-toes', name: 'Touch Toes', duration: 180, calories: 15 },
-    { id: 'side-lunges', name: 'Side Lunges', duration: 120, calories: 18 },
-    { id: 'burpees', name: 'Burpees', duration: 60, calories: 8 }
-  ];
-  private runningExercise: Exercise;
-  private exercises: Exercise[] = [];
 
-  getAvailableExercises() {
-    return this.availableExercises.slice();
+  private getUrl = 'http://localhost:8084/api/mattableh2/exercises';
+
+  constructor(private httpClient: HttpClient) {
   }
 
-  startExercise(selectedId: string) {
-    this.runningExercise = this.availableExercises.find(
-      ex => ex.id === selectedId
+  getExercise(): Observable<Exercise[]> {
+    return this.httpClient.get<Exercise[]>(this.getUrl).pipe(
+      map((response) => response)
     );
-    this.exerciseChanged.next({ ...this.runningExercise });
   }
 
-  completeExercise() {
-    this.exercises.push({
-      ...this.runningExercise,
-      date: new Date(),
-      state: 'completed'
-    });
-    this.runningExercise = null;
-    this.exerciseChanged.next(null);
-  }
-
-  cancelExercise(progress: number) {
-    this.exercises.push({
-      ...this.runningExercise,
-      duration: this.runningExercise.duration * (progress / 100),
-      calories: this.runningExercise.calories * (progress / 100),
-      date: new Date(),
-      state: 'cancelled'
-    });
-    this.runningExercise = null;
-    this.exerciseChanged.next(null);
-  }
-
-  getRunningExercise() {
-    return { ...this.runningExercise };
-  }
-
-  getCompletedOrCancelledExercises() {
-    return this.exercises.slice();
-  }
 }

@@ -21,6 +21,7 @@ import { AuthService } from './auth/auth.service';
 import { TrainingService } from './training/training.service';
 import {MatNgtableH2Component} from './mattableh2/mat-ngtable-h2.component';
 import {Matableh2Service} from './mattableh2/matableh2.service';
+import {HttpClientModule} from "@angular/common/http";
 
 
 @NgModule({
@@ -45,7 +46,8 @@ import {Matableh2Service} from './mattableh2/matableh2.service';
     AppRoutingModule,
     FlexLayoutModule,
     FormsModule,
-    ReactiveFormsModule
+    ReactiveFormsModule,
+    HttpClientModule
   ],
   providers: [AuthService, TrainingService, Matableh2Service],
   bootstrap: [AppComponent],

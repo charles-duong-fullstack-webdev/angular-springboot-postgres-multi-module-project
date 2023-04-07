@@ -4,7 +4,7 @@
 Hello () {
    echo "basePath: ../angular-springboot-postgres-multi-module-project/angular-material-h2"
    echo "     >>>> ng serve"
-   cd ../angular-springboot-postgres-multi-module-project/angular-material-h2$
+   cd ../angular-springboot-postgres-multi-module-project/angular-material-h2
    ng serve
    return  0
 }

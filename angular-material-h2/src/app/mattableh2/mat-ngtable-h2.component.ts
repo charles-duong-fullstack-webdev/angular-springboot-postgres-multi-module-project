@@ -1,5 +1,5 @@
-import { Component, OnInit, ViewChild, AfterViewInit } from '@angular/core';
-import { MatTableDataSource, MatSort, MatPaginator } from '@angular/material';
+import {AfterViewInit, Component, OnInit, ViewChild} from '@angular/core';
+import {MatPaginator, MatSort, MatTableDataSource} from '@angular/material';
 import {Exercise} from '../training/exercise.model';
 import {Matableh2Service} from './matableh2.service';
 
@@ -10,15 +10,22 @@ import {Matableh2Service} from './matableh2.service';
 })
 export class MatNgtableH2Component implements OnInit, AfterViewInit {
   displayedColumns = ['date', 'name', 'duration', 'calories', 'state'];
-  dataSource = new MatTableDataSource<Exercise>();
+  dataSource = new MatTableDataSource([]);
 
-  @ViewChild(MatSort, { static: false }) sort: MatSort;
-  @ViewChild(MatPaginator, { static: false }) paginator: MatPaginator;
+  @ViewChild(MatSort, {static: false}) sort: MatSort;
+  @ViewChild(MatPaginator, {static: false}) paginator: MatPaginator;
 
-  constructor(private matableh2Service: Matableh2Service) {}
+  constructor(private matableh2Service: Matableh2Service) {
+  }
 
   ngOnInit() {
-    this.dataSource.data = this.matableh2Service.getCompletedOrCancelledExercises();
+    this.matableh2Service.getExercise().subscribe((result: Exercise[]) => {
+      console.log('result ' + result[0].id);
+      console.log('result ' + result[0].name);
+      this.dataSource = new MatTableDataSource(result);
+      this.dataSource.sort = this.sort;
+      this.dataSource.paginator = this.paginator;
+    });
   }
 
   ngAfterViewInit() {
