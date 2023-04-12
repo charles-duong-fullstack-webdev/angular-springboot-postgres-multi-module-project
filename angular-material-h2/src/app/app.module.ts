@@ -22,6 +22,7 @@ import { TrainingService } from './training/training.service';
 import {MatNgtableH2Component} from './mattableh2/mat-ngtable-h2.component';
 import {Matableh2Service} from './mattableh2/matableh2.service';
 import {HttpClientModule} from "@angular/common/http";
+import { Matdialogh2Component } from './matdialogh2/matdialogh2.component';
 
 
 @NgModule({
@@ -37,7 +38,8 @@ import {HttpClientModule} from "@angular/common/http";
     HeaderComponent,
     SidenavListComponent,
     StopTrainingComponent,
-    MatNgtableH2Component
+    MatNgtableH2Component,
+    Matdialogh2Component
   ],
   imports: [
     BrowserModule,
