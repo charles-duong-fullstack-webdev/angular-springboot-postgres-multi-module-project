@@ -2,6 +2,8 @@ import {AfterViewInit, Component, OnInit, ViewChild} from '@angular/core';
 import {MatPaginator, MatSort, MatTableDataSource} from '@angular/material';
 import {Exercise} from '../training/exercise.model';
 import {Matableh2Service} from './matableh2.service';
+import {MatDialog, MatDialogConfig} from '@angular/material/dialog';
+import {MatNgdialogH2Component} from '../matdialogh2/mat-ngdialog-h2.component';
 
 @Component({
   selector: 'app-ngtable-h2',
@@ -16,7 +18,7 @@ export class MatNgtableH2Component implements OnInit, AfterViewInit {
   @ViewChild(MatSort, {static: false}) sort: MatSort;
   @ViewChild(MatPaginator, {static: false}) paginator: MatPaginator;
 
-  constructor(private matableh2Service: Matableh2Service) {
+  constructor(private matableh2Service: Matableh2Service, private dialog: MatDialog) {
   }
 
   ngOnInit() {
@@ -28,6 +30,56 @@ export class MatNgtableH2Component implements OnInit, AfterViewInit {
       this.dataSource.sort = this.sort;
       this.dataSource.paginator = this.paginator;
     });
+  }
+
+  // openDialog() {
+  //
+  //   const dialogConfig = new MatDialogConfig();
+  //
+  //   dialogConfig.disableClose = true;
+  //   dialogConfig.autoFocus = true;
+  //
+  //   // dialogConfig.position = {
+  //   //   'top': '0',
+  //   //   left: '0'
+  //   //   direction: 'ltr' or 'rtl'
+  //   // };
+  //
+  //   this.dialog.open(MatNgdialogH2Component, dialogConfig);
+  // }
+
+  // openDialog() {
+  //   const dialogConfig = new MatDialogConfig();
+  //
+  //   dialogConfig.disableClose = true;
+  //   dialogConfig.autoFocus = true;
+  //
+  //   dialogConfig.data = {
+  //     id: 1,
+  //     title: 'Angular For Beginners'
+  //   };
+  //
+  //   this.dialog.open(MatNgdialogH2Component, dialogConfig);
+  // }
+
+  openDialog() {
+    const dialogConfig = new MatDialogConfig();
+
+    dialogConfig.disableClose = true;
+    dialogConfig.autoFocus = true;
+
+    dialogConfig.data = {
+      id: 1,
+      title: 'Angular For Beginners'
+    };
+
+    this.dialog.open(MatNgdialogH2Component, dialogConfig);
+
+    const dialogRef = this.dialog.open(MatNgdialogH2Component, dialogConfig);
+
+    dialogRef.afterClosed().subscribe(
+      data => console.log('Dialog output:', data)
+    );
   }
 
   ngAfterViewInit() {
