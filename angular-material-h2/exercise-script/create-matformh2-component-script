@@ -1,0 +1,14 @@
+
+---------------------------------------
+ng g c matformh2 --module app
+---------------------------------------
+Your global Angular CLI version (14.2.3) is greater than your local version (8.3.29). The local Angular CLI version is used.
+
+To disable this warning use "ng config -g cli.warnings.versionMismatch false".
+CREATE src/app/matformh2/matformh2.component.css (0 bytes)
+CREATE src/app/matformh2/matformh2.component.html (24 bytes)
+CREATE src/app/matformh2/matformh2.component.spec.ts (649 bytes)
+CREATE src/app/matformh2/matformh2.component.ts (281 bytes)
+UPDATE src/app/app.module.ts (2480 bytes)
+
+

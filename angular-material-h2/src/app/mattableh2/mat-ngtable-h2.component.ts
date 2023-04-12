@@ -1,7 +1,7 @@
 import {AfterViewInit, Component, OnInit, ViewChild} from '@angular/core';
 import {MatPaginator, MatSort, MatTableDataSource} from '@angular/material';
 import {Exercise} from '../training/exercise.model';
-import {Matableh2Service} from './matableh2.service';
+import {MatNgtableH2Service} from './mat-ngtable-h2.service';
 import {MatDialog, MatDialogConfig} from '@angular/material/dialog';
 import {MatNgdialogH2Component} from '../matdialogh2/mat-ngdialog-h2.component';
 
@@ -18,7 +18,7 @@ export class MatNgtableH2Component implements OnInit, AfterViewInit {
   @ViewChild(MatSort, {static: false}) sort: MatSort;
   @ViewChild(MatPaginator, {static: false}) paginator: MatPaginator;
 
-  constructor(private matableh2Service: Matableh2Service, private dialog: MatDialog) {
+  constructor(private matableh2Service: MatNgtableH2Service, private dialog: MatDialog) {
   }
 
   ngOnInit() {
@@ -31,36 +31,6 @@ export class MatNgtableH2Component implements OnInit, AfterViewInit {
       this.dataSource.paginator = this.paginator;
     });
   }
-
-  // openDialog() {
-  //
-  //   const dialogConfig = new MatDialogConfig();
-  //
-  //   dialogConfig.disableClose = true;
-  //   dialogConfig.autoFocus = true;
-  //
-  //   // dialogConfig.position = {
-  //   //   'top': '0',
-  //   //   left: '0'
-  //   //   direction: 'ltr' or 'rtl'
-  //   // };
-  //
-  //   this.dialog.open(MatNgdialogH2Component, dialogConfig);
-  // }
-
-  // openDialog() {
-  //   const dialogConfig = new MatDialogConfig();
-  //
-  //   dialogConfig.disableClose = true;
-  //   dialogConfig.autoFocus = true;
-  //
-  //   dialogConfig.data = {
-  //     id: 1,
-  //     title: 'Angular For Beginners'
-  //   };
-  //
-  //   this.dialog.open(MatNgdialogH2Component, dialogConfig);
-  // }
 
   openDialog() {
     const dialogConfig = new MatDialogConfig();
@@ -96,15 +66,21 @@ export class MatNgtableH2Component implements OnInit, AfterViewInit {
     this.deleteExerciseWithoutDeleteH2(element);
   }
 
+  onEdit(element: Exercise): void {
+    window.alert('Edit ID/Name:' + element.id + '/' + element.name);
+    this.matableh2Service.setEditExercise(element);
+  }
+
+  onAddNew(element: Exercise): void {
+    window.alert('Add New:' + element.id + '/' + element.name);
+    this.matableh2Service.setEditExercise(element);
+  }
+
   deleteExerciseWithoutDeleteH2(element: Exercise): void {
     const indexToDelete = this.exercises.findIndex(
       (exerciseElement) => exerciseElement.id === element.id
     );
     this.exercises.splice(indexToDelete, 1);
     this.dataSource = new MatTableDataSource(this.exercises);
-  }
-
-  onEdit(element: Exercise): void {
-    window.alert('Edit ID/Name:' + element.id + '/' + element.name);
   }
 }

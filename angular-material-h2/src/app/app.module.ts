@@ -20,9 +20,10 @@ import { StopTrainingComponent } from './training/current-training/stop-training
 import { AuthService } from './auth/auth.service';
 import { TrainingService } from './training/training.service';
 import {MatNgtableH2Component} from './mattableh2/mat-ngtable-h2.component';
-import {Matableh2Service} from './mattableh2/matableh2.service';
+import {MatNgtableH2Service} from './mattableh2/mat-ngtable-h2.service';
 import {HttpClientModule} from "@angular/common/http";
 import { MatNgdialogH2Component } from './matdialogh2/./mat-ngdialog-h2.component';
+import { MatNgformH2Component } from './matformh2/mat-ngform-h2.component';
 
 
 @NgModule({
@@ -39,7 +40,8 @@ import { MatNgdialogH2Component } from './matdialogh2/./mat-ngdialog-h2.componen
     SidenavListComponent,
     StopTrainingComponent,
     MatNgtableH2Component,
-    MatNgdialogH2Component
+    MatNgdialogH2Component,
+    MatNgformH2Component
   ],
   imports: [
     BrowserModule,
@@ -51,7 +53,7 @@ import { MatNgdialogH2Component } from './matdialogh2/./mat-ngdialog-h2.componen
     ReactiveFormsModule,
     HttpClientModule
   ],
-  providers: [AuthService, TrainingService, Matableh2Service],
+  providers: [AuthService, TrainingService, MatNgtableH2Service],
   bootstrap: [AppComponent],
   entryComponents: [StopTrainingComponent, MatNgdialogH2Component]
 })

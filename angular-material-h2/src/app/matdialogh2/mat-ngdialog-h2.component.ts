@@ -3,7 +3,7 @@ import {MAT_DIALOG_DATA, MatDialogRef} from '@angular/material/dialog';
 import {FormBuilder, FormGroup} from '@angular/forms';
 
 @Component({
-  selector: 'app-matdialogh2',
+  selector: 'app-mat-ngdialog-h2',
   templateUrl: './mat-ngdialog-h2.component.html',
   styleUrls: ['./mat-ngdialog-h2.component.css']
 })
