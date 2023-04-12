@@ -32,15 +32,18 @@ export class MatNgtableH2Component implements OnInit, AfterViewInit {
     });
   }
 
-  openDialog() {
+  openDialog(element: Exercise) {
     const dialogConfig = new MatDialogConfig();
 
     dialogConfig.disableClose = true;
     dialogConfig.autoFocus = true;
 
+    window.alert('openDialog ID/Name:' + element.id + '/' + element.name);
+
     dialogConfig.data = {
-      id: 1,
-      title: 'Angular For Beginners'
+      id: element.id,
+      title: element.name,
+      description: element.name
     };
 
     this.dialog.open(MatNgdialogH2Component, dialogConfig);
@@ -68,7 +71,8 @@ export class MatNgtableH2Component implements OnInit, AfterViewInit {
 
   onEdit(element: Exercise): void {
     window.alert('Edit ID/Name:' + element.id + '/' + element.name);
-    this.matableh2Service.setEditExercise(element);
+    this.openDialog(element);
+    // this.matableh2Service.setEditExercise(element);
   }
 
   onAddNew(element: Exercise): void {
