@@ -17,8 +17,10 @@ import {
   MatDialogModule,
   MatTableModule,
   MatSortModule,
-  MatPaginatorModule
+  MatPaginatorModule,
+  MatRadioModule
 } from '@angular/material';
+import {MatError, MatLabel} from "@angular/material/form-field";
 
 @NgModule({
   imports: [
@@ -39,7 +41,11 @@ import {
     MatDialogModule,
     MatTableModule,
     MatSortModule,
-    MatPaginatorModule
+    MatPaginatorModule,
+    MatRadioModule,
+    MatDatepickerModule,
+    MatFormFieldModule,
+    MatIconModule
   ],
   exports: [
     MatButtonModule,
@@ -59,7 +65,11 @@ import {
     MatDialogModule,
     MatTableModule,
     MatSortModule,
-    MatPaginatorModule
+    MatPaginatorModule,
+    MatRadioModule,
+    MatDatepickerModule,
+    MatFormFieldModule,
+    MatIconModule,
   ]
 })
 export class MaterialModule {}
