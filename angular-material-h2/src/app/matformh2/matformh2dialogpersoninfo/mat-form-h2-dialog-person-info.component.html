@@ -7,9 +7,8 @@
       <input matInput maxlength="15" inputmode="tel" placeholder="Type name" formControlName="name" #nameInput>
       <mat-hint>Mini character 10: {{ nameInput.value.length }}/10</mat-hint>
       <mat-error>Name is required</mat-error>
-<!--      <mat-error *ngIf="form.controls['name'].errors?.['minlength']">-->
-<!--        Please enter more than 10 character-->
-<!--      </mat-error>-->
+      <mat-error *ngIf="form.get('name').hasError('minlength')">Please enter more than 10 character (from HTML)
+      </mat-error>
     </mat-form-field>
 
     <mat-form-field appearance="legacy">
@@ -17,8 +16,9 @@
       <input matInput type="email" formControlName="email" placeholder="Your email">
       <mat-icon matSuffix>mail_outline</mat-icon>
       <mat-hint>Input the fully qualified email address</mat-hint>
-<!--      <mat-error *ngIf="form.controls['email'].errors?.['required']">Email is required</mat-error>-->
-<!--      <mat-error *ngIf="form.controls['email'].errors?.['pattern']">Please enter valid email</mat-error>-->
+      <mat-error *ngIf="form.get('email').hasError('required')">Email is required (from HTML)</mat-error>
+      <mat-error *ngIf="form.get('email').hasError('pattern')">Please enter a valid email address (from HTML)
+      </mat-error>
     </mat-form-field>
 
     <mat-form-field appearance="standard">
