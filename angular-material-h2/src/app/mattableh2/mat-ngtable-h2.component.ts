@@ -1,10 +1,10 @@
 import {AfterViewInit, Component, OnInit, ViewChild} from '@angular/core';
 import {MatPaginator, MatSort, MatTableDataSource} from '@angular/material';
-import {Exercise} from '../training/exercise.model';
 import {MatNgtableH2Service} from './mat-ngtable-h2.service';
 import {MatDialog, MatDialogConfig} from '@angular/material/dialog';
 import {MatNgdialogH2Component} from '../matdialogh2/mat-ngdialog-h2.component';
 import {PersonExerciseH2} from "./models/person-exercise-h2";
+import {PersonH2} from "./models/person-h2";
 
 
 @Component({
@@ -13,9 +13,16 @@ import {PersonExerciseH2} from "./models/person-exercise-h2";
   styleUrls: ['./mat-ngtable-h2.component.css']
 })
 export class MatNgtableH2Component implements OnInit, AfterViewInit {
+  private exercisePersonInfo =
+    {
+      name: 'MatNgtableH2Service Charles', email: 'chares@gmail.com', dob: '30.01.1995',
+      address: '8 dbdbdb', country: 'Swiss', gender: 'Man'
+    };
+
   displayedColumns = ['date', 'name', 'duration', 'calories', 'state', 'edit', 'delete'];
   dataSource = new MatTableDataSource([]);
   personExerciseH2: PersonExerciseH2[];
+  selectedPersonExerciseH2 = new PersonExerciseH2();
 
   @ViewChild(MatSort, {static: false}) sort: MatSort;
   @ViewChild(MatPaginator, {static: false}) paginator: MatPaginator;
@@ -73,6 +80,21 @@ export class MatNgtableH2Component implements OnInit, AfterViewInit {
 
   onEdit(element: PersonExerciseH2): void {
     window.alert('Edit ID/Name:' + element.id + '/' + element.name);
+    this.selectedPersonExerciseH2.name = element.name;
+    this.selectedPersonExerciseH2.id = element.id;
+    this.selectedPersonExerciseH2.calories = element.calories;
+    this.selectedPersonExerciseH2.duration = element.duration;
+    this.selectedPersonExerciseH2.personH2 = new PersonH2();
+    this.selectedPersonExerciseH2.personH2.name = this.exercisePersonInfo.name;
+    this.selectedPersonExerciseH2.personH2.dob = this.exercisePersonInfo.dob;
+    this.selectedPersonExerciseH2.personH2.address = this.exercisePersonInfo.address;
+    this.selectedPersonExerciseH2.personH2.email = this.exercisePersonInfo.email;
+    this.selectedPersonExerciseH2.personH2.country = this.exercisePersonInfo.country;
+    this.selectedPersonExerciseH2.personH2.gender = this.exercisePersonInfo.gender;
+    window.alert('Edit this.selectedPersonExerciseH2.name: ' + this.selectedPersonExerciseH2.name);
+    window.alert('Edit this.selectedPersonExerciseH2.personH2.email: ' + this.selectedPersonExerciseH2.personH2.email);
+
+    // exercisePersonInfo
     this.openDialog(element);
     // this.matableh2Service.setEditExercise(element);
   }

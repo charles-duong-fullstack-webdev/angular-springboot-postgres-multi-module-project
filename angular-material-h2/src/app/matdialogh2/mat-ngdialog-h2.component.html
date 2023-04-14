@@ -1,7 +1,9 @@
 <p>mat-form-h2-dialog-person-info works!</p>
 
 <h2> Person Information </h2>
-<app-mat-form-h2-dialog-person-info></app-mat-form-h2-dialog-person-info>
+<app-mat-form-h2-dialog-person-info>
+  [selectedPersonExerciseH2Child] = 'selectedPersonExerciseH2'
+</app-mat-form-h2-dialog-person-info>
 
 <hr>
 <hr>
@@ -25,8 +27,8 @@
 </mat-dialog-content>
 
 <mat-dialog-actions>
-  <button class="mat-raised-button"(click)="close()">Close</button>
-  <button class="mat-raised-button mat-primary"(click)="save()">Save</button>
+  <button class="mat-raised-button" (click)="close()">Close</button>
+  <button class="mat-raised-button mat-primary" (click)="save()">Save</button>
 </mat-dialog-actions>
 
 

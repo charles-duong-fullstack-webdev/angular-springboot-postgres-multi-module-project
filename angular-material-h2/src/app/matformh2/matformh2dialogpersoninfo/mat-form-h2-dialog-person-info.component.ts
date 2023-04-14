@@ -1,4 +1,4 @@
-import {Component, OnInit} from '@angular/core';
+import {Component, Input, OnInit} from '@angular/core';
 import {FormBuilder, FormGroup, Validators} from '@angular/forms';
 import {MatNgtableH2Service} from '../../mattableh2/mat-ngtable-h2.service';
 
@@ -9,6 +9,8 @@ import {MatNgtableH2Service} from '../../mattableh2/mat-ngtable-h2.service';
   styleUrls: ['./mat-form-h2-dialog-person-info.component.css']
 })
 export class MatFormH2DialogPersonInfoComponent implements OnInit {
+
+  @Input() selectedPersonExerciseH2Child: any;
 
   private exercisePersonInfo =
     {
@@ -34,10 +36,10 @@ export class MatFormH2DialogPersonInfoComponent implements OnInit {
     // alert('MatFormH2DialogPersonInfoComponent name: ' + this.matNgtableH2Service.getPersonExerciseH2().personH2.name);
     // TODO how to passing data to dialg person info - personH2 is null
     // this.form.get('name').setValue(this.matNgtableH2Service.getPersonExerciseH2().personH2.name);
-    this.form.get('name').setValue(this.exercisePersonInfo.name);
-    this.form.get('email').setValue(this.exercisePersonInfo.email);
-    this.form.get('dob').setValue(this.exercisePersonInfo.dob);
-    this.form.get('address').setValue(this.exercisePersonInfo.address);
+    this.form.get('name').setValue(this.selectedPersonExerciseH2Child.name);
+    this.form.get('email').setValue(this.selectedPersonExerciseH2Child.email);
+    this.form.get('dob').setValue(this.selectedPersonExerciseH2Child.dob);
+    this.form.get('address').setValue(this.selectedPersonExerciseH2Child.address);
   }
 
   saveDetails(form: any) {
