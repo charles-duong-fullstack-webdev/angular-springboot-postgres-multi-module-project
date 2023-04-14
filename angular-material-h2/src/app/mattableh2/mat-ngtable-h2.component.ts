@@ -4,6 +4,8 @@ import {Exercise} from '../training/exercise.model';
 import {MatNgtableH2Service} from './mat-ngtable-h2.service';
 import {MatDialog, MatDialogConfig} from '@angular/material/dialog';
 import {MatNgdialogH2Component} from '../matdialogh2/mat-ngdialog-h2.component';
+import {PersonExerciseH2} from "./models/person-exercise-h2";
+
 
 @Component({
   selector: 'app-ngtable-h2',
@@ -13,7 +15,7 @@ import {MatNgdialogH2Component} from '../matdialogh2/mat-ngdialog-h2.component';
 export class MatNgtableH2Component implements OnInit, AfterViewInit {
   displayedColumns = ['date', 'name', 'duration', 'calories', 'state', 'edit', 'delete'];
   dataSource = new MatTableDataSource([]);
-  exercises: Exercise[];
+  personExerciseH2: PersonExerciseH2[];
 
   @ViewChild(MatSort, {static: false}) sort: MatSort;
   @ViewChild(MatPaginator, {static: false}) paginator: MatPaginator;
@@ -22,17 +24,17 @@ export class MatNgtableH2Component implements OnInit, AfterViewInit {
   }
 
   ngOnInit() {
-    this.matableh2Service.getExercise().subscribe((result: Exercise[]) => {
+    this.matableh2Service.getExercise().subscribe((result: PersonExerciseH2[]) => {
       console.log('result ' + result[0].id);
       console.log('result ' + result[0].name);
-      this.exercises = result;
+      this.personExerciseH2 = result;
       this.dataSource = new MatTableDataSource(result);
       this.dataSource.sort = this.sort;
       this.dataSource.paginator = this.paginator;
     });
   }
 
-  openDialog(element: Exercise) {
+  openDialog(element: PersonExerciseH2) {
     const dialogConfig = new MatDialogConfig();
 
     dialogConfig.disableClose = true;
@@ -64,27 +66,27 @@ export class MatNgtableH2Component implements OnInit, AfterViewInit {
     this.dataSource.filter = filterValue.trim().toLowerCase();
   }
 
-  onDelete(element: Exercise): void {
+  onDelete(element: PersonExerciseH2): void {
     window.alert('Delete ID/Name:' + element.id + '/' + element.name);
     this.deleteExerciseWithoutDeleteH2(element);
   }
 
-  onEdit(element: Exercise): void {
+  onEdit(element: PersonExerciseH2): void {
     window.alert('Edit ID/Name:' + element.id + '/' + element.name);
     this.openDialog(element);
     // this.matableh2Service.setEditExercise(element);
   }
 
-  onAddNew(element: Exercise): void {
+  onAddNew(element: PersonExerciseH2): void {
     window.alert('Add New:' + element.id + '/' + element.name);
     this.matableh2Service.setEditExercise(element);
   }
 
-  deleteExerciseWithoutDeleteH2(element: Exercise): void {
-    const indexToDelete = this.exercises.findIndex(
+  deleteExerciseWithoutDeleteH2(element: PersonExerciseH2): void {
+    const indexToDelete = this.personExerciseH2.findIndex(
       (exerciseElement) => exerciseElement.id === element.id
     );
-    this.exercises.splice(indexToDelete, 1);
-    this.dataSource = new MatTableDataSource(this.exercises);
+    this.personExerciseH2.splice(indexToDelete, 1);
+    this.dataSource = new MatTableDataSource(this.personExerciseH2);
   }
 }

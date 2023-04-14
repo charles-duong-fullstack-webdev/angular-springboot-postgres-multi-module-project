@@ -1,5 +1,7 @@
 import {Component, OnInit} from '@angular/core';
 import {FormBuilder, FormGroup, Validators} from '@angular/forms';
+import {MatNgtableH2Service} from '../../mattableh2/mat-ngtable-h2.service';
+
 
 @Component({
   selector: 'app-mat-form-h2-dialog-person-info',
@@ -16,7 +18,7 @@ export class MatFormH2DialogPersonInfoComponent implements OnInit {
 
   form: FormGroup = new FormGroup({});
 
-  constructor(private fb: FormBuilder) {
+  constructor(private fb: FormBuilder, private matNgtableH2Service: MatNgtableH2Service) {
   }
 
   ngOnInit(): void {
@@ -28,9 +30,14 @@ export class MatFormH2DialogPersonInfoComponent implements OnInit {
       country: [null],
       gender: [null]
     });
+    // this.form.get('name').setValue(this.exercisePersonInfo.name);
+    // alert('MatFormH2DialogPersonInfoComponent name: ' + this.matNgtableH2Service.getPersonExerciseH2().personH2.name);
+    // TODO how to passing data to dialg person info - personH2 is null
+    // this.form.get('name').setValue(this.matNgtableH2Service.getPersonExerciseH2().personH2.name);
     this.form.get('name').setValue(this.exercisePersonInfo.name);
     this.form.get('email').setValue(this.exercisePersonInfo.email);
     this.form.get('dob').setValue(this.exercisePersonInfo.dob);
+    this.form.get('address').setValue(this.exercisePersonInfo.address);
   }
 
   saveDetails(form: any) {

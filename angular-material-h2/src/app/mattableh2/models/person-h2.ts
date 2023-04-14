@@ -1,4 +1,4 @@
-export class Exercise {
+export class PersonH2 {
   id: number;
   name: string;
   duration: number;
