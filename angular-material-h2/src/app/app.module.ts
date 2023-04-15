@@ -57,7 +57,7 @@ import {
     ReactiveFormsModule,
     HttpClientModule,
   ],
-  providers: [AuthService, TrainingService, MatNgtableH2Service],
+  providers: [AuthService, TrainingService, MatNgtableH2Service, MatFormH2DialogPersonInfoComponent],
   bootstrap: [AppComponent],
   entryComponents: [StopTrainingComponent, MatNgdialogH2Component]
 })

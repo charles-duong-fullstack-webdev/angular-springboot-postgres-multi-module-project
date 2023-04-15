@@ -3,8 +3,11 @@ import {MatPaginator, MatSort, MatTableDataSource} from '@angular/material';
 import {MatNgtableH2Service} from './mat-ngtable-h2.service';
 import {MatDialog, MatDialogConfig} from '@angular/material/dialog';
 import {MatNgdialogH2Component} from '../matdialogh2/mat-ngdialog-h2.component';
-import {PersonExerciseH2} from "./models/person-exercise-h2";
-import {PersonH2} from "./models/person-h2";
+import {PersonExerciseH2} from './models/person-exercise-h2';
+import {PersonH2} from './models/person-h2';
+import {
+  MatFormH2DialogPersonInfoComponent
+} from '../matformh2/matformh2dialogpersoninfo/mat-form-h2-dialog-person-info.component';
 
 
 @Component({
@@ -19,7 +22,8 @@ export class MatNgtableH2Component implements OnInit, AfterViewInit {
       address: '8 dbdbdb', country: 'Swiss', gender: 'Man'
     };
 
-  displayedColumns = ['date', 'name', 'duration', 'calories', 'state', 'edit', 'delete'];
+  displayedColumns = ['date', 'name', 'duration', 'calories',
+    'state', 'edit', 'delete', 'openPerson', 'closePerson'];
   dataSource = new MatTableDataSource([]);
   personExerciseH2: PersonExerciseH2[];
   selectedPersonExerciseH2 = new PersonExerciseH2();
@@ -27,7 +31,8 @@ export class MatNgtableH2Component implements OnInit, AfterViewInit {
   @ViewChild(MatSort, {static: false}) sort: MatSort;
   @ViewChild(MatPaginator, {static: false}) paginator: MatPaginator;
 
-  constructor(private matableh2Service: MatNgtableH2Service, private dialog: MatDialog) {
+  constructor(private matableh2Service: MatNgtableH2Service, private dialog: MatDialog,
+              private matFormH2DialogPersonInfoComponent: MatFormH2DialogPersonInfoComponent) {
   }
 
   ngOnInit() {
@@ -80,23 +85,32 @@ export class MatNgtableH2Component implements OnInit, AfterViewInit {
 
   onEdit(element: PersonExerciseH2): void {
     window.alert('Edit ID/Name:' + element.id + '/' + element.name);
-    this.selectedPersonExerciseH2.name = element.name;
-    this.selectedPersonExerciseH2.id = element.id;
-    this.selectedPersonExerciseH2.calories = element.calories;
-    this.selectedPersonExerciseH2.duration = element.duration;
-    this.selectedPersonExerciseH2.personH2 = new PersonH2();
-    this.selectedPersonExerciseH2.personH2.name = this.exercisePersonInfo.name;
-    this.selectedPersonExerciseH2.personH2.dob = this.exercisePersonInfo.dob;
-    this.selectedPersonExerciseH2.personH2.address = this.exercisePersonInfo.address;
-    this.selectedPersonExerciseH2.personH2.email = this.exercisePersonInfo.email;
-    this.selectedPersonExerciseH2.personH2.country = this.exercisePersonInfo.country;
-    this.selectedPersonExerciseH2.personH2.gender = this.exercisePersonInfo.gender;
-    window.alert('Edit this.selectedPersonExerciseH2.name: ' + this.selectedPersonExerciseH2.name);
-    window.alert('Edit this.selectedPersonExerciseH2.personH2.email: ' + this.selectedPersonExerciseH2.personH2.email);
-
     // exercisePersonInfo
     this.openDialog(element);
     // this.matableh2Service.setEditExercise(element);
+  }
+
+  onOpenPerson(element: PersonExerciseH2): void {
+    window.alert('Edit ID/Name:' + element.id + '/' + element.name);
+    // this.selectedPersonExerciseH2.name = element.name;
+    // this.selectedPersonExerciseH2.id = element.id;
+    // this.selectedPersonExerciseH2.calories = element.calories;
+    // this.selectedPersonExerciseH2.duration = element.duration;
+    // this.selectedPersonExerciseH2.personH2 = new PersonH2();
+    // this.selectedPersonExerciseH2.personH2.name = this.exercisePersonInfo.name;
+    // this.selectedPersonExerciseH2.personH2.dob = this.exercisePersonInfo.dob;
+    // this.selectedPersonExerciseH2.personH2.address = this.exercisePersonInfo.address;
+    // this.selectedPersonExerciseH2.personH2.email = this.exercisePersonInfo.email;
+    // this.selectedPersonExerciseH2.personH2.country = this.exercisePersonInfo.country;
+    // this.selectedPersonExerciseH2.personH2.gender = this.exercisePersonInfo.gender;
+    // window.alert('Edit this.selectedPersonExerciseH2.name: ' + this.selectedPersonExerciseH2.name);
+    // window.alert('Edit this.selectedPersonExerciseH2.personH2.email: ' + this.selectedPersonExerciseH2.personH2.email);
+    this.matFormH2DialogPersonInfoComponent.setSelectedPersonExerciseH2Child(element);
+  }
+
+  onClosePerson(element: PersonExerciseH2): void {
+    window.alert('Edit ID/Name:' + element.id + '/' + element.name);
+    this.selectedPersonExerciseH2 = new PersonExerciseH2();
   }
 
   onAddNew(element: PersonExerciseH2): void {

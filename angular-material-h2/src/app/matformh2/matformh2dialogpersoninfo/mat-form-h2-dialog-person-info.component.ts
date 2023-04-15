@@ -1,8 +1,12 @@
-import {Component, Input, OnInit} from '@angular/core';
+import {Component, Injectable, Input, OnInit} from '@angular/core';
 import {FormBuilder, FormGroup, Validators} from '@angular/forms';
 import {MatNgtableH2Service} from '../../mattableh2/mat-ngtable-h2.service';
+import {PersonExerciseH2} from '../../mattableh2/models/person-exercise-h2';
+import {PersonH2} from '../../mattableh2/models/person-h2';
 
-
+@Injectable({
+  providedIn: 'root'
+})
 @Component({
   selector: 'app-mat-form-h2-dialog-person-info',
   templateUrl: './mat-form-h2-dialog-person-info.component.html',
@@ -10,12 +14,12 @@ import {MatNgtableH2Service} from '../../mattableh2/mat-ngtable-h2.service';
 })
 export class MatFormH2DialogPersonInfoComponent implements OnInit {
 
-  @Input() selectedPersonExerciseH2Child: any;
+  @Input() selectedPersonExerciseH2Child = new PersonExerciseH2();
 
   private exercisePersonInfo =
     {
       name: 'Charles', email: 'chares@gmail.com', dob: '30.01.1995',
-      address: '8 dbdbdb', country: 'Swiss', gender: 'Man'
+      address: '80 dbdbdb', country: 'Swiss', gender: 'Man'
     };
 
   form: FormGroup = new FormGroup({});
@@ -37,9 +41,41 @@ export class MatFormH2DialogPersonInfoComponent implements OnInit {
     // TODO how to passing data to dialg person info - personH2 is null
     // this.form.get('name').setValue(this.matNgtableH2Service.getPersonExerciseH2().personH2.name);
     this.form.get('name').setValue(this.selectedPersonExerciseH2Child.name);
-    this.form.get('email').setValue(this.selectedPersonExerciseH2Child.email);
-    this.form.get('dob').setValue(this.selectedPersonExerciseH2Child.dob);
-    this.form.get('address').setValue(this.selectedPersonExerciseH2Child.address);
+
+    window.alert('<<<<<< MatFormH2DialogPersonInfoComponent this.selectedPersonExerciseH2Child:' + this.selectedPersonExerciseH2Child);
+
+    if (this.selectedPersonExerciseH2Child.personH2 != null) {
+      window.alert('<<<<<< MatFormH2DialogPersonInfoComponent email:' + this.selectedPersonExerciseH2Child.personH2.email);
+      window.alert('<<<<<< MatFormH2DialogPersonInfoComponent dob:' + this.selectedPersonExerciseH2Child.personH2.dob);
+
+      this.form.get('email').setValue(this.selectedPersonExerciseH2Child.personH2.email);
+      this.form.get('dob').setValue(this.selectedPersonExerciseH2Child.personH2.dob);
+      // this.form.get('address').setValue(this.selectedPersonExerciseH2Child.personH2.address);
+    }
+
+
+  }
+
+  setSelectedPersonExerciseH2Child(element: PersonExerciseH2) {
+    window.alert('-------------> setSelectedPersonExerciseH2Child....');
+
+    this.selectedPersonExerciseH2Child.name = element.name;
+    this.selectedPersonExerciseH2Child.id = element.id;
+    this.selectedPersonExerciseH2Child.calories = element.calories;
+    this.selectedPersonExerciseH2Child.duration = element.duration;
+    this.selectedPersonExerciseH2Child.personH2 = new PersonH2();
+    this.selectedPersonExerciseH2Child.personH2.name = this.exercisePersonInfo.name;
+    this.selectedPersonExerciseH2Child.personH2.dob = this.exercisePersonInfo.dob;
+    this.selectedPersonExerciseH2Child.personH2.address = this.exercisePersonInfo.address;
+    this.selectedPersonExerciseH2Child.personH2.email = this.exercisePersonInfo.email;
+    this.selectedPersonExerciseH2Child.personH2.country = this.exercisePersonInfo.country;
+    this.selectedPersonExerciseH2Child.personH2.gender = this.exercisePersonInfo.gender;
+    window.alert('----- setSelectedPersonExerciseH2Child email: ' + this.selectedPersonExerciseH2Child.personH2.email);
+    window.alert('----- setSelectedPersonExerciseH2Child dob: ' + this.selectedPersonExerciseH2Child.personH2.dob);
+
+    // this.form.get('email').setValue(this.selectedPersonExerciseH2Child.personH2.email);
+    // this.form.get('dob').setValue(this.selectedPersonExerciseH2Child.personH2.dob);
+
   }
 
   saveDetails(form: any) {
