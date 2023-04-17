@@ -3,6 +3,7 @@ import {Injectable} from '@angular/core';
 import {map} from 'rxjs/operators';
 import {Observable} from 'rxjs-compat/Observable';
 import {PersonExerciseH2} from './models/person-exercise-h2';
+import {BehaviorSubject} from "rxjs";
 
 /**
  * see training.service.ts
@@ -17,6 +18,9 @@ export class MatNgtableH2Service {
       address: '8 dbdbdb', country: 'Swiss', gender: 'Man'
     };
 
+  private messageSource = new BehaviorSubject('MatNgtableH2Service define BehaviorSubject message');
+  currentMessage = this.messageSource.asObservable();
+
   private getUrl = 'http://localhost:8084/api/mattableh2/exercises';
   private personExerciseH2: PersonExerciseH2;
 
@@ -27,6 +31,10 @@ export class MatNgtableH2Service {
     return this.httpClient.get<PersonExerciseH2[]>(this.getUrl).pipe(
       map((response) => response)
     );
+  }
+
+  changeMessage(message: string) {
+    this.messageSource.next(message);
   }
 
   // TODO how to passing data to dialg person info - personH2 is null

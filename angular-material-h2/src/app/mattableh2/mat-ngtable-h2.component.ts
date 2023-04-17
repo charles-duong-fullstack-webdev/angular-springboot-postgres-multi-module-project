@@ -1,13 +1,13 @@
-import {AfterViewInit, Component, OnInit, ViewChild} from '@angular/core';
+import {AfterViewInit, Component, OnDestroy, OnInit, ViewChild} from '@angular/core';
 import {MatPaginator, MatSort, MatTableDataSource} from '@angular/material';
 import {MatNgtableH2Service} from './mat-ngtable-h2.service';
 import {MatDialog, MatDialogConfig} from '@angular/material/dialog';
 import {MatNgdialogH2Component} from '../matdialogh2/mat-ngdialog-h2.component';
 import {PersonExerciseH2} from './models/person-exercise-h2';
-import {PersonH2} from './models/person-h2';
 import {
   MatFormH2DialogPersonInfoComponent
 } from '../matformh2/matformh2dialogpersoninfo/mat-form-h2-dialog-person-info.component';
+import {Subscription} from 'rxjs/Subscription';
 
 
 @Component({
@@ -15,12 +15,15 @@ import {
   templateUrl: './mat-ngtable-h2.component.html',
   styleUrls: ['./mat-ngtable-h2.component.css']
 })
-export class MatNgtableH2Component implements OnInit, AfterViewInit {
+export class MatNgtableH2Component implements OnInit, AfterViewInit, OnDestroy {
   private exercisePersonInfo =
     {
       name: 'MatNgtableH2Service Charles', email: 'chares@gmail.com', dob: '30.01.1995',
       address: '8 dbdbdb', country: 'Swiss', gender: 'Man'
     };
+
+  message: string;
+  subscription: Subscription;
 
   displayedColumns = ['date', 'name', 'duration', 'calories',
     'state', 'edit', 'delete', 'openPerson', 'closePerson'];
@@ -44,6 +47,11 @@ export class MatNgtableH2Component implements OnInit, AfterViewInit {
       this.dataSource.sort = this.sort;
       this.dataSource.paginator = this.paginator;
     });
+    this.subscription = this.matableh2Service.currentMessage.subscribe(message => this.message = message);
+  }
+
+  ngOnDestroy() {
+    this.subscription.unsubscribe();
   }
 
   openDialog(element: PersonExerciseH2) {
@@ -107,6 +115,7 @@ export class MatNgtableH2Component implements OnInit, AfterViewInit {
     // window.alert('Edit this.selectedPersonExerciseH2.personH2.email: ' + this.selectedPersonExerciseH2.personH2.email);
     this.matFormH2DialogPersonInfoComponent.setSelectedPersonExerciseH2Child(element);
   }
+
 
   onClosePerson(element: PersonExerciseH2): void {
     window.alert('Edit ID/Name:' + element.id + '/' + element.name);
