@@ -65,3 +65,23 @@ https://fireship.io/lessons/sharing-data-between-angular-components-four-methods
 
 Sharing Data between Angular Components - Four Methods
 https://fireship.io/lessons/sharing-data-between-angular-components-four-methods/
+
+
+Angular - Sharing data between child and parent directives and components
+https://angular.io/guide/inputs-outputs
+
+
+Angular @input, @output & EventEmitter - TekTutorialsHub
+https://www.tektutorialshub.com/angular/angular-input-output-eventemitter/
+
+
+Object.assign()
+---------------
+const target = { a: 1, b: 2 };
+const source = { b: 4, c: 5 };
+const returnedTarget = Object.assign(target, source);
+console.log(target);
+// Expected output: Object { a: 1, b: 4, c: 5 }
+console.log(returnedTarget === target);
+// Expected output: true
+https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Object/assign?retiredLocale=de

@@ -31,30 +31,31 @@
   </ng-container>
 
   <ng-container matColumnDef="edit">
-    <mat-header-cell *matHeaderCellDef mat-sort-header>Edit</mat-header-cell>
+    <mat-header-cell *matHeaderCellDef >Edit</mat-header-cell>
     <mat-cell *matCellDef="let element">
       <button mat-raised-button (click)="onEdit(element)">Edit</button>
     </mat-cell>
   </ng-container>
 
   <ng-container matColumnDef="delete">
-    <mat-header-cell *matHeaderCellDef mat-sort-header>Delete</mat-header-cell>
+    <mat-header-cell *matHeaderCellDef >Delete</mat-header-cell>
     <mat-cell *matCellDef="let element">
       <button mat-raised-button (click)="onDelete(element)">Delete</button>
     </mat-cell>
   </ng-container>
 
-  <ng-container matColumnDef="openPerson">
-    <mat-header-cell *matHeaderCellDef mat-sort-header>Open Person</mat-header-cell>
+  <ng-container matColumnDef="showDetail">
+    <mat-header-cell *matHeaderCellDef>showDetail</mat-header-cell>
     <mat-cell *matCellDef="let element">
-      <button mat-raised-button (click)="onOpenPerson(element)">Open Person</button>
+      <button mat-raised-button (click)="onShowDetail(element)">Show Detail</button>
     </mat-cell>
   </ng-container>
 
-  <ng-container matColumnDef="closePerson">
-    <mat-header-cell *matHeaderCellDef mat-sort-header>Close Person</mat-header-cell>
+
+  <ng-container matColumnDef="showEditDialog">
+    <mat-header-cell *matHeaderCellDef >showEditDialog</mat-header-cell>
     <mat-cell *matCellDef="let element">
-      <button mat-raised-button (click)="onClosePerson(element)">Close Person</button>
+      <button mat-raised-button (click)="onClosePerson(element)">Show Edit Dialog</button>
     </mat-cell>
   </ng-container>
 
@@ -66,16 +67,11 @@
 <mat-paginator [pageSize]="5" [pageSizeOptions]="[5, 10, 20]">
 </mat-paginator>
 
+<app-ngformh2-detail-event-emitter
+  [personExerciseH2] = "selectedPersonExerciseH2"
+  (personExerciseH2Change)="update($event)">
+</app-ngformh2-detail-event-emitter>
 
-<h2> Person Information </h2>
-<app-mat-form-h2-dialog-person-info *ngIf="selectedPersonExerciseH2.personH2 != null">
-  [selectedPersonExerciseH2Child] = 'selectedPersonExerciseH2'
-</app-mat-form-h2-dialog-person-info>
-
-<h2> Person Information </h2>
-<app-mat-form-h2-dialog-person-info>
-  [selectedPersonExerciseH2Child] = "selectedPersonExerciseH2"
-</app-mat-form-h2-dialog-person-info>
 
 <hr>
 MatNgtableH2Component Showing Server message: {{message}}

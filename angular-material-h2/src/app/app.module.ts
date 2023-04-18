@@ -27,6 +27,7 @@ import {MatNgformH2Component} from './matformh2/mat-ngform-h2.component';
 import {
   MatFormH2DialogPersonInfoComponent
 } from './matformh2/matformh2dialogpersoninfo/mat-form-h2-dialog-person-info.component';
+import { Ngformh2DetailEventEmitterComponent } from './mattableh2detaileventemitter/ngformh2-detail-event-emitter.component';
 
 @NgModule({
   declarations: [
@@ -45,6 +46,7 @@ import {
     MatNgdialogH2Component,
     MatNgformH2Component,
     MatFormH2DialogPersonInfoComponent,
+    Ngformh2DetailEventEmitterComponent,
 
   ],
   imports: [

@@ -8,6 +8,7 @@ import {
   MatFormH2DialogPersonInfoComponent
 } from '../matformh2/matformh2dialogpersoninfo/mat-form-h2-dialog-person-info.component';
 import {Subscription} from 'rxjs/Subscription';
+import {PersonH2} from './models/person-h2';
 
 
 @Component({
@@ -26,10 +27,10 @@ export class MatNgtableH2Component implements OnInit, AfterViewInit, OnDestroy {
   subscription: Subscription;
 
   displayedColumns = ['date', 'name', 'duration', 'calories',
-    'state', 'edit', 'delete', 'openPerson', 'closePerson'];
+    'state', 'edit', 'delete', 'showDetail', 'showEditDialog'];
   dataSource = new MatTableDataSource([]);
-  personExerciseH2: PersonExerciseH2[];
-  selectedPersonExerciseH2 = new PersonExerciseH2();
+  personExerciseH2Array: PersonExerciseH2[];
+  selectedPersonExerciseH2: PersonExerciseH2 = new PersonExerciseH2();
 
   @ViewChild(MatSort, {static: false}) sort: MatSort;
   @ViewChild(MatPaginator, {static: false}) paginator: MatPaginator;
@@ -42,7 +43,7 @@ export class MatNgtableH2Component implements OnInit, AfterViewInit, OnDestroy {
     this.matableh2Service.getExercise().subscribe((result: PersonExerciseH2[]) => {
       console.log('result ' + result[0].id);
       console.log('result ' + result[0].name);
-      this.personExerciseH2 = result;
+      this.personExerciseH2Array = result;
       this.dataSource = new MatTableDataSource(result);
       this.dataSource.sort = this.sort;
       this.dataSource.paginator = this.paginator;
@@ -98,24 +99,34 @@ export class MatNgtableH2Component implements OnInit, AfterViewInit, OnDestroy {
     // this.matableh2Service.setEditExercise(element);
   }
 
-  onOpenPerson(element: PersonExerciseH2): void {
+  onShowDetail(element: PersonExerciseH2): void {
     window.alert('Edit ID/Name:' + element.id + '/' + element.name);
-    // this.selectedPersonExerciseH2.name = element.name;
-    // this.selectedPersonExerciseH2.id = element.id;
-    // this.selectedPersonExerciseH2.calories = element.calories;
-    // this.selectedPersonExerciseH2.duration = element.duration;
-    // this.selectedPersonExerciseH2.personH2 = new PersonH2();
-    // this.selectedPersonExerciseH2.personH2.name = this.exercisePersonInfo.name;
-    // this.selectedPersonExerciseH2.personH2.dob = this.exercisePersonInfo.dob;
-    // this.selectedPersonExerciseH2.personH2.address = this.exercisePersonInfo.address;
-    // this.selectedPersonExerciseH2.personH2.email = this.exercisePersonInfo.email;
-    // this.selectedPersonExerciseH2.personH2.country = this.exercisePersonInfo.country;
-    // this.selectedPersonExerciseH2.personH2.gender = this.exercisePersonInfo.gender;
-    // window.alert('Edit this.selectedPersonExerciseH2.name: ' + this.selectedPersonExerciseH2.name);
-    // window.alert('Edit this.selectedPersonExerciseH2.personH2.email: ' + this.selectedPersonExerciseH2.personH2.email);
-    this.matFormH2DialogPersonInfoComponent.setSelectedPersonExerciseH2Child(element);
+
+    this.selectedPersonExerciseH2 = Object.assign({}, element);
+
+    window.alert('onShowDetail this.selectedPersonExerciseH2.name: ' + this.selectedPersonExerciseH2.name);
+
+    this.selectedPersonExerciseH2.personH2 = new PersonH2();
+    this.selectedPersonExerciseH2.personH2.id = 1;
+    this.selectedPersonExerciseH2.personH2.name = this.exercisePersonInfo.name;
+    this.selectedPersonExerciseH2.personH2.dob = this.exercisePersonInfo.dob;
+    this.selectedPersonExerciseH2.personH2.address = this.exercisePersonInfo.address;
+    this.selectedPersonExerciseH2.personH2.email = this.exercisePersonInfo.email;
+    this.selectedPersonExerciseH2.personH2.country = this.exercisePersonInfo.country;
+    this.selectedPersonExerciseH2.personH2.gender = this.exercisePersonInfo.gender;
+
   }
 
+  update(personExerciseH2: PersonExerciseH2) {
+    console.log(personExerciseH2);
+    const persExerciseH2 = this.personExerciseH2Array
+      .find(e => e.id === personExerciseH2.id);
+    Object.assign(persExerciseH2, personExerciseH2);
+    this.dataSource = new MatTableDataSource(this.personExerciseH2Array);
+    this.dataSource.sort = this.sort;
+    this.dataSource.paginator = this.paginator;
+    window.alert('Customer Saved');
+  }
 
   onClosePerson(element: PersonExerciseH2): void {
     window.alert('Edit ID/Name:' + element.id + '/' + element.name);
@@ -128,10 +139,10 @@ export class MatNgtableH2Component implements OnInit, AfterViewInit, OnDestroy {
   }
 
   deleteExerciseWithoutDeleteH2(element: PersonExerciseH2): void {
-    const indexToDelete = this.personExerciseH2.findIndex(
+    const indexToDelete = this.personExerciseH2Array.findIndex(
       (exerciseElement) => exerciseElement.id === element.id
     );
-    this.personExerciseH2.splice(indexToDelete, 1);
-    this.dataSource = new MatTableDataSource(this.personExerciseH2);
+    this.personExerciseH2Array.splice(indexToDelete, 1);
+    this.dataSource = new MatTableDataSource(this.personExerciseH2Array);
   }
 }
