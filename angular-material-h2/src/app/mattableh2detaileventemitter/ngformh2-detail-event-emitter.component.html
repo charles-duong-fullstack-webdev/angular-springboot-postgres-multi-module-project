@@ -1,85 +1,175 @@
 <h1>app-ngformh2-detail-event-emitter works!</h1>
 <hr>
-<mat-card *ngIf="personExerciseH2.personH2">
 
-  <p>Customer No : {{personExerciseH2.id}}</p>
-  <p>Name : <input [(ngModel)]="personExerciseH2.personH2.name"></p>
-  <p>Address : <input [(ngModel)]="personExerciseH2.personH2.address"></p>
-  <p>Country : <input [(ngModel)]="personExerciseH2.personH2.country"></p>
-  <p>Email : <input [(ngModel)]="personExerciseH2.personH2.email"></p>
-  <p>Dob : <input [(ngModel)]="personExerciseH2.personH2.dob"></p>
+<mat-grid-list cols="2" rowHeight="2:1">
+  <mat-grid-tile style="max-height: 1000px;  position: absolute;  top: 30px"> Mat Grid Tile 1
+    <mat-card *ngIf="personExerciseH2.personH2">
 
-  <button (click)="update()">Update</button>
+      <p>Customer No : {{personExerciseH2.id}}</p>
+      <p>Name : <input [(ngModel)]="personExerciseH2.personH2.name"></p>
+      <p>Address : <input [(ngModel)]="personExerciseH2.personH2.address"></p>
+      <p>Country : <input [(ngModel)]="personExerciseH2.personH2.country"></p>
+      <p>Email : <input [(ngModel)]="personExerciseH2.personH2.email"></p>
+      <p>Dob : <input [(ngModel)]="personExerciseH2.personH2.dob"></p>
 
-</mat-card>
+      <button (click)="update()">Update</button>
 
-<mat-card *ngIf="personExerciseH2.personH2">
-  <form class="example-form">
+    </mat-card>
+  </mat-grid-tile>
 
-    <mat-form-field class="example-full-width">
-      <mat-label>id</mat-label>
-      <input matInput placeholder="Your id" value="{{personExerciseH2.id}}">
-    </mat-form-field>
+  <mat-grid-tile style="max-height: 500px; height: 200px; position: absolute; top: -5px"> Mat Grid Tile 2
+    <mat-card *ngIf="personExerciseH2.personH2" class="example-full-height">
+      <form class="example-form">
 
-    <mat-form-field class="example-full-width">
-      <mat-label>Name</mat-label>
-      <input matInput placeholder="Your Name" value="{{personExerciseH2.personH2.name}}">
-    </mat-form-field>
+        <mat-form-field class="example-full-width">
+          <mat-label>id</mat-label>
+          <input matInput placeholder="Your id" value="{{personExerciseH2.id}}">
+        </mat-form-field>
 
-    <mat-form-field class="example-full-width">
-      <mat-label>Email</mat-label>
-      <input matInput placeholder="Your Email" value="{{personExerciseH2.personH2.email}}">
-    </mat-form-field>
+        <mat-form-field class="example-full-width">
+          <mat-label>Name</mat-label>
+          <input matInput placeholder="Your Name" value="{{personExerciseH2.personH2.name}}">
+        </mat-form-field>
 
-    <mat-form-field class="example-full-width">
-      <mat-label>Address</mat-label>
-      <input matInput placeholder="Your Address" value="{{personExerciseH2.personH2.address}}">
-    </mat-form-field>
+        <mat-form-field class="example-full-width">
+          <mat-label>Email</mat-label>
+          <input matInput placeholder="Your Email" value="{{personExerciseH2.personH2.email}}">
+        </mat-form-field>
 
-    <mat-form-field class="example-full-width">
-      <mat-label>country</mat-label>
-      <input matInput placeholder="Your country" value="{{personExerciseH2.personH2.country}}">
-    </mat-form-field>
+        <mat-form-field class="example-full-width">
+          <mat-label>Address</mat-label>
+          <input matInput placeholder="Your Address" value="{{personExerciseH2.personH2.address}}">
+        </mat-form-field>
 
-    <mat-form-field class="example-full-width">
-      <mat-label>dob</mat-label>
-      <input matInput placeholder="Your dob" value="{{personExerciseH2.personH2.dob}}">
-    </mat-form-field>
+        <mat-form-field class="example-full-width">
+          <mat-label>country</mat-label>
+          <input matInput placeholder="Your country" value="{{personExerciseH2.personH2.country}}">
+        </mat-form-field>
 
-    <mat-form-field>
-      <mat-label></mat-label>
-      // THE EMPTY LABEL
-      <input class="toolbar-search" type="text" matInput>
-      <mat-placeholder>Search</mat-placeholder>
-      <mat-icon matSuffix style="font-size: 1.2em">search</mat-icon>
-    </mat-form-field>
+        <mat-form-field class="example-full-width">
+          <mat-label>dob</mat-label>
+          <input matInput placeholder="Your dob" value="{{personExerciseH2.personH2.dob}}">
+        </mat-form-field>
+
+        <mat-form-field>
+          <mat-label></mat-label>
+          // THE EMPTY LABEL
+          <input class="toolbar-search" type="text" matInput>
+          <mat-placeholder>Search</mat-placeholder>
+          <mat-icon matSuffix style="font-size: 1.2em">search</mat-icon>
+        </mat-form-field>
 
 
-    <!--    <mat-form-field class="example-full-width">-->
-    <!--      <mat-label>Leave a comment</mat-label>-->
-    <!--      <textarea matInput placeholder="Ex. It makes me feel..."></textarea>-->
-    <!--    </mat-form-field>-->
+        <!--    <mat-form-field class="example-full-width">-->
+        <!--      <mat-label>Leave a comment</mat-label>-->
+        <!--      <textarea matInput placeholder="Ex. It makes me feel..."></textarea>-->
+        <!--    </mat-form-field>-->
 
-    <!--    <mat-form-field class="example-full-width">-->
-    <!--      <mat-label>Email</mat-label>-->
-    <!--      <input type="email" matInput [formControl]="emailFormControl" [errorStateMatcher]="matcher"-->
-    <!--             placeholder="Ex. pat@example.com">-->
-    <!--      <mat-hint>Errors appear instantly!</mat-hint>      -->
-    <!--      <mat-error *ngIf="emailFormControl.hasError('email') && !emailFormControl.hasError('required')">-->
-    <!--        Please enter a valid email address-->
-    <!--      </mat-error>      -->
-    <!--      <mat-error *ngIf="emailFormControl.hasError('required')">-->
-    <!--        Email is <strong>required</strong>-->
-    <!--      </mat-error>-->
-    <!--    </mat-form-field>-->
+        <!--    <mat-form-field class="example-full-width">-->
+        <!--      <mat-label>Email</mat-label>-->
+        <!--      <input type="email" matInput [formControl]="emailFormControl" [errorStateMatcher]="matcher"-->
+        <!--             placeholder="Ex. pat@example.com">-->
+        <!--      <mat-hint>Errors appear instantly!</mat-hint>      -->
+        <!--      <mat-error *ngIf="emailFormControl.hasError('email') && !emailFormControl.hasError('required')">-->
+        <!--        Please enter a valid email address-->
+        <!--      </mat-error>      -->
+        <!--      <mat-error *ngIf="emailFormControl.hasError('required')">-->
+        <!--        Email is <strong>required</strong>-->
+        <!--      </mat-error>-->
+        <!--    </mat-form-field>-->
 
-  </form>
+      </form>
 
-  <mat-card-actions fxLayoutAlign="left">
-    <button  mat-button color="primary" mat-raised-button (click)="update()">Update</button>
-  </mat-card-actions>
+      <mat-card-actions fxLayoutAlign="left">
+        <button mat-button color="primary" mat-raised-button (click)="update()">Update</button>
+      </mat-card-actions>
 
-</mat-card>
+    </mat-card>
+  </mat-grid-tile>
+
+</mat-grid-list>
+
+
+<!--<mat-card *ngIf="personExerciseH2.personH2">-->
+
+<!--  <p>Customer No : {{personExerciseH2.id}}</p>-->
+<!--  <p>Name : <input [(ngModel)]="personExerciseH2.personH2.name"></p>-->
+<!--  <p>Address : <input [(ngModel)]="personExerciseH2.personH2.address"></p>-->
+<!--  <p>Country : <input [(ngModel)]="personExerciseH2.personH2.country"></p>-->
+<!--  <p>Email : <input [(ngModel)]="personExerciseH2.personH2.email"></p>-->
+<!--  <p>Dob : <input [(ngModel)]="personExerciseH2.personH2.dob"></p>-->
+
+<!--  <button (click)="update()">Update</button>-->
+
+<!--</mat-card>-->
+
+<!--<mat-card *ngIf="personExerciseH2.personH2">-->
+<!--  <form class="example-form">-->
+
+<!--    <mat-form-field class="example-full-width">-->
+<!--      <mat-label>id</mat-label>-->
+<!--      <input matInput placeholder="Your id" value="{{personExerciseH2.id}}">-->
+<!--    </mat-form-field>-->
+
+<!--    <mat-form-field class="example-full-width">-->
+<!--      <mat-label>Name</mat-label>-->
+<!--      <input matInput placeholder="Your Name" value="{{personExerciseH2.personH2.name}}">-->
+<!--    </mat-form-field>-->
+
+<!--    <mat-form-field class="example-full-width">-->
+<!--      <mat-label>Email</mat-label>-->
+<!--      <input matInput placeholder="Your Email" value="{{personExerciseH2.personH2.email}}">-->
+<!--    </mat-form-field>-->
+
+<!--    <mat-form-field class="example-full-width">-->
+<!--      <mat-label>Address</mat-label>-->
+<!--      <input matInput placeholder="Your Address" value="{{personExerciseH2.personH2.address}}">-->
+<!--    </mat-form-field>-->
+
+<!--    <mat-form-field class="example-full-width">-->
+<!--      <mat-label>country</mat-label>-->
+<!--      <input matInput placeholder="Your country" value="{{personExerciseH2.personH2.country}}">-->
+<!--    </mat-form-field>-->
+
+<!--    <mat-form-field class="example-full-width">-->
+<!--      <mat-label>dob</mat-label>-->
+<!--      <input matInput placeholder="Your dob" value="{{personExerciseH2.personH2.dob}}">-->
+<!--    </mat-form-field>-->
+
+<!--    <mat-form-field>-->
+<!--      <mat-label></mat-label>-->
+<!--      // THE EMPTY LABEL-->
+<!--      <input class="toolbar-search" type="text" matInput>-->
+<!--      <mat-placeholder>Search</mat-placeholder>-->
+<!--      <mat-icon matSuffix style="font-size: 1.2em">search</mat-icon>-->
+<!--    </mat-form-field>-->
+
+
+<!--    &lt;!&ndash;    <mat-form-field class="example-full-width">&ndash;&gt;-->
+<!--    &lt;!&ndash;      <mat-label>Leave a comment</mat-label>&ndash;&gt;-->
+<!--    &lt;!&ndash;      <textarea matInput placeholder="Ex. It makes me feel..."></textarea>&ndash;&gt;-->
+<!--    &lt;!&ndash;    </mat-form-field>&ndash;&gt;-->
+
+<!--    &lt;!&ndash;    <mat-form-field class="example-full-width">&ndash;&gt;-->
+<!--    &lt;!&ndash;      <mat-label>Email</mat-label>&ndash;&gt;-->
+<!--    &lt;!&ndash;      <input type="email" matInput [formControl]="emailFormControl" [errorStateMatcher]="matcher"&ndash;&gt;-->
+<!--    &lt;!&ndash;             placeholder="Ex. pat@example.com">&ndash;&gt;-->
+<!--    &lt;!&ndash;      <mat-hint>Errors appear instantly!</mat-hint>      &ndash;&gt;-->
+<!--    &lt;!&ndash;      <mat-error *ngIf="emailFormControl.hasError('email') && !emailFormControl.hasError('required')">&ndash;&gt;-->
+<!--    &lt;!&ndash;        Please enter a valid email address&ndash;&gt;-->
+<!--    &lt;!&ndash;      </mat-error>      &ndash;&gt;-->
+<!--    &lt;!&ndash;      <mat-error *ngIf="emailFormControl.hasError('required')">&ndash;&gt;-->
+<!--    &lt;!&ndash;        Email is <strong>required</strong>&ndash;&gt;-->
+<!--    &lt;!&ndash;      </mat-error>&ndash;&gt;-->
+<!--    &lt;!&ndash;    </mat-form-field>&ndash;&gt;-->
+
+<!--  </form>-->
+
+<!--  <mat-card-actions fxLayoutAlign="left">-->
+<!--    <button mat-button color="primary" mat-raised-button (click)="update()">Update</button>-->
+<!--  </mat-card-actions>-->
+
+<!--</mat-card>-->
 
 
 

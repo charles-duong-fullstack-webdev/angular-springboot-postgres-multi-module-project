@@ -21,6 +21,7 @@ import {
   MatRadioModule
 } from '@angular/material';
 import {MatError, MatLabel} from "@angular/material/form-field";
+import {MatGridList, MatGridListModule} from "@angular/material/grid-list";
 
 @NgModule({
   imports: [
@@ -45,7 +46,8 @@ import {MatError, MatLabel} from "@angular/material/form-field";
     MatRadioModule,
     MatDatepickerModule,
     MatFormFieldModule,
-    MatIconModule
+    MatIconModule,
+    MatGridListModule
   ],
   exports: [
     MatButtonModule,
@@ -70,6 +72,7 @@ import {MatError, MatLabel} from "@angular/material/form-field";
     MatDatepickerModule,
     MatFormFieldModule,
     MatIconModule,
+    MatGridListModule
   ]
 })
 export class MaterialModule {}

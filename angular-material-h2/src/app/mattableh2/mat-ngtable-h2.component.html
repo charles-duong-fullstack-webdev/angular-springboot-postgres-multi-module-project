@@ -1,3 +1,5 @@
+<h1>app-ngtable-h2 works!</h1>
+
 <div fxLayoutAlign="center center">
   <mat-form-field fxFlex="40%">
     <input matInput type="text" (keyup)="doFilter($event.target.value)" placeholder="Filter">
@@ -67,13 +69,18 @@
 <mat-paginator [pageSize]="5" [pageSizeOptions]="[5, 10, 20]">
 </mat-paginator>
 
+
+<hr>
+<h1>app-ngtable-h2 works!</h1>
+MatNgtableH2Component Showing Server message: {{message}}
+
+<hr>
+<h1>Person Exercise Detail</h1>
 <app-ngformh2-detail-event-emitter
   [personExerciseH2] = "selectedPersonExerciseH2"
   (personExerciseH2Change)="update($event)">
 </app-ngformh2-detail-event-emitter>
 
 
-<hr>
-MatNgtableH2Component Showing Server message: {{message}}
 
 
