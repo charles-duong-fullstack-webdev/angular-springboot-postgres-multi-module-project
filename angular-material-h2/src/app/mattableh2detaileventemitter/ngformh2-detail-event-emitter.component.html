@@ -1,11 +1,85 @@
-<p>sample-event-emitter works!</p>
+<h1>app-ngformh2-detail-event-emitter works!</h1>
+<hr>
+<mat-card *ngIf="personExerciseH2.personH2">
 
-<p>Customer No : {{personExerciseH2.id}}</p>
-<p>Name : <input [(ngModel)]="personExerciseH2.personH2.name"></p>
-<p>Address : <input [(ngModel)]="personExerciseH2.personH2.address"></p>
-<p>Country : <input [(ngModel)]="personExerciseH2.personH2.country"></p>
-<p>Email : <input [(ngModel)]="personExerciseH2.personH2.email"></p>
-<p>Dob : <input [(ngModel)]="personExerciseH2.personH2.dob"></p>
+  <p>Customer No : {{personExerciseH2.id}}</p>
+  <p>Name : <input [(ngModel)]="personExerciseH2.personH2.name"></p>
+  <p>Address : <input [(ngModel)]="personExerciseH2.personH2.address"></p>
+  <p>Country : <input [(ngModel)]="personExerciseH2.personH2.country"></p>
+  <p>Email : <input [(ngModel)]="personExerciseH2.personH2.email"></p>
+  <p>Dob : <input [(ngModel)]="personExerciseH2.personH2.dob"></p>
+
+  <button (click)="update()">Update</button>
+
+</mat-card>
+
+<mat-card *ngIf="personExerciseH2.personH2">
+  <form class="example-form">
+
+    <mat-form-field class="example-full-width">
+      <mat-label>id</mat-label>
+      <input matInput placeholder="Your id" value="{{personExerciseH2.id}}">
+    </mat-form-field>
+
+    <mat-form-field class="example-full-width">
+      <mat-label>Name</mat-label>
+      <input matInput placeholder="Your Name" value="{{personExerciseH2.personH2.name}}">
+    </mat-form-field>
+
+    <mat-form-field class="example-full-width">
+      <mat-label>Email</mat-label>
+      <input matInput placeholder="Your Email" value="{{personExerciseH2.personH2.email}}">
+    </mat-form-field>
+
+    <mat-form-field class="example-full-width">
+      <mat-label>Address</mat-label>
+      <input matInput placeholder="Your Address" value="{{personExerciseH2.personH2.address}}">
+    </mat-form-field>
+
+    <mat-form-field class="example-full-width">
+      <mat-label>country</mat-label>
+      <input matInput placeholder="Your country" value="{{personExerciseH2.personH2.country}}">
+    </mat-form-field>
+
+    <mat-form-field class="example-full-width">
+      <mat-label>dob</mat-label>
+      <input matInput placeholder="Your dob" value="{{personExerciseH2.personH2.dob}}">
+    </mat-form-field>
+
+    <mat-form-field>
+      <mat-label></mat-label>
+      // THE EMPTY LABEL
+      <input class="toolbar-search" type="text" matInput>
+      <mat-placeholder>Search</mat-placeholder>
+      <mat-icon matSuffix style="font-size: 1.2em">search</mat-icon>
+    </mat-form-field>
 
 
-<button (click)="update()">Update</button>
+    <!--    <mat-form-field class="example-full-width">-->
+    <!--      <mat-label>Leave a comment</mat-label>-->
+    <!--      <textarea matInput placeholder="Ex. It makes me feel..."></textarea>-->
+    <!--    </mat-form-field>-->
+
+    <!--    <mat-form-field class="example-full-width">-->
+    <!--      <mat-label>Email</mat-label>-->
+    <!--      <input type="email" matInput [formControl]="emailFormControl" [errorStateMatcher]="matcher"-->
+    <!--             placeholder="Ex. pat@example.com">-->
+    <!--      <mat-hint>Errors appear instantly!</mat-hint>      -->
+    <!--      <mat-error *ngIf="emailFormControl.hasError('email') && !emailFormControl.hasError('required')">-->
+    <!--        Please enter a valid email address-->
+    <!--      </mat-error>      -->
+    <!--      <mat-error *ngIf="emailFormControl.hasError('required')">-->
+    <!--        Email is <strong>required</strong>-->
+    <!--      </mat-error>-->
+    <!--    </mat-form-field>-->
+
+  </form>
+
+  <mat-card-actions fxLayoutAlign="left">
+    <button  mat-button color="primary" mat-raised-button (click)="update()">Update</button>
+  </mat-card-actions>
+
+</mat-card>
+
+
+

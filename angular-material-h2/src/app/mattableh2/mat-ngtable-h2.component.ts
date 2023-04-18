@@ -40,15 +40,20 @@ export class MatNgtableH2Component implements OnInit, AfterViewInit, OnDestroy {
   }
 
   ngOnInit() {
+    this.subscription = this.matableh2Service.currentMessage.subscribe(message => this.message = message);
     this.matableh2Service.getExercise().subscribe((result: PersonExerciseH2[]) => {
       console.log('result ' + result[0].id);
       console.log('result ' + result[0].name);
       this.personExerciseH2Array = result;
-      this.dataSource = new MatTableDataSource(result);
+      this.dataSource = new MatTableDataSource(this.personExerciseH2Array);
       this.dataSource.sort = this.sort;
       this.dataSource.paginator = this.paginator;
     });
-    this.subscription = this.matableh2Service.currentMessage.subscribe(message => this.message = message);
+  }
+
+  ngAfterViewInit() {
+    this.dataSource.sort = this.sort;
+    this.dataSource.paginator = this.paginator;
   }
 
   ngOnDestroy() {
@@ -78,10 +83,6 @@ export class MatNgtableH2Component implements OnInit, AfterViewInit, OnDestroy {
     );
   }
 
-  ngAfterViewInit() {
-    this.dataSource.sort = this.sort;
-    this.dataSource.paginator = this.paginator;
-  }
 
   doFilter(filterValue: string) {
     this.dataSource.filter = filterValue.trim().toLowerCase();

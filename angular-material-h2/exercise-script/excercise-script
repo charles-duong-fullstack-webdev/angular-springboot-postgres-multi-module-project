@@ -85,3 +85,6 @@ console.log(target);
 console.log(returnedTarget === target);
 // Expected output: true
 https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Object/assign?retiredLocale=de
+
+Simple autocomplete
+https://material.angular.io/components/autocomplete/overview

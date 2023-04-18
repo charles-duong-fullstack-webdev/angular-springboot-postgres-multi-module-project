@@ -2,7 +2,7 @@ import {BrowserModule} from '@angular/platform-browser';
 import {NgModule} from '@angular/core';
 import {FormsModule, ReactiveFormsModule} from '@angular/forms';
 import {BrowserAnimationsModule} from '@angular/platform-browser/animations';
-import {FlexLayoutModule} from '@angular/flex-layout';
+import {FlexLayoutModule, FlexModule} from '@angular/flex-layout';
 
 import {AppComponent} from './app.component';
 import {MaterialModule} from './material.module';
@@ -28,6 +28,13 @@ import {
   MatFormH2DialogPersonInfoComponent
 } from './matformh2/matformh2dialogpersoninfo/mat-form-h2-dialog-person-info.component';
 import { Ngformh2DetailEventEmitterComponent } from './mattableh2detaileventemitter/ngformh2-detail-event-emitter.component';
+import {CommonModule} from "@angular/common";
+import {MatButtonModule} from "@angular/material/button";
+import {MatCardModule} from "@angular/material/card";
+import {MatFormFieldModule} from "@angular/material/form-field";
+import {MatOptionModule} from "@angular/material/core";
+import {MatSelectModule} from "@angular/material/select";
+import {MatInputModule} from "@angular/material/input";
 
 @NgModule({
   declarations: [
@@ -58,6 +65,20 @@ import { Ngformh2DetailEventEmitterComponent } from './mattableh2detaileventemit
     FormsModule,
     ReactiveFormsModule,
     HttpClientModule,
+    CommonModule,
+    FlexModule,
+    FormsModule,
+    MatButtonModule,
+    MatCardModule,
+    MatFormFieldModule,
+    MatOptionModule,
+    MatSelectModule,
+    CommonModule,
+    FormsModule,
+    MatFormFieldModule,
+    MatInputModule,
+    FlexModule,
+    FormsModule,
   ],
   providers: [AuthService, TrainingService, MatNgtableH2Service, MatFormH2DialogPersonInfoComponent],
   bootstrap: [AppComponent],
