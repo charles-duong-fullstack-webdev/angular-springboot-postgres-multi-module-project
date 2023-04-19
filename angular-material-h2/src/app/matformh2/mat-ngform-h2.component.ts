@@ -2,7 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import {Exercise} from "../training/exercise.model";
 import {TrainingService} from "../training/training.service";
 import {NgForm} from "@angular/forms";
-import {MatNgtableH2Service} from "../mattableh2/mat-ngtable-h2.service";
+import {MatNgtableH2Service} from "../mattableh2/service/mat-ngtable-h2.service";
 
 @Component({
   selector: 'app-mat-ngform-h2',

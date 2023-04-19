@@ -1,6 +1,6 @@
 import {AfterViewInit, Component, OnDestroy, OnInit, ViewChild} from '@angular/core';
 import {MatPaginator, MatSort, MatTableDataSource} from '@angular/material';
-import {MatNgtableH2Service} from './mat-ngtable-h2.service';
+import {MatNgtableH2Service} from './service/mat-ngtable-h2.service';
 import {MatDialog, MatDialogConfig} from '@angular/material/dialog';
 import {MatNgdialogH2Component} from '../matdialogh2/mat-ngdialog-h2.component';
 import {PersonExerciseH2} from './models/person-exercise-h2';
@@ -24,7 +24,8 @@ export class MatNgtableH2Component implements OnInit, AfterViewInit, OnDestroy {
     };
 
   message: string;
-  subscription: Subscription;
+  subscriptionMessage: Subscription;
+  subscriptionPersonExerciseH: Subscription;
 
   displayedColumns = ['date', 'name', 'duration', 'calories',
     'state', 'edit', 'delete', 'showDetail', 'showEditDialog'];
@@ -40,7 +41,7 @@ export class MatNgtableH2Component implements OnInit, AfterViewInit, OnDestroy {
   }
 
   ngOnInit() {
-    this.subscription = this.matableh2Service.currentMessage.subscribe(message => this.message = message);
+    this.subscriptionMessage = this.matableh2Service.currentMessage.subscribe(message => this.message = message);
     this.matableh2Service.getExercise().subscribe((result: PersonExerciseH2[]) => {
       console.log('result ' + result[0].id);
       console.log('result ' + result[0].name);
@@ -57,7 +58,8 @@ export class MatNgtableH2Component implements OnInit, AfterViewInit, OnDestroy {
   }
 
   ngOnDestroy() {
-    this.subscription.unsubscribe();
+    this.subscriptionMessage.unsubscribe();
+    this.subscriptionPersonExerciseH.unsubscribe();
   }
 
   openDialog(element: PersonExerciseH2) {

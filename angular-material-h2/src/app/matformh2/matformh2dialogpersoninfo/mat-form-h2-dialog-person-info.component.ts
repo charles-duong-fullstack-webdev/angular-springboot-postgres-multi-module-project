@@ -1,6 +1,6 @@
 import {Component, Injectable, Input, OnInit} from '@angular/core';
 import {FormBuilder, FormGroup, Validators} from '@angular/forms';
-import {MatNgtableH2Service} from '../../mattableh2/mat-ngtable-h2.service';
+import {MatNgtableH2Service} from '../../mattableh2/service/mat-ngtable-h2.service';
 import {PersonExerciseH2} from '../../mattableh2/models/person-exercise-h2';
 import {PersonH2} from '../../mattableh2/models/person-h2';
 
@@ -40,18 +40,18 @@ export class MatFormH2DialogPersonInfoComponent implements OnInit {
     // alert('MatFormH2DialogPersonInfoComponent name: ' + this.matNgtableH2Service.getPersonExerciseH2().personH2.name);
     // TODO how to passing data to dialg person info - personH2 is null
     // this.form.get('name').setValue(this.matNgtableH2Service.getPersonExerciseH2().personH2.name);
-    this.form.get('name').setValue(this.selectedPersonExerciseH2Child.name);
-
-    window.alert('<<<<<< MatFormH2DialogPersonInfoComponent this.selectedPersonExerciseH2Child:' + this.selectedPersonExerciseH2Child);
-
-    if (this.selectedPersonExerciseH2Child.personH2 != null) {
-      window.alert('<<<<<< MatFormH2DialogPersonInfoComponent email:' + this.selectedPersonExerciseH2Child.personH2.email);
-      window.alert('<<<<<< MatFormH2DialogPersonInfoComponent dob:' + this.selectedPersonExerciseH2Child.personH2.dob);
-
-      this.form.get('email').setValue(this.selectedPersonExerciseH2Child.personH2.email);
-      this.form.get('dob').setValue(this.selectedPersonExerciseH2Child.personH2.dob);
-      // this.form.get('address').setValue(this.selectedPersonExerciseH2Child.personH2.address);
-    }
+    // this.form.get('name').setValue(this.selectedPersonExerciseH2Child.name);
+    //
+    // window.alert('<<<<<< MatFormH2DialogPersonInfoComponent this.selectedPersonExerciseH2Child:' + this.selectedPersonExerciseH2Child);
+    //
+    // if (this.selectedPersonExerciseH2Child.personH2 != null) {
+    //   window.alert('<<<<<< MatFormH2DialogPersonInfoComponent email:' + this.selectedPersonExerciseH2Child.personH2.email);
+    //   window.alert('<<<<<< MatFormH2DialogPersonInfoComponent dob:' + this.selectedPersonExerciseH2Child.personH2.dob);
+    //
+    //   this.form.get('email').setValue(this.selectedPersonExerciseH2Child.personH2.email);
+    //   this.form.get('dob').setValue(this.selectedPersonExerciseH2Child.personH2.dob);
+    //   // this.form.get('address').setValue(this.selectedPersonExerciseH2Child.personH2.address);
+    // }
 
 
   }
@@ -76,6 +76,12 @@ export class MatFormH2DialogPersonInfoComponent implements OnInit {
     // this.form.get('email').setValue(this.selectedPersonExerciseH2Child.personH2.email);
     // this.form.get('dob').setValue(this.selectedPersonExerciseH2Child.personH2.dob);
 
+  }
+
+  setFormDetails(form: any) {
+    this.matNgtableH2Service.personExerciseH2Subject$.subscribe(val => {
+      window.alert('this.matNgtableH2Service.personExerciseH2Subject$.subscribe(val): ' + val);
+    });
   }
 
   saveDetails(form: any) {

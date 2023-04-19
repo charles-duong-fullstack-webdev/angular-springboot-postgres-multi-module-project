@@ -20,7 +20,7 @@ import {StopTrainingComponent} from './training/current-training/stop-training.c
 import {AuthService} from './auth/auth.service';
 import {TrainingService} from './training/training.service';
 import {MatNgtableH2Component} from './mattableh2/mat-ngtable-h2.component';
-import {MatNgtableH2Service} from './mattableh2/mat-ngtable-h2.service';
+import {MatNgtableH2Service} from './mattableh2/service/mat-ngtable-h2.service';
 import {HttpClientModule} from '@angular/common/http';
 import {MatNgdialogH2Component} from './matdialogh2/./mat-ngdialog-h2.component';
 import {MatNgformH2Component} from './matformh2/mat-ngform-h2.component';

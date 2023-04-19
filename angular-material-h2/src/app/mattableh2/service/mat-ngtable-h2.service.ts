@@ -2,8 +2,9 @@ import {HttpClient} from '@angular/common/http';
 import {Injectable} from '@angular/core';
 import {map} from 'rxjs/operators';
 import {Observable} from 'rxjs-compat/Observable';
-import {PersonExerciseH2} from './models/person-exercise-h2';
+import {PersonExerciseH2} from '../models/person-exercise-h2';
 import {BehaviorSubject} from "rxjs";
+import {Subject} from "rxjs/Subject";
 
 /**
  * see training.service.ts
@@ -19,10 +20,14 @@ export class MatNgtableH2Service {
     };
 
   private messageSource = new BehaviorSubject('MatNgtableH2Service define BehaviorSubject message');
+  public personExerciseH2Subject$ = new Subject();
+
   currentMessage = this.messageSource.asObservable();
+  currentPersonExerciseH2 = this.messageSource.asObservable();
 
   private getUrl = 'http://localhost:8084/api/mattableh2/exercises';
   private personExerciseH2: PersonExerciseH2;
+  private personExerciseH2ForDialog: PersonExerciseH2;
 
   constructor(private httpClient: HttpClient) {
   }
@@ -46,6 +51,11 @@ export class MatNgtableH2Service {
 
   setEditExercise(value: PersonExerciseH2) {
     this.personExerciseH2 = value;
+  }
+
+  setPersonExerciseH2ForDialog(element: PersonExerciseH2) {
+    window.alert('this.personExerciseH2Subject$.next(element)): ' + element);
+    this.personExerciseH2Subject$.next(element);
   }
 
 }
