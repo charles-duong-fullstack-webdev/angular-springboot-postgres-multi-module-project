@@ -3,8 +3,8 @@ import {Injectable} from '@angular/core';
 import {map} from 'rxjs/operators';
 import {Observable} from 'rxjs-compat/Observable';
 import {PersonExerciseH2} from '../models/person-exercise-h2';
-import {BehaviorSubject} from "rxjs";
-import {Subject} from "rxjs/Subject";
+import {BehaviorSubject} from 'rxjs/BehaviorSubject';
+import {Subject} from 'rxjs/Subject';
 
 /**
  * see training.service.ts
@@ -23,7 +23,6 @@ export class MatNgtableH2Service {
   public personExerciseH2Subject$ = new Subject();
 
   currentMessage = this.messageSource.asObservable();
-  currentPersonExerciseH2 = this.messageSource.asObservable();
 
   private getUrl = 'http://localhost:8084/api/mattableh2/exercises';
   private personExerciseH2: PersonExerciseH2;

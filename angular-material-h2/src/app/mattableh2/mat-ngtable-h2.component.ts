@@ -59,7 +59,7 @@ export class MatNgtableH2Component implements OnInit, AfterViewInit, OnDestroy {
 
   ngOnDestroy() {
     this.subscriptionMessage.unsubscribe();
-    this.subscriptionPersonExerciseH.unsubscribe();
+    // this.subscriptionPersonExerciseH.unsubscribe();
   }
 
   openDialog(element: PersonExerciseH2) {
@@ -97,6 +97,7 @@ export class MatNgtableH2Component implements OnInit, AfterViewInit, OnDestroy {
 
   onEdit(element: PersonExerciseH2): void {
     window.alert('Edit ID/Name:' + element.id + '/' + element.name);
+    this.matableh2Service.setPersonExerciseH2ForDialog(element);
     // exercisePersonInfo
     this.openDialog(element);
     // this.matableh2Service.setEditExercise(element);

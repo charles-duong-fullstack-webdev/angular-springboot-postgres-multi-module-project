@@ -36,6 +36,17 @@ export class MatFormH2DialogPersonInfoComponent implements OnInit {
       country: [null],
       gender: [null]
     });
+
+    this.matNgtableH2Service.personExerciseH2Subject$.subscribe(val => {
+      console.log('<<<<<< this.matNgtableH2Service.personExerciseH2Subject$.subscribe(val): ' + val);
+      // window.alert('<<<<<< this.matNgtableH2Service.personExerciseH2Subject$.subscribe(val): ' + val);
+      const persExerciseH2 = new PersonExerciseH2();
+      Object.assign(persExerciseH2, val);
+      console.log('<<<<<< subscribe(val.toString()): ' + val.toString());
+      console.log('<<<<<< subscribe(persExerciseH2.personH2.email): ' + persExerciseH2.personH2.email);
+      this.form.get('email').setValue(persExerciseH2.personH2.email);
+    });
+
     // this.form.get('name').setValue(this.exercisePersonInfo.name);
     // alert('MatFormH2DialogPersonInfoComponent name: ' + this.matNgtableH2Service.getPersonExerciseH2().personH2.name);
     // TODO how to passing data to dialg person info - personH2 is null
