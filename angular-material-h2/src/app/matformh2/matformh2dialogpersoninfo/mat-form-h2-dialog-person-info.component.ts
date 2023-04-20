@@ -28,6 +28,7 @@ export class MatFormH2DialogPersonInfoComponent implements OnInit {
   }
 
   ngOnInit(): void {
+    console.log('<<<<<< ngOnInit .this.form = this.fb.group(');
     this.form = this.fb.group({
       name: [null, [Validators.required, Validators.minLength(10)]],
       email: [null, [Validators.required, Validators.pattern('^[a-z0-9._%+-]+@[a-z0-9.-]+\\.[a-z]{2,4}$')]],
@@ -37,14 +38,19 @@ export class MatFormH2DialogPersonInfoComponent implements OnInit {
       gender: [null]
     });
 
+    console.log('1 <<<<<< <<<<<< ngOnInit this.matNgtableH2Service.personExerciseH2Subject$.subscribe(val): ');
     this.matNgtableH2Service.personExerciseH2Subject$.subscribe(val => {
-      console.log('<<<<<< this.matNgtableH2Service.personExerciseH2Subject$.subscribe(val): ' + val);
+      console.log('2 <<<<<< this.matNgtableH2Service.personExerciseH2Subject$.subscribe(val): ' + val);
       // window.alert('<<<<<< this.matNgtableH2Service.personExerciseH2Subject$.subscribe(val): ' + val);
       const persExerciseH2 = new PersonExerciseH2();
       Object.assign(persExerciseH2, val);
-      console.log('<<<<<< subscribe(val.toString()): ' + val.toString());
-      console.log('<<<<<< subscribe(persExerciseH2.personH2.email): ' + persExerciseH2.personH2.email);
+      console.log('3 <<<<<< subscribe(val.toString()): ' + val.toString());
+      console.log('4 <<<<<< subscribe(persExerciseH2.personH2.email): ' + persExerciseH2.personH2.email);
+      this.form.get('name').setValue(persExerciseH2.personH2.name);
       this.form.get('email').setValue(persExerciseH2.personH2.email);
+      this.form.get('address').setValue(persExerciseH2.personH2.address);
+      this.form.get('country').setValue(persExerciseH2.personH2.country);
+      this.form.get('gender').setValue(persExerciseH2.personH2.gender);
     });
 
     // this.form.get('name').setValue(this.exercisePersonInfo.name);

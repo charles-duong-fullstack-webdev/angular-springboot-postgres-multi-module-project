@@ -19,8 +19,8 @@ import {PersonH2} from './models/person-h2';
 export class MatNgtableH2Component implements OnInit, AfterViewInit, OnDestroy {
   private exercisePersonInfo =
     {
-      name: 'MatNgtableH2Service Charles', email: 'chares@gmail.com', dob: '30.01.1995',
-      address: '8 dbdbdb', country: 'Swiss', gender: 'Man'
+      name: 'MatNgtableH2Component Charles', email: 'chares@gmail.com', dob: '30.01.1995',
+      address: 'MatNgtableH2Component 8 ', country: 'Swiss', gender: 'Man'
     };
 
   message: string;
@@ -83,6 +83,8 @@ export class MatNgtableH2Component implements OnInit, AfterViewInit, OnDestroy {
     dialogRef.afterClosed().subscribe(
       data => console.log('Dialog output:', data)
     );
+
+    this.matableh2Service.setPersonExerciseH2ForDialog(element);
   }
 
 
@@ -97,9 +99,10 @@ export class MatNgtableH2Component implements OnInit, AfterViewInit, OnDestroy {
 
   onEdit(element: PersonExerciseH2): void {
     window.alert('Edit ID/Name:' + element.id + '/' + element.name);
-    this.matableh2Service.setPersonExerciseH2ForDialog(element);
+    //this.matableh2Service.setPersonExerciseH2ForDialog(element);
     // exercisePersonInfo
     this.openDialog(element);
+    //this.matableh2Service.setPersonExerciseH2ForDialog(element);
     // this.matableh2Service.setEditExercise(element);
   }
 
