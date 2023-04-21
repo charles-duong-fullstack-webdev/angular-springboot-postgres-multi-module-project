@@ -1,12 +1,9 @@
 package com.db.h2.console.domain;
 
-import javax.persistence.Entity;
-import javax.persistence.GeneratedValue;
-import javax.persistence.Id;
-import javax.persistence.Table;
+import javax.persistence.*;
 
 @Entity
-//@Table(name = "exercise")
+@Table(name = "exercise")
 public class Exercise {
 
     @Id
@@ -15,8 +12,13 @@ public class Exercise {
     private String name;
     private Long duration;
 
+    private Long calories;
+    @ManyToOne
+    private PersonExercise personExercise;
+
     public Exercise() {
     }
+
     public Exercise(Long id, String name, Long duration, Long calories) {
         this.id = id;
         this.name = name;
@@ -24,7 +26,12 @@ public class Exercise {
         this.calories = calories;
     }
 
-    private Long calories;
+    public Exercise(String name, Long duration, Long calories) {
+        this.name = name;
+        this.duration = duration;
+        this.calories = calories;
+    }
+
 
     public Long getId() {
         return id;
@@ -56,6 +63,14 @@ public class Exercise {
 
     public void setCalories(Long calories) {
         this.calories = calories;
+    }
+
+    public PersonExercise getPersonExercise() {
+        return personExercise;
+    }
+
+    public void setPersonExercise(PersonExercise personExercise) {
+        this.personExercise = personExercise;
     }
 
     @Override

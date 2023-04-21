@@ -15,7 +15,7 @@ public class Author {
 	private String email;
 
 	@SuppressWarnings("unused")
-	private Author(){}
+	public Author(){}
 	
 	public Author(String first, String last){
 		this.setFirstName(first);
