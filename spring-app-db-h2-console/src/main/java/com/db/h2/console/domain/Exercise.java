@@ -12,26 +12,21 @@ public class Exercise {
     private String name;
     private Long duration;
 
+
     private Long calories;
     @ManyToOne
+    @JoinColumn(name = "personExercise_id")
     private PersonExercise personExercise;
 
     public Exercise() {
     }
 
-    public Exercise(Long id, String name, Long duration, Long calories) {
-        this.id = id;
+    public Exercise(String name, Long duration, Long calories, PersonExercise personExercise) {
         this.name = name;
         this.duration = duration;
         this.calories = calories;
+        this.personExercise = personExercise;
     }
-
-    public Exercise(String name, Long duration, Long calories) {
-        this.name = name;
-        this.duration = duration;
-        this.calories = calories;
-    }
-
 
     public Long getId() {
         return id;
@@ -73,6 +68,7 @@ public class Exercise {
         this.personExercise = personExercise;
     }
 
+
     @Override
     public String toString() {
         return "Exercise{" +
@@ -80,7 +76,7 @@ public class Exercise {
                 ", name='" + name + '\'' +
                 ", duration=" + duration +
                 ", calories=" + calories +
+                ", personExercise=" + personExercise +
                 '}';
     }
-
 }

@@ -17,7 +17,6 @@ public class PersonExercise {
     private Date dob;
     private String address;
     private String country;
-
     private String gender;
     @OneToMany(
             mappedBy = "personExercise",
@@ -29,6 +28,7 @@ public class PersonExercise {
     @SuppressWarnings("unused")
     public PersonExercise() {
     }
+
     public PersonExercise(String firstName, String lastName, String email, Date dob, String address, String country, String gender, List<Exercise> exerciseList) {
         this.firstName = firstName;
         this.lastName = lastName;
@@ -38,6 +38,16 @@ public class PersonExercise {
         this.country = country;
         this.gender = gender;
         this.exerciseList = exerciseList;
+    }
+
+    public PersonExercise(String firstName, String lastName, String email, Date dob, String address, String country, String gender) {
+        this.firstName = firstName;
+        this.lastName = lastName;
+        this.email = email;
+        this.dob = dob;
+        this.address = address;
+        this.country = country;
+        this.gender = gender;
     }
 
 
@@ -115,7 +125,7 @@ public class PersonExercise {
 
     @Override
     public String toString() {
-        return "User{" +
+        return "PersonExercise{" +
                 "id=" + id +
                 ", firstName='" + firstName + '\'' +
                 ", lastName='" + lastName + '\'' +
@@ -124,6 +134,7 @@ public class PersonExercise {
                 ", address='" + address + '\'' +
                 ", country='" + country + '\'' +
                 ", gender='" + gender + '\'' +
+                ", exerciseList=" + exerciseList +
                 '}';
     }
 }
