@@ -22,4 +22,11 @@ public class PersonExerciseService {
         return personExerciseRepository.findAll();
     }
 
+    public PersonExercise getPersonExerciseById() {
+        List<PersonExercise> listAll = personExerciseRepository.findAll();
+        System.err.println("<<<<< getPersonExerciseById getId: " + listAll.get(0).getId());
+        return personExerciseRepository.getPersonExerciseById(listAll.get(0).getId());
+    }
+
+
 }

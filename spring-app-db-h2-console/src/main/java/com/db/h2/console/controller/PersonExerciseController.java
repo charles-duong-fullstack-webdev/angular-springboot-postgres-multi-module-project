@@ -50,6 +50,8 @@ public class PersonExerciseController {
     @RequestMapping("/mattableh2/exercises")
     public List<PersonExercise> list(Model model) {
 
+        List<PersonExercise> list;
+
 //        TODO This works fine
 //        List<Exercise> exercises = new ArrayList<Exercise>();
 //        Exercise e1 = new Exercise();
@@ -61,7 +63,13 @@ public class PersonExerciseController {
 //        exercises.add(e1);
 //        return exercises;
 
-        return personExerciseService.list();
+        list =  personExerciseService.list();
+        return  list;
+    }
+
+    @RequestMapping("/mattableh2/exercise")
+    public PersonExercise getPersonExercise(Model model) {
+        return personExerciseService.getPersonExerciseById();
     }
 
 }

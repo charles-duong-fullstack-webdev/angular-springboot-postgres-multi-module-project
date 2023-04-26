@@ -2,7 +2,7 @@ import {Component, Injectable, Input, OnInit} from '@angular/core';
 import {FormBuilder, FormGroup, Validators} from '@angular/forms';
 import {MatNgtableH2Service} from '../../mattableh2/service/mat-ngtable-h2.service';
 import {PersonExerciseH2} from '../../mattableh2/models/person-exercise-h2';
-import {PersonH2} from '../../mattableh2/models/person-h2';
+import {ExerciseH2} from '../../mattableh2/models/exerciseH2';
 
 @Injectable({
   providedIn: 'root'
@@ -42,15 +42,15 @@ export class MatFormH2DialogPersonInfoComponent implements OnInit {
     this.matNgtableH2Service.personExerciseH2Subject$.subscribe(val => {
       console.log('2 <<<<<< this.matNgtableH2Service.personExerciseH2Subject$.subscribe(val): ' + val);
       // window.alert('<<<<<< this.matNgtableH2Service.personExerciseH2Subject$.subscribe(val): ' + val);
-      const persExerciseH2 = new PersonExerciseH2();
-      Object.assign(persExerciseH2, val);
+      const editExerciseH2 = new ExerciseH2();
+      Object.assign(editExerciseH2, val);
       console.log('3 <<<<<< subscribe(val.toString()): ' + val.toString());
-      console.log('4 <<<<<< subscribe(persExerciseH2.personH2.email): ' + persExerciseH2.personH2.email);
-      this.form.get('name').setValue(persExerciseH2.personH2.name);
-      this.form.get('email').setValue(persExerciseH2.personH2.email);
-      this.form.get('address').setValue(persExerciseH2.personH2.address);
-      this.form.get('country').setValue(persExerciseH2.personH2.country);
-      this.form.get('gender').setValue(persExerciseH2.personH2.gender);
+      console.log('4 <<<<<< subscribe(editExerciseH2.name): ' + editExerciseH2.name);
+      this.form.get('name').setValue('persExerciseH2.exercise.name');
+      // this.form.get('email').setValue(persExerciseH2.exercise.email);
+      // this.form.get('address').setValue(persExerciseH2.exercise.address);
+      // this.form.get('country').setValue(persExerciseH2.exercise.country);
+      // this.form.get('gender').setValue(persExerciseH2.exercise.gender);
     });
 
     // this.form.get('name').setValue(this.exercisePersonInfo.name);
@@ -73,27 +73,27 @@ export class MatFormH2DialogPersonInfoComponent implements OnInit {
 
   }
 
-  setSelectedPersonExerciseH2Child(element: PersonExerciseH2) {
-    window.alert('-------------> setSelectedPersonExerciseH2Child....');
-
-    this.selectedPersonExerciseH2Child.name = element.name;
-    this.selectedPersonExerciseH2Child.id = element.id;
-    this.selectedPersonExerciseH2Child.calories = element.calories;
-    this.selectedPersonExerciseH2Child.duration = element.duration;
-    this.selectedPersonExerciseH2Child.personH2 = new PersonH2();
-    this.selectedPersonExerciseH2Child.personH2.name = this.exercisePersonInfo.name;
-    this.selectedPersonExerciseH2Child.personH2.dob = this.exercisePersonInfo.dob;
-    this.selectedPersonExerciseH2Child.personH2.address = this.exercisePersonInfo.address;
-    this.selectedPersonExerciseH2Child.personH2.email = this.exercisePersonInfo.email;
-    this.selectedPersonExerciseH2Child.personH2.country = this.exercisePersonInfo.country;
-    this.selectedPersonExerciseH2Child.personH2.gender = this.exercisePersonInfo.gender;
-    window.alert('----- setSelectedPersonExerciseH2Child email: ' + this.selectedPersonExerciseH2Child.personH2.email);
-    window.alert('----- setSelectedPersonExerciseH2Child dob: ' + this.selectedPersonExerciseH2Child.personH2.dob);
-
-    // this.form.get('email').setValue(this.selectedPersonExerciseH2Child.personH2.email);
-    // this.form.get('dob').setValue(this.selectedPersonExerciseH2Child.personH2.dob);
-
-  }
+  // setSelectedPersonExerciseH2Child(element: ExerciseH2) {
+  //   window.alert('-------------> setSelectedPersonExerciseH2Child....');
+  //
+  //   this.selectedPersonExerciseH2Child.name = element.name;
+  //   this.selectedPersonExerciseH2Child.id = element.id;
+  //   this.selectedPersonExerciseH2Child.calories = element.calories;
+  //   this.selectedPersonExerciseH2Child.duration = element.duration;
+  //   this.selectedPersonExerciseH2Child.exercise = new ExerciseH2();
+  //   this.selectedPersonExerciseH2Child.exercise.name = this.exercisePersonInfo.name;
+  //   this.selectedPersonExerciseH2Child.exercise.dob = this.exercisePersonInfo.dob;
+  //   this.selectedPersonExerciseH2Child.exercise.address = this.exercisePersonInfo.address;
+  //   this.selectedPersonExerciseH2Child.exercise.email = this.exercisePersonInfo.email;
+  //   this.selectedPersonExerciseH2Child.exercise.country = this.exercisePersonInfo.country;
+  //   this.selectedPersonExerciseH2Child.exercise.gender = this.exercisePersonInfo.gender;
+  //   window.alert('----- setSelectedPersonExerciseH2Child email: ' + this.selectedPersonExerciseH2Child.exercise.email);
+  //   window.alert('----- setSelectedPersonExerciseH2Child dob: ' + this.selectedPersonExerciseH2Child.exercise.dob);
+  //
+  //   // this.form.get('email').setValue(this.selectedPersonExerciseH2Child.personH2.email);
+  //   // this.form.get('dob').setValue(this.selectedPersonExerciseH2Child.personH2.dob);
+  //
+  // }
 
   setFormDetails(form: any) {
     this.matNgtableH2Service.personExerciseH2Subject$.subscribe(val => {

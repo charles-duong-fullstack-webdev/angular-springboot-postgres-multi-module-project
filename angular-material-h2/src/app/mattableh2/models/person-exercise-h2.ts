@@ -1,9 +1,13 @@
-import {PersonH2} from './person-h2';
+import {ExerciseH2} from './exerciseH2';
 
 export class PersonExerciseH2 {
   id: number;
-  name: string;
-  duration: number;
-  calories: number;
-  personH2: PersonH2;
+  firstName: string;
+  lastName: string;
+  email: string;
+  dob: any;
+  address: string;
+  country: string;
+  gender: string;
+  exercise: ExerciseH2[];
 }

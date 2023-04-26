@@ -20,7 +20,7 @@ import java.util.List;
 
 @CrossOrigin(origins = "http://localhost:4200")
 @RestController
-@RequestMapping("api/")
+@RequestMapping("reserve/")
 public class ExerciseController {
 
     private ExerciseService exerciseService;
@@ -45,7 +45,7 @@ public class ExerciseController {
         return exercises;
     }
 
-    @RequestMapping("/reserve//exercises")
+    @RequestMapping("/reserve/exercises")
     public List<Exercise> list(Model model) {
 
 //        TODO This works fine
