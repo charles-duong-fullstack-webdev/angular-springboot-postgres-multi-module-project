@@ -78,8 +78,9 @@ public class DbH2Application implements CommandLineRunner {
         PersonExercise personExercise2 = this.personExerciseRepository.getPersonExerciseById(personExercise1.getId());
         System.err.println("personExercise1.getId() >> "+personExercise2.getId());
 
-        List<Exercise> allExercise = this.exerciseRepository.getExercisesByIdExists(personExercise2.getId());
-        System.err.println("allExercise.get(0).getId() >> "+allExercise.get(0).getId());
+        List<Exercise> allExercise = this.exerciseRepository.findAllExerciseById(personExercise2.getId());
+        //System.err.println("allExercise.get(0).getId() >> "+allExercise.get(0).getId());
+        System.err.println("allExercise.get(0).getId() >> "+allExercise.size());
         ExerciseDTO exerciseDTO = new ExerciseDTO();
 
 //        System.err.println("personExercise1.getAddress() >> "+personExercise2.getAddress());
