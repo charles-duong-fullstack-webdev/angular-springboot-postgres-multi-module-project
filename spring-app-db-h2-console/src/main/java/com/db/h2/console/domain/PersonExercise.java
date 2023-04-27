@@ -1,9 +1,5 @@
 package com.db.h2.console.domain;
 
-import com.fasterxml.jackson.annotation.JsonIgnore;
-import org.hibernate.annotations.OnDelete;
-import org.hibernate.annotations.OnDeleteAction;
-
 import javax.persistence.*;
 import java.util.Date;
 
@@ -22,33 +18,9 @@ public class PersonExercise {
     private String address;
     private String country;
     private String gender;
-//    @OneToMany(
-//            mappedBy = "personExercise",
-//            cascade = CascadeType.ALL,
-//            orphanRemoval = true
-//    )
-//    private List<Exercise> exerciseList = new ArrayList<>();
-
-    @ManyToOne(fetch = FetchType.LAZY, optional = false)
-    @JoinColumn(name = "exercise_id", nullable = false)
-    @OnDelete(action = OnDeleteAction.CASCADE)
-    @JsonIgnore
-    private Exercise exercise;
-
 
     @SuppressWarnings("unused")
     public PersonExercise() {
-    }
-
-    public PersonExercise(String firstName, String lastName, String email, Date dob, String address, String country, String gender, Exercise exercise) {
-        this.firstName = firstName;
-        this.lastName = lastName;
-        this.email = email;
-        this.dob = dob;
-        this.address = address;
-        this.country = country;
-        this.gender = gender;
-        this.exercise = exercise;
     }
 
     public PersonExercise(String firstName, String lastName, String email, Date dob, String address, String country, String gender) {
@@ -59,15 +31,6 @@ public class PersonExercise {
         this.address = address;
         this.country = country;
         this.gender = gender;
-    }
-
-
-    public Exercise getExercise() {
-        return exercise;
-    }
-
-    public void setExercise(Exercise exercise) {
-        this.exercise = exercise;
     }
 
     public Date getDob() {
@@ -145,7 +108,6 @@ public class PersonExercise {
                 ", address='" + address + '\'' +
                 ", country='" + country + '\'' +
                 ", gender='" + gender + '\'' +
-                ", exercise=" + exercise +
                 '}';
     }
 }

@@ -15,7 +15,7 @@ public interface ExerciseRepository extends CrudRepository<Exercise, Long> {
 
     //@Query("select new com.foo.bar.entity.Document(d.docId, d.filename) from Document d where d.filterCol = ?1")
     //@Query("SELECT e FROM Exercise where id = ?1 ORDER BY name")
-    @Query(value = "SELECT e FROM Exercise e where e.id = ?1 ORDER BY e.name")
+    @Query(value = "SELECT e FROM Exercise e where e.personExercise.id = ?1 ORDER BY e.name")
     public List<Exercise> findAllExerciseById(Long id);
     @Query(value = "SELECT e FROM Exercise e ORDER BY e.name")
     public List<Exercise> findAllSortedByName();

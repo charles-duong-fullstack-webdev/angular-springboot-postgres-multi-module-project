@@ -1,9 +1,10 @@
 package com.db.h2.console.domain;
 
-import javax.persistence.Entity;
-import javax.persistence.GeneratedValue;
-import javax.persistence.Id;
-import javax.persistence.Table;
+import com.fasterxml.jackson.annotation.JsonIgnore;
+import org.hibernate.annotations.OnDelete;
+import org.hibernate.annotations.OnDeleteAction;
+
+import javax.persistence.*;
 
 @Entity
 @Table(name = "exercise")
@@ -15,11 +16,14 @@ public class Exercise {
     private String name;
     private Long duration;
 
-
     private Long calories;
-//    @ManyToOne
-//    @JoinColumn(name = "personExercise_id")
-//    private PersonExercise personExercise;
+
+    @ManyToOne(fetch = FetchType.LAZY, optional = false)
+    @JoinColumn(name = "personExercise_id", nullable = false)
+    @OnDelete(action = OnDeleteAction.CASCADE)
+    @JsonIgnore
+    private PersonExercise personExercise;
+
 
     public Exercise() {
     }
@@ -30,6 +34,13 @@ public class Exercise {
         this.calories = calories;
     }
 
+    public PersonExercise getPersonExercise() {
+        return personExercise;
+    }
+
+    public void setPersonExercise(PersonExercise personExercise) {
+        this.personExercise = personExercise;
+    }
     public Long getId() {
         return id;
     }
