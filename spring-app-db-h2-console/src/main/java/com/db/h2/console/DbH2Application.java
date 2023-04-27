@@ -1,5 +1,6 @@
 package com.db.h2.console;
 
+import com.db.h2.console.DTO.ExerciseDTO;
 import com.db.h2.console.domain.BiManyToOneExample;
 import com.db.h2.console.domain.BiOneToManyExample;
 import com.db.h2.console.domain.Exercise;
@@ -55,14 +56,34 @@ public class DbH2Application implements CommandLineRunner {
                 "Toni", "Duong", "cduong@test.com", new Date(),
                 "Martins 11, 3261 Suberg", "Switzerland", "M");
 
-        Exercise exercise1 = new Exercise("Ramesh1", 26L, 333L, personExercise);
-        Exercise exercise2 = new Exercise("Ramesh2", 27L, 444L, personExercise);
-        Exercise exercise3 = new Exercise("Ramesh3", 28L, 555L, personExercise);
-        Exercise exercise4 = new Exercise("Ramesh4", 29L, 666L, personExercise);
-        List<Exercise> exerciseList = Arrays.asList(exercise1, exercise2, exercise3, exercise4);
-        personExercise.setExerciseList(exerciseList);
+        Exercise exercise1 = new Exercise("Ramesh1", 26L, 333L);
+        Exercise exercise2 = new Exercise("Ramesh2", 27L, 444L);
+        Exercise exercise3 = new Exercise("Ramesh3", 28L, 555L);
+        Exercise exercise4 = new Exercise("Ramesh4", 29L, 666L);
+        Exercise saveExercise1 = this.exerciseRepository.save(exercise1);
+        Exercise saveExercise2 = this.exerciseRepository.save(exercise2);
+        Exercise saveExercise3 = this.exerciseRepository.save(exercise3);
+        Exercise saveExercise4 = this.exerciseRepository.save(exercise4);
+        personExercise.setExercise(saveExercise1);
+        this.personExerciseRepository.save(personExercise);
+        personExercise.setExercise(saveExercise2);
+        this.personExerciseRepository.save(personExercise);
+        personExercise.setExercise(saveExercise3);
+        this.personExerciseRepository.save(personExercise);
+        personExercise.setExercise(saveExercise4);
         this.personExerciseRepository.save(personExercise);
 
+        List<PersonExercise> allPersonExercise = this.personExerciseRepository.findAll();
+        PersonExercise personExercise1 = allPersonExercise.get(0);
+        PersonExercise personExercise2 = this.personExerciseRepository.getPersonExerciseById(personExercise1.getId());
+        System.err.println("personExercise1.getId() >> "+personExercise2.getId());
+
+        List<Exercise> allExercise = this.exerciseRepository.getExercisesByIdExists(personExercise2.getId());
+        System.err.println("allExercise.get(0).getId() >> "+allExercise.get(0).getId());
+        ExerciseDTO exerciseDTO = new ExerciseDTO();
+
+//        System.err.println("personExercise1.getAddress() >> "+personExercise2.getAddress());
+//        System.err.println("personExercise1.getId() >> "+personExercise2.getExercise().getCalories());
     }
 
     private void insertDataToBiOneToManyExampleTable() {

@@ -1,16 +1,16 @@
-package com.db.h2.console.domain;
+package com.db.h2.console.DTO;
 
-import com.fasterxml.jackson.annotation.JsonIgnore;
-import org.hibernate.annotations.OnDelete;
-import org.hibernate.annotations.OnDeleteAction;
+import com.db.h2.console.domain.Exercise;
 
-import javax.persistence.*;
+import javax.persistence.GeneratedValue;
+import javax.persistence.GenerationType;
+import javax.persistence.Id;
+import java.util.ArrayList;
 import java.util.Date;
+import java.util.List;
 
-@Entity
-@Table(name = "personExercise")
-public class PersonExercise {
 
+public class PersonExerciseDTO {
 
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
@@ -22,25 +22,15 @@ public class PersonExercise {
     private String address;
     private String country;
     private String gender;
-//    @OneToMany(
-//            mappedBy = "personExercise",
-//            cascade = CascadeType.ALL,
-//            orphanRemoval = true
-//    )
-//    private List<Exercise> exerciseList = new ArrayList<>();
 
-    @ManyToOne(fetch = FetchType.LAZY, optional = false)
-    @JoinColumn(name = "exercise_id", nullable = false)
-    @OnDelete(action = OnDeleteAction.CASCADE)
-    @JsonIgnore
-    private Exercise exercise;
+    private List<Exercise> exerciseList = new ArrayList<>();
 
 
     @SuppressWarnings("unused")
-    public PersonExercise() {
+    public PersonExerciseDTO() {
     }
 
-    public PersonExercise(String firstName, String lastName, String email, Date dob, String address, String country, String gender, Exercise exercise) {
+    public PersonExerciseDTO(String firstName, String lastName, String email, Date dob, String address, String country, String gender, List<Exercise> exerciseList) {
         this.firstName = firstName;
         this.lastName = lastName;
         this.email = email;
@@ -48,10 +38,10 @@ public class PersonExercise {
         this.address = address;
         this.country = country;
         this.gender = gender;
-        this.exercise = exercise;
+        this.exerciseList = exerciseList;
     }
 
-    public PersonExercise(String firstName, String lastName, String email, Date dob, String address, String country, String gender) {
+    public PersonExerciseDTO(String firstName, String lastName, String email, Date dob, String address, String country, String gender) {
         this.firstName = firstName;
         this.lastName = lastName;
         this.email = email;
@@ -61,13 +51,12 @@ public class PersonExercise {
         this.gender = gender;
     }
 
-
-    public Exercise getExercise() {
-        return exercise;
+    public List<Exercise> getExerciseList() {
+        return exerciseList;
     }
 
-    public void setExercise(Exercise exercise) {
-        this.exercise = exercise;
+    public void setExerciseList(List<Exercise> exerciseList) {
+        this.exerciseList = exerciseList;
     }
 
     public Date getDob() {
@@ -145,7 +134,7 @@ public class PersonExercise {
                 ", address='" + address + '\'' +
                 ", country='" + country + '\'' +
                 ", gender='" + gender + '\'' +
-                ", exercise=" + exercise +
+                ", exerciseList=" + exerciseList +
                 '}';
     }
 }

@@ -1,30 +1,17 @@
-package com.db.h2.console.domain;
+package com.db.h2.console.DTO;
 
-import javax.persistence.Entity;
-import javax.persistence.GeneratedValue;
-import javax.persistence.Id;
-import javax.persistence.Table;
+public class ExerciseDTO {
 
-@Entity
-@Table(name = "exercise")
-public class Exercise {
-
-    @Id
-    @GeneratedValue
     private Long id;
     private String name;
     private Long duration;
 
-
     private Long calories;
-//    @ManyToOne
-//    @JoinColumn(name = "personExercise_id")
-//    private PersonExercise personExercise;
 
-    public Exercise() {
+    public ExerciseDTO() {
     }
 
-    public Exercise(String name, Long duration, Long calories) {
+    public ExerciseDTO(String name, Long duration, Long calories) {
         this.name = name;
         this.duration = duration;
         this.calories = calories;
