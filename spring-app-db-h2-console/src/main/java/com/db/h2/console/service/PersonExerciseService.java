@@ -52,7 +52,7 @@ public class PersonExerciseService {
         PersonExerciseDTO personExerciseDTO = personExerciseEntityToDTO.convertPersonExercise(personExercise);
         System.err.println("personExerciseDTO >> " + personExerciseDTO);
 
-        personExerciseDTO.setExerciseDTOList(exerciseDTOs);
+        personExerciseDTO.setExerciseDTOs(exerciseDTOs);
         System.err.println("personExerciseDTO >> " + personExerciseDTO);
         return personExerciseDTO;
         //return personExerciseRepository.getPersonExerciseById(listAll.get(0).getId());

@@ -1,6 +1,6 @@
-import {ExerciseH2} from './exerciseH2';
+import {ExerciseDTO} from './exerciseDTO';
 
-export class PersonExerciseH2 {
+export class PersonExerciseDTO {
   id: number;
   firstName: string;
   lastName: string;
@@ -9,5 +9,5 @@ export class PersonExerciseH2 {
   address: string;
   country: string;
   gender: string;
-  exercise: ExerciseH2[];
+  exerciseDTOs: ExerciseDTO[];
 }

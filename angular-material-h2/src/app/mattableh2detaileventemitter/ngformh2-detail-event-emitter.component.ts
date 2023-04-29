@@ -1,5 +1,5 @@
 import {Component, EventEmitter, Input, OnInit, Output} from '@angular/core';
-import {PersonExerciseH2} from "../mattableh2/models/person-exercise-h2";
+import {PersonExerciseDTO} from "../mattableh2/models/person-exercise-DTO";
 
 @Component({
   selector: 'app-ngformh2-detail-event-emitter',
@@ -8,8 +8,8 @@ import {PersonExerciseH2} from "../mattableh2/models/person-exercise-h2";
 })
 export class Ngformh2DetailEventEmitterComponent implements OnInit {
 
-  @Input() personExerciseH2: PersonExerciseH2 = new PersonExerciseH2();
-  @Output() personExerciseH2Change: EventEmitter<PersonExerciseH2> = new EventEmitter<PersonExerciseH2>();
+  @Input() personExerciseH2: PersonExerciseDTO = new PersonExerciseDTO();
+  @Output() personExerciseH2Change: EventEmitter<PersonExerciseDTO> = new EventEmitter<PersonExerciseDTO>();
 
   constructor() {}
   ngOnInit() {

@@ -1,8 +1,8 @@
 import {Component, Injectable, Input, OnInit} from '@angular/core';
 import {FormBuilder, FormGroup, Validators} from '@angular/forms';
 import {MatNgtableH2Service} from '../../mattableh2/service/mat-ngtable-h2.service';
-import {PersonExerciseH2} from '../../mattableh2/models/person-exercise-h2';
-import {ExerciseH2} from '../../mattableh2/models/exerciseH2';
+import {PersonExerciseDTO} from '../../mattableh2/models/person-exercise-DTO';
+import {ExerciseDTO} from '../../mattableh2/models/exerciseDTO';
 
 @Injectable({
   providedIn: 'root'
@@ -14,7 +14,7 @@ import {ExerciseH2} from '../../mattableh2/models/exerciseH2';
 })
 export class MatFormH2DialogPersonInfoComponent implements OnInit {
 
-  @Input() selectedPersonExerciseH2Child = new PersonExerciseH2();
+  @Input() selectedPersonExerciseH2Child = new PersonExerciseDTO();
 
   private exercisePersonInfo =
     {
@@ -42,7 +42,7 @@ export class MatFormH2DialogPersonInfoComponent implements OnInit {
     this.matNgtableH2Service.personExerciseH2Subject$.subscribe(val => {
       console.log('2 <<<<<< this.matNgtableH2Service.personExerciseH2Subject$.subscribe(val): ' + val);
       // window.alert('<<<<<< this.matNgtableH2Service.personExerciseH2Subject$.subscribe(val): ' + val);
-      const editExerciseH2 = new ExerciseH2();
+      const editExerciseH2 = new ExerciseDTO();
       Object.assign(editExerciseH2, val);
       console.log('3 <<<<<< subscribe(val.toString()): ' + val.toString());
       console.log('4 <<<<<< subscribe(editExerciseH2.name): ' + editExerciseH2.name);
@@ -73,14 +73,14 @@ export class MatFormH2DialogPersonInfoComponent implements OnInit {
 
   }
 
-  // setSelectedPersonExerciseH2Child(element: ExerciseH2) {
+  // setSelectedPersonExerciseH2Child(element: ExerciseDTO) {
   //   window.alert('-------------> setSelectedPersonExerciseH2Child....');
   //
   //   this.selectedPersonExerciseH2Child.name = element.name;
   //   this.selectedPersonExerciseH2Child.id = element.id;
   //   this.selectedPersonExerciseH2Child.calories = element.calories;
   //   this.selectedPersonExerciseH2Child.duration = element.duration;
-  //   this.selectedPersonExerciseH2Child.exercise = new ExerciseH2();
+  //   this.selectedPersonExerciseH2Child.exercise = new ExerciseDTO();
   //   this.selectedPersonExerciseH2Child.exercise.name = this.exercisePersonInfo.name;
   //   this.selectedPersonExerciseH2Child.exercise.dob = this.exercisePersonInfo.dob;
   //   this.selectedPersonExerciseH2Child.exercise.address = this.exercisePersonInfo.address;

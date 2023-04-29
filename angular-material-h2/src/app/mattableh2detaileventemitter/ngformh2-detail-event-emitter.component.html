@@ -3,14 +3,14 @@
 
 <mat-grid-list cols="2" rowHeight="2:1">
   <mat-grid-tile style="max-height: 1000px;  position: absolute;  top: 30px"> Mat Grid Tile 1
-    <mat-card *ngIf="personExerciseH2.exercise">
+    <mat-card *ngIf="personExerciseH2.exerciseDTOs">
 
       <p>Customer No : {{personExerciseH2.id}}</p>
-      <p>Name : <input [(ngModel)]="personExerciseH2.exercise.name"></p>
-      <p>Address : <input [(ngModel)]="personExerciseH2.exercise.address"></p>
-      <p>Country : <input [(ngModel)]="personExerciseH2.exercise.country"></p>
-      <p>Email : <input [(ngModel)]="personExerciseH2.exercise.email"></p>
-      <p>Dob : <input [(ngModel)]="personExerciseH2.exercise.dob"></p>
+      <p>Name : <input [(ngModel)]="personExerciseH2.exerciseDTOs.name"></p>
+      <p>Address : <input [(ngModel)]="personExerciseH2.exerciseDTOs.address"></p>
+      <p>Country : <input [(ngModel)]="personExerciseH2.exerciseDTOs.country"></p>
+      <p>Email : <input [(ngModel)]="personExerciseH2.exerciseDTOs.email"></p>
+      <p>Dob : <input [(ngModel)]="personExerciseH2.exerciseDTOs.dob"></p>
 
       <button (click)="update()">Update</button>
 
@@ -18,7 +18,7 @@
   </mat-grid-tile>
 
   <mat-grid-tile style="max-height: 500px; height: 200px; position: absolute; top: -5px"> Mat Grid Tile 2
-    <mat-card *ngIf="personExerciseH2.exercise" class="example-full-height">
+    <mat-card *ngIf="personExerciseH2.exerciseDTOs" class="example-full-height">
       <form class="example-form">
 
         <mat-form-field class="example-full-width">
@@ -28,27 +28,27 @@
 
         <mat-form-field class="example-full-width">
           <mat-label>Name</mat-label>
-          <input matInput placeholder="Your Name" value="{{personExerciseH2.exercise.name}}">
+          <input matInput placeholder="Your Name" value="{{personExerciseH2.exerciseDTOs.name}}">
         </mat-form-field>
 
         <mat-form-field class="example-full-width">
           <mat-label>Email</mat-label>
-          <input matInput placeholder="Your Email" value="{{personExerciseH2.exercise.email}}">
+          <input matInput placeholder="Your Email" value="{{personExerciseH2.exerciseDTOs.email}}">
         </mat-form-field>
 
         <mat-form-field class="example-full-width">
           <mat-label>Address</mat-label>
-          <input matInput placeholder="Your Address" value="{{personExerciseH2.exercise.address}}">
+          <input matInput placeholder="Your Address" value="{{personExerciseH2.exerciseDTOs.address}}">
         </mat-form-field>
 
         <mat-form-field class="example-full-width">
           <mat-label>country</mat-label>
-          <input matInput placeholder="Your country" value="{{personExerciseH2.exercise.country}}">
+          <input matInput placeholder="Your country" value="{{personExerciseH2.exerciseDTOs.country}}">
         </mat-form-field>
 
         <mat-form-field class="example-full-width">
           <mat-label>dob</mat-label>
-          <input matInput placeholder="Your dob" value="{{personExerciseH2.exercise.dob}}">
+          <input matInput placeholder="Your dob" value="{{personExerciseH2.exerciseDTOs.dob}}">
         </mat-form-field>
 
         <mat-form-field>

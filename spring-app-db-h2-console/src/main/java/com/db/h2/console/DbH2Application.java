@@ -135,7 +135,7 @@ public class DbH2Application implements CommandLineRunner {
         PersonExerciseDTO personExerciseDTO  = personExerciseEntityToDTO.convertPersonExercise(personExercise);
         System.err.println("personExerciseDTO >> " + personExerciseDTO);
 
-        personExerciseDTO.setExerciseDTOList(exerciseDTOs);
+        personExerciseDTO.setExerciseDTOs(exerciseDTOs);
         System.err.println("personExerciseDTO >> " + personExerciseDTO);
 
     }

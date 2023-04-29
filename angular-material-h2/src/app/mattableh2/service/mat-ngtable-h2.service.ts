@@ -2,9 +2,9 @@ import {HttpClient} from '@angular/common/http';
 import {Injectable} from '@angular/core';
 import {map} from 'rxjs/operators';
 import {Observable} from 'rxjs-compat/Observable';
-import {PersonExerciseH2} from '../models/person-exercise-h2';
+import {PersonExerciseDTO} from '../models/person-exercise-DTO';
 import {BehaviorSubject} from 'rxjs/BehaviorSubject';
-import {ExerciseH2} from '../models/exerciseH2';
+import {ExerciseDTO} from '../models/exerciseDTO';
 
 /**
  * see training.service.ts
@@ -25,14 +25,14 @@ export class MatNgtableH2Service {
   currentMessage = this.messageSource.asObservable();
 
   private getUrl = 'http://localhost:8084/api/mattableh2/exercise';
-  private personExerciseH2: PersonExerciseH2;
-  // private personExerciseH2ForDialog: PersonExerciseH2;
+  private personExerciseH2: PersonExerciseDTO;
+  // private personExerciseH2ForDialog: PersonExerciseDTO;
 
   constructor(private httpClient: HttpClient) {
   }
 
-  getExercise(): Observable<PersonExerciseH2> {
-    return this.httpClient.get<PersonExerciseH2>(this.getUrl).pipe(
+  getExercise(): Observable<PersonExerciseDTO> {
+    return this.httpClient.get<PersonExerciseDTO>(this.getUrl).pipe(
       map((response) => response)
     );
   }
@@ -42,18 +42,18 @@ export class MatNgtableH2Service {
   }
 
   // TODO how to passing data to dialg person info - personH2 is null
-  getPersonExerciseH2(): PersonExerciseH2 {
+  getPersonExerciseH2(): PersonExerciseDTO {
     // this.personExerciseH2.personH2.name = this.exercisePersonInfo.name;
     // alert('this.personExerciseH2.personH2.name: ' + this.personExerciseH2.personH2.name);
     return this.personExerciseH2;
   }
 
-  setEditExercise(value: PersonExerciseH2) {
+  setEditExercise(value: PersonExerciseDTO) {
     this.personExerciseH2 = value;
   }
 
-  setPersonExerciseH2ForDialog(exercise: ExerciseH2) {
-    console.log('%%%%%%%%% setPersonExerciseH2ForDialog(element: ExerciseH2) element.name: ' + exercise.name);
+  setPersonExerciseH2ForDialog(exercise: ExerciseDTO) {
+    console.log('%%%%%%%%% setPersonExerciseH2ForDialog(element: ExerciseDTO) element.name: ' + exercise.name);
     window.alert('this.personExerciseH2Subject$.next(element)): ' + exercise);
     this.personExerciseH2Subject$ = new Observable((observer) => {
       console.log('Starting observable');
