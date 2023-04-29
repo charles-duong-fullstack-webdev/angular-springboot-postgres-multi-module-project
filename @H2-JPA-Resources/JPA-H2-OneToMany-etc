@@ -20,3 +20,18 @@ https://stackoverflow.com/questions/28364711/collection-null-in-angularjs-spring
 
 java - Hibernate and strange OneToMany behaviour - Stack Overflow
 https://stackoverflow.com/questions/72648485/hibernate-and-strange-onetomany-behaviour
+
+Automatically Mapping DTO to Entity on Spring Boot APIs
+https://auth0.com/blog/automatically-mapping-dto-to-entity-on-spring-boot-apis/
+
+Entity To DTO Conversion for a Spring REST API | Baeldung
+https://www.baeldung.com/entity-to-and-from-dto-for-a-java-spring-application
+
+Mapping Lists with ModelMapper | Baeldung
+https://www.baeldung.com/java-modelmapper-lists
+
+ModelMapper - Property Mapping
+https://modelmapper.org/user-manual/property-mapping/
+
+ModelMapper - Getting Started
+https://modelmapper.org/getting-started/

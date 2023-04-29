@@ -23,14 +23,14 @@ public class PersonExerciseDTO {
     private String country;
     private String gender;
 
-    private List<Exercise> exerciseList = new ArrayList<>();
+    private List<ExerciseDTO> exerciseDTOList = new ArrayList<>();
 
 
     @SuppressWarnings("unused")
     public PersonExerciseDTO() {
     }
 
-    public PersonExerciseDTO(String firstName, String lastName, String email, Date dob, String address, String country, String gender, List<Exercise> exerciseList) {
+    public PersonExerciseDTO(String firstName, String lastName, String email, Date dob, String address, String country, String gender, List<ExerciseDTO> exerciseDTOList) {
         this.firstName = firstName;
         this.lastName = lastName;
         this.email = email;
@@ -38,7 +38,7 @@ public class PersonExerciseDTO {
         this.address = address;
         this.country = country;
         this.gender = gender;
-        this.exerciseList = exerciseList;
+        this.exerciseDTOList = exerciseDTOList;
     }
 
     public PersonExerciseDTO(String firstName, String lastName, String email, Date dob, String address, String country, String gender) {
@@ -51,12 +51,12 @@ public class PersonExerciseDTO {
         this.gender = gender;
     }
 
-    public List<Exercise> getExerciseList() {
-        return exerciseList;
+    public List<ExerciseDTO> getExerciseDTOList() {
+        return exerciseDTOList;
     }
 
-    public void setExerciseList(List<Exercise> exerciseList) {
-        this.exerciseList = exerciseList;
+    public void setExerciseList(List<ExerciseDTO> exerciseDTOList) {
+        this.exerciseDTOList = exerciseDTOList;
     }
 
     public Date getDob() {
@@ -134,7 +134,7 @@ public class PersonExerciseDTO {
                 ", address='" + address + '\'' +
                 ", country='" + country + '\'' +
                 ", gender='" + gender + '\'' +
-                ", exerciseList=" + exerciseList +
+                ", exerciseDTOList=" + exerciseDTOList +
                 '}';
     }
 }
