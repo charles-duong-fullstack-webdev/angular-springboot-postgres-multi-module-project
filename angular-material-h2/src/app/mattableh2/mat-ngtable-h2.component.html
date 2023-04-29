@@ -1,5 +1,7 @@
 <h1>app-ngtable-h2 works!</h1>
 
+<h2>MATERIAL TALBE </h2>
+
 <div fxLayoutAlign="center center">
   <mat-form-field fxFlex="40%">
     <input matInput type="text" (keyup)="doFilter($event.target.value)" placeholder="Filter">
@@ -77,7 +79,7 @@ MatNgtableH2Component Showing Server message: {{message}}
 <hr>
 <h1>Person Exercise Detail</h1>
 <app-ngformh2-detail-event-emitter
-  [personExerciseH2] = "selectedExerciseH2"
+  [selectedPersonExerciseDTO] = "selectedPersonExerciseDTO"
   (personExerciseH2Change)="update($event)">
 </app-ngformh2-detail-event-emitter>
 

@@ -8,15 +8,17 @@ import {PersonExerciseDTO} from "../mattableh2/models/person-exercise-DTO";
 })
 export class Ngformh2DetailEventEmitterComponent implements OnInit {
 
-  @Input() personExerciseH2: PersonExerciseDTO = new PersonExerciseDTO();
+  @Input() selectedPersonExerciseDTO: PersonExerciseDTO = new PersonExerciseDTO();
   @Output() personExerciseH2Change: EventEmitter<PersonExerciseDTO> = new EventEmitter<PersonExerciseDTO>();
 
-  constructor() {}
+  constructor() {
+  }
+
   ngOnInit() {
   }
 
   update() {
-    this.personExerciseH2Change.emit(this.personExerciseH2);
+    this.personExerciseH2Change.emit(this.selectedPersonExerciseDTO);
   }
 
 }

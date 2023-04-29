@@ -32,7 +32,8 @@ export class MatNgtableH2Component implements OnInit, AfterViewInit, OnDestroy {
   dataSource = new MatTableDataSource([]);
   exerciseDTOs: ExerciseDTO[];
   personExerciseDTO: PersonExerciseDTO = new PersonExerciseDTO();
-  selectedExerciseH2: ExerciseDTO = new ExerciseDTO();
+  selectedExerciseDTO: ExerciseDTO = new ExerciseDTO();
+  selectedPersonExerciseDTO: PersonExerciseDTO = new PersonExerciseDTO();
 
   @ViewChild(MatSort, {static: false}) sort: MatSort;
   @ViewChild(MatPaginator, {static: false}) paginator: MatPaginator;
@@ -48,9 +49,9 @@ export class MatNgtableH2Component implements OnInit, AfterViewInit, OnDestroy {
       console.log('responsePersonExcerciseDTO firstName >>' + responsePersonExcerciseDTO.firstName);
       this.personExerciseDTO = responsePersonExcerciseDTO;
       this.exerciseDTOs = responsePersonExcerciseDTO.exerciseDTOs;
-      console.log('responsePersonExcerciseDTO.exerciseDTOS.length >>' +
+      console.log('responsePersonExcerciseDTO.exerciseDTOs[0].id >>' +
         responsePersonExcerciseDTO.exerciseDTOs[0].id);
-      //console.log('exerciseDTOs.length >>' + this.exerciseDTOs.length);
+      console.log('exerciseDTOs.length >>' + this.exerciseDTOs.length);
       this.dataSource = new MatTableDataSource(this.exerciseDTOs);
       this.dataSource.sort = this.sort;
       this.dataSource.paginator = this.paginator;
@@ -107,22 +108,16 @@ export class MatNgtableH2Component implements OnInit, AfterViewInit, OnDestroy {
     this.openDialog(exercise);
   }
 
-  onShowDetail(exercise: ExerciseDTO): void {
-    window.alert('Edit Exercise ID/name:' + exercise.id + '/' + exercise.name);
+  onShowDetail(exerciseDTO: ExerciseDTO): void {
+    window.alert('Edit exerciseDTO ID/name:' + exerciseDTO.id + '/' + exerciseDTO.name);
 
-    this.selectedExerciseH2 = Object.assign({}, exercise);
+    this.selectedExerciseDTO = Object.assign({}, exerciseDTO);
 
-    window.alert('onShowDetail this.selectedPersonExerciseH2.firstName: ' + this.selectedExerciseH2.name);
+    window.alert('onShowDetail this.selectedExerciseDTO.id: ' + this.selectedExerciseDTO.id);
+    window.alert('onShowDetail this.selectedExerciseDTO.name: ' + this.selectedExerciseDTO.name);
 
-    // this.selectedPersonExerciseH2.exercise = new Exercise();
-    // this.selectedPersonExerciseH2.exercise.id = 1;
-    // this.selectedPersonExerciseH2.exercise.name = this.exercisePersonInfo.name;
-    // this.selectedPersonExerciseH2.exercise.dob = this.exercisePersonInfo.dob;
-    // this.selectedPersonExerciseH2.exercise.address = this.exercisePersonInfo.address;
-    // this.selectedPersonExerciseH2.exercise.email = this.exercisePersonInfo.email;
-    // this.selectedPersonExerciseH2.exercise.country = this.exercisePersonInfo.country;
-    // this.selectedPersonExerciseH2.exercise.gender = this.exercisePersonInfo.gender;
-
+    // TODO assign selected exerciseDTO to selectedPersonExerciseDTO
+    this.selectedPersonExerciseDTO = this.personExerciseDTO;
   }
 
   update(personExerciseH2: PersonExerciseDTO) {
@@ -138,7 +133,7 @@ export class MatNgtableH2Component implements OnInit, AfterViewInit, OnDestroy {
 
   onClosePerson(exercise: ExerciseDTO): void {
     window.alert('Edit Exercise ID/Name:' + exercise.id + '/' + exercise.name);
-    this.selectedExerciseH2 = new ExerciseDTO();
+    this.selectedExerciseDTO = new ExerciseDTO();
   }
 
   onAddNew(element: PersonExerciseDTO): void {

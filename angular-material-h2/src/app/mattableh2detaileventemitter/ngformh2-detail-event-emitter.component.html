@@ -2,53 +2,60 @@
 <hr>
 
 <mat-grid-list cols="2" rowHeight="2:1">
-  <mat-grid-tile style="max-height: 1000px;  position: absolute;  top: 30px"> Mat Grid Tile 1
-    <mat-card *ngIf="personExerciseH2.exerciseDTOs">
+  <mat-grid-tile style="max-height: 1000px;  position: absolute;  top: 30px"> Mat Grid Tile 1 (NORMAL FORM)
+    <mat-card *ngIf="selectedPersonExerciseDTO">
 
-      <p>Customer No : {{personExerciseH2.id}}</p>
-      <p>Name : <input [(ngModel)]="personExerciseH2.exerciseDTOs.name"></p>
-      <p>Address : <input [(ngModel)]="personExerciseH2.exerciseDTOs.address"></p>
-      <p>Country : <input [(ngModel)]="personExerciseH2.exerciseDTOs.country"></p>
-      <p>Email : <input [(ngModel)]="personExerciseH2.exerciseDTOs.email"></p>
-      <p>Dob : <input [(ngModel)]="personExerciseH2.exerciseDTOs.dob"></p>
+      <p>Customer No : {{selectedPersonExerciseDTO.id}}</p>
+      <p>FirstName : <input [(ngModel)]="selectedPersonExerciseDTO.firstName"></p>
+      <p>LastName : <input [(ngModel)]="selectedPersonExerciseDTO.lastName"></p>
+      <p>Address : <input [(ngModel)]="selectedPersonExerciseDTO.address"></p>
+      <p>Country : <input [(ngModel)]="selectedPersonExerciseDTO.country"></p>
+      <p>Email : <input [(ngModel)]="selectedPersonExerciseDTO.email"></p>
+      <p>Dob : <input [(ngModel)]="selectedPersonExerciseDTO.dob"></p>
 
       <button (click)="update()">Update</button>
 
     </mat-card>
   </mat-grid-tile>
 
-  <mat-grid-tile style="max-height: 500px; height: 200px; position: absolute; top: -5px"> Mat Grid Tile 2
-    <mat-card *ngIf="personExerciseH2.exerciseDTOs" class="example-full-height">
+
+  <mat-grid-tile style="max-height: 500px; height: 200px; position: absolute; top: -5px"> Mat Grid Tile 2 (MATERIAL FORM)
+    <mat-card *ngIf="selectedPersonExerciseDTO.exerciseDTOs" class="example-full-height">
       <form class="example-form">
 
         <mat-form-field class="example-full-width">
           <mat-label>id</mat-label>
-          <input matInput placeholder="Your id" value="{{personExerciseH2.id}}">
+          <input matInput placeholder="Your id" value="{{selectedPersonExerciseDTO.id}}">
         </mat-form-field>
 
         <mat-form-field class="example-full-width">
-          <mat-label>Name</mat-label>
-          <input matInput placeholder="Your Name" value="{{personExerciseH2.exerciseDTOs.name}}">
+          <mat-label>First Name</mat-label>
+          <input matInput placeholder="Your Name" value="{{selectedPersonExerciseDTO.firstName}}">
+        </mat-form-field>
+
+        <mat-form-field class="example-full-width">
+          <mat-label>Last Name</mat-label>
+          <input matInput placeholder="Your Name" value="{{selectedPersonExerciseDTO.lastName}}">
         </mat-form-field>
 
         <mat-form-field class="example-full-width">
           <mat-label>Email</mat-label>
-          <input matInput placeholder="Your Email" value="{{personExerciseH2.exerciseDTOs.email}}">
+          <input matInput placeholder="Your Email" value="{{selectedPersonExerciseDTO.email}}">
         </mat-form-field>
 
         <mat-form-field class="example-full-width">
           <mat-label>Address</mat-label>
-          <input matInput placeholder="Your Address" value="{{personExerciseH2.exerciseDTOs.address}}">
+          <input matInput placeholder="Your Address" value="{{selectedPersonExerciseDTO.address}}">
         </mat-form-field>
 
         <mat-form-field class="example-full-width">
           <mat-label>country</mat-label>
-          <input matInput placeholder="Your country" value="{{personExerciseH2.exerciseDTOs.country}}">
+          <input matInput placeholder="Your country" value="{{selectedPersonExerciseDTO.country}}">
         </mat-form-field>
 
         <mat-form-field class="example-full-width">
           <mat-label>dob</mat-label>
-          <input matInput placeholder="Your dob" value="{{personExerciseH2.exerciseDTOs.dob}}">
+          <input matInput placeholder="Your dob" value="{{selectedPersonExerciseDTO.dob}}">
         </mat-form-field>
 
         <mat-form-field>
