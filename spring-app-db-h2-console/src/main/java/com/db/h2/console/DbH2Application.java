@@ -9,6 +9,8 @@ import com.db.h2.console.domain.PersonExercise;
 import com.db.h2.console.repository.BiOneToManyRepository;
 import com.db.h2.console.repository.ExerciseRepository;
 import com.db.h2.console.repository.PersonExerciseRepository;
+import entityToDTO.ExerciseEntityToDTO;
+import entityToDTO.PersonExerciseEntityToDTO;
 import org.modelmapper.ModelMapper;
 import org.modelmapper.TypeToken;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -125,54 +127,17 @@ public class DbH2Application implements CommandLineRunner {
         System.err.println("exerciseENTITYs.size() >> " + exerciseENTITYs.size());
         System.err.println("exerciseENTITYs >> " + exerciseENTITYs);
 
-        /**
-         * Use Type Token
-         * see https://www.baeldung.com/java-modelmapper-lists
-         */
+        ExerciseEntityToDTO exerciseEntityToDTO = new ExerciseEntityToDTO();
+        List<ExerciseDTO> exerciseDTOs  = exerciseEntityToDTO.convertExercise(exerciseENTITYs);
+        System.err.println("exerciseDTOTypeTokens >> " + exerciseDTOs);
 
-        // Without using "Type Token" will give 0 size (exerciseDTOs.size >> 0)
-        List<ExerciseDTO> exerciseDTOs = new ArrayList<ExerciseDTO>();
-        modelMapper.map(exerciseENTITYs, exerciseDTOs);
-        System.err.println("exerciseDTOs.size >> " + exerciseDTOs.size());
-
-
-        // Use "Type Token" will give 4 size (exerciseDTOTypeTokens.size >> 4)
-        List<ExerciseDTO> exerciseDTOTypeTokens = modelMapper.map(exerciseENTITYs,
-                new TypeToken<List<ExerciseDTO>>() {
-                }.getType());
-        // Sucessful: exerciseDTOTypeTokens.size >> 4
-        System.err.println("exerciseDTOTypeTokens.size >> " + exerciseDTOTypeTokens.size());
-        System.err.println("exerciseDTOTypeTokens >> " + exerciseDTOTypeTokens);
-
-        //PersonExerciseDTO personExerciseDTO = new PersonExerciseDTO();
-        PersonExerciseDTO personExerciseDTO = modelMapper.map(personExercise, PersonExerciseDTO.class);
-        System.err.println("personExerciseDTO.getId >> " + personExerciseDTO.getId());
-        personExerciseDTO.setExerciseList(exerciseDTOTypeTokens);
+        PersonExerciseEntityToDTO personExerciseEntityToDTO = new PersonExerciseEntityToDTO();
+        PersonExerciseDTO personExerciseDTO  = personExerciseEntityToDTO.convertPersonExercise(personExercise);
         System.err.println("personExerciseDTO >> " + personExerciseDTO);
 
+        personExerciseDTO.setExerciseDTOList(exerciseDTOs);
+        System.err.println("personExerciseDTO >> " + personExerciseDTO);
 
-
-// =============================================================================
-//        2.2. Type Token
-//        ModelMapper uses TypeToken to map generic types. To see why this is necessary, let's see what happens when we map an Integer list to a Character list:
-//
-//        List<Integer> integers = new ArrayList<Integer>();
-//        integers.add(1);
-//        integers.add(2);
-//        integers.add(3);
-//
-//        List<Character> characters = new ArrayList<Character>();
-//        modelMapper.map(integers, characters);
-//        Copy
-//        Further, if we print out the elements of the characters list we would see an empty list. This is due to the occurrence of type erasure during runtime execution.
-//
-//        If we change our map call to use TypeToken, though, we can create a type literal for List<Character>:
-//
-//        List<Character> characters
-//                = modelMapper.map(integers, new TypeToken<List<Character>>() {}.getType());
-//        Copy
-//        At compile time, the TokenType anonymous inner case preserves the List<Character> parameter type, and this time our conversion is successful.
-// =============================================================================
     }
 
     private void insertDataToBiOneToManyExampleTable() {

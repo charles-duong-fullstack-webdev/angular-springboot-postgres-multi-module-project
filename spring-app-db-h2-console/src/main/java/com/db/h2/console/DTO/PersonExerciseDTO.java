@@ -55,7 +55,7 @@ public class PersonExerciseDTO {
         return exerciseDTOList;
     }
 
-    public void setExerciseList(List<ExerciseDTO> exerciseDTOList) {
+    public void setExerciseDTOList(List<ExerciseDTO> exerciseDTOList) {
         this.exerciseDTOList = exerciseDTOList;
     }
 

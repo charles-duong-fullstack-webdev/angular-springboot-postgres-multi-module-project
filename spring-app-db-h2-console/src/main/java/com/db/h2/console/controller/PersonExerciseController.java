@@ -1,9 +1,13 @@
 package com.db.h2.console.controller;
 
+import com.db.h2.console.DTO.ExerciseDTO;
+import com.db.h2.console.DTO.PersonExerciseDTO;
 import com.db.h2.console.domain.Exercise;
 import com.db.h2.console.domain.PersonExercise;
 import com.db.h2.console.service.ExerciseService;
 import com.db.h2.console.service.PersonExerciseService;
+import entityToDTO.ExerciseEntityToDTO;
+import entityToDTO.PersonExerciseEntityToDTO;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.CrossOrigin;
@@ -68,8 +72,10 @@ public class PersonExerciseController {
     }
 
     @RequestMapping("/mattableh2/exercise")
-    public PersonExercise getPersonExercise(Model model) {
+    public PersonExerciseDTO getPersonExercise(Model model) {
+
         return personExerciseService.getPersonExerciseById();
+
     }
 
 }
