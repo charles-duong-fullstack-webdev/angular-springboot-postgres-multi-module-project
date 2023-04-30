@@ -9,6 +9,7 @@ import {
 } from '../matformh2/matformh2dialogpersoninfo/mat-form-h2-dialog-person-info.component';
 import {Subscription} from 'rxjs/Subscription';
 import {ExerciseDTO} from './models/exerciseDTO';
+import {$EQ} from "codelyzer/angular/styles/chars";
 
 
 @Component({
@@ -119,15 +120,17 @@ export class MatNgtableH2Component implements OnInit, AfterViewInit, OnDestroy {
     this.selectedPersonExerciseDTO = this.personExerciseDTO;
   }
 
-  update(personExerciseH2: PersonExerciseDTO) {
-    console.log(personExerciseH2);
-    const persExerciseH2 = this.exerciseDTOs
-      .find(e => e.id === personExerciseH2.id);
-    Object.assign(persExerciseH2, personExerciseH2);
-    this.dataSource = new MatTableDataSource(this.exerciseDTOs);
-    this.dataSource.sort = this.sort;
-    this.dataSource.paginator = this.paginator;
-    window.alert('Customer Saved');
+  update(updatePersonExerciseDTO: PersonExerciseDTO) {
+    console.log('updatePersonExerciseDTO >> ' + JSON.stringify(updatePersonExerciseDTO));
+    console.log('selectedExerciseDTO >> ' + JSON.stringify(this.selectedExerciseDTO));
+    console.log('selectedPersonExerciseDTO >> ' + JSON.stringify(this.selectedPersonExerciseDTO));
+    // const persExerciseH2 = this.exerciseDTOs
+    //   .find(e => e.id === updatePersonExercise.id);
+    // Object.assign(persExerciseH2, updatePersonExercise);
+    // this.dataSource = new MatTableDataSource(this.exerciseDTOs);
+    // this.dataSource.sort = this.sort;
+    // this.dataSource.paginator = this.paginator;
+    // window.alert('Customer Saved');
   }
 
   onClosePerson(exercise: ExerciseDTO): void {
@@ -147,4 +150,6 @@ export class MatNgtableH2Component implements OnInit, AfterViewInit, OnDestroy {
     this.exerciseDTOs.splice(indexToDelete, 1);
     this.dataSource = new MatTableDataSource(this.exerciseDTOs);
   }
+
+  protected readonly $EQ = $EQ;
 }

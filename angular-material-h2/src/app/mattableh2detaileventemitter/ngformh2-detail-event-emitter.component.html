@@ -13,6 +13,9 @@
       <p>Country : <input [(ngModel)]="selectedPersonExerciseDTO.country"></p>
       <p>Email : <input [(ngModel)]="selectedPersonExerciseDTO.email"></p>
       <p>Dob : <input [(ngModel)]="selectedPersonExerciseDTO.dob"></p>
+      <p>Exercise Name : <input readonly style="color: red;" [(ngModel)]="selectedExerciseDTO.name"></p>
+      <p>Exercise Duration: <input readonly style="color: red;" [(ngModel)]="selectedExerciseDTO.duration"></p>
+      <p>Exercise Calories: <input readonly style="color: red;" [(ngModel)]="selectedExerciseDTO.calories"></p>
 
       <button (click)="update()">Update Person Excercise</button>
 
@@ -86,7 +89,7 @@
       </form>
 
       <mat-card-actions fxLayoutAlign="left">
-        <button mat-button color="primary" mat-raised-button (click)="update()">Update Person Excercise</button>
+        <button mat-button color="primary" mat-raised-button disabled (click)="update()">Update Person Excercise</button>
       </mat-card-actions>
 
     </mat-card>
