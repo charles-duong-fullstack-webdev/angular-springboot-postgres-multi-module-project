@@ -2,7 +2,7 @@
 
 <h2>MATERIAL TALBE </h2>
 
-<div fxLayoutAlign="center center">
+<div fxLayoutAlign="center center" class="example-table">
   <mat-form-field fxFlex="40%">
     <input matInput type="text" (keyup)="doFilter($event.target.value)" placeholder="Filter">
   </mat-form-field>
@@ -35,14 +35,14 @@
   </ng-container>
 
   <ng-container matColumnDef="edit">
-    <mat-header-cell *matHeaderCellDef >Edit</mat-header-cell>
+    <mat-header-cell *matHeaderCellDef>Edit</mat-header-cell>
     <mat-cell *matCellDef="let element">
       <button mat-raised-button (click)="onEdit(element)">Edit</button>
     </mat-cell>
   </ng-container>
 
   <ng-container matColumnDef="delete">
-    <mat-header-cell *matHeaderCellDef >Delete</mat-header-cell>
+    <mat-header-cell *matHeaderCellDef>Delete</mat-header-cell>
     <mat-cell *matCellDef="let element">
       <button mat-raised-button (click)="onDelete(element)">Delete</button>
     </mat-cell>
@@ -57,7 +57,7 @@
 
 
   <ng-container matColumnDef="showEditDialog">
-    <mat-header-cell *matHeaderCellDef >showEditDialog</mat-header-cell>
+    <mat-header-cell *matHeaderCellDef>showEditDialog</mat-header-cell>
     <mat-cell *matCellDef="let element">
       <button mat-raised-button (click)="onClosePerson(element)">Show Edit Dialog</button>
     </mat-cell>
@@ -77,11 +77,15 @@
 MatNgtableH2Component Showing Server message: {{message}}
 
 <hr>
-<h1>Person Exercise Detail</h1>
-<app-ngformh2-detail-event-emitter
-  [selectedPersonExerciseDTO] = "selectedPersonExerciseDTO"
-  (personExerciseH2Change)="update($event)">
-</app-ngformh2-detail-event-emitter>
+<br>
+<mat-card style="height:2500px;">
+  <h1>Person Exercise Detail</h1>
+  <app-ngformh2-detail-event-emitter
+    [selectedPersonExerciseDTO]="selectedPersonExerciseDTO"
+    [selectedExerciseDTO]="selectedExerciseDTO"
+    (personExerciseH2Change)="update($event)">
+  </app-ngformh2-detail-event-emitter>
+</mat-card>
 
 
 

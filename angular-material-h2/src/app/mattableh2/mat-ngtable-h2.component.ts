@@ -109,14 +109,13 @@ export class MatNgtableH2Component implements OnInit, AfterViewInit, OnDestroy {
   }
 
   onShowDetail(exerciseDTO: ExerciseDTO): void {
-    window.alert('Edit exerciseDTO ID/name:' + exerciseDTO.id + '/' + exerciseDTO.name);
+    // window.alert('Edit exerciseDTO ID/name:' + exerciseDTO.id + '/' + exerciseDTO.name);
 
     this.selectedExerciseDTO = Object.assign({}, exerciseDTO);
 
-    window.alert('onShowDetail this.selectedExerciseDTO.id: ' + this.selectedExerciseDTO.id);
-    window.alert('onShowDetail this.selectedExerciseDTO.name: ' + this.selectedExerciseDTO.name);
+    // window.alert('onShowDetail this.selectedExerciseDTO.id: ' + this.selectedExerciseDTO.id);
+    // window.alert('onShowDetail this.selectedExerciseDTO.name: ' + this.selectedExerciseDTO.name);
 
-    // TODO assign selected exerciseDTO to selectedPersonExerciseDTO
     this.selectedPersonExerciseDTO = this.personExerciseDTO;
   }
 

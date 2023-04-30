@@ -12,3 +12,16 @@
 .example-full-height {
   margin: 15px;
 }
+
+.normal-form {
+  max-height: 1000px;
+  position: absolute;
+  top: 30px;
+}
+
+.material-form {
+  max-height: 1000px;
+  height: 400px;
+  position: absolute;
+  top: 5px;
+}
