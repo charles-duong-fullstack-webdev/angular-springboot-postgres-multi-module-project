@@ -35,6 +35,7 @@ import {MatFormFieldModule} from "@angular/material/form-field";
 import {MatOptionModule} from "@angular/material/core";
 import {MatSelectModule} from "@angular/material/select";
 import {MatInputModule} from "@angular/material/input";
+import {RestApiService} from "./service/rest-api-service";
 
 @NgModule({
   declarations: [
@@ -80,7 +81,7 @@ import {MatInputModule} from "@angular/material/input";
     FlexModule,
     FormsModule,
   ],
-  providers: [AuthService, TrainingService, MatNgtableH2Service, MatFormH2DialogPersonInfoComponent],
+  providers: [AuthService, RestApiService, TrainingService, MatNgtableH2Service, MatFormH2DialogPersonInfoComponent],
   bootstrap: [AppComponent],
   entryComponents: [StopTrainingComponent, MatNgdialogH2Component]
 })
