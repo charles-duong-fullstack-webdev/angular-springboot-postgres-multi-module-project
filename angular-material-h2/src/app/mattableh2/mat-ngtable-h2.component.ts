@@ -121,16 +121,23 @@ export class MatNgtableH2Component implements OnInit, AfterViewInit, OnDestroy {
   }
 
   update(updatePersonExerciseDTO: PersonExerciseDTO) {
+    console.log('personExerciseDTO >> ' + JSON.stringify(this.personExerciseDTO));
     console.log('updatePersonExerciseDTO >> ' + JSON.stringify(updatePersonExerciseDTO));
-    console.log('selectedExerciseDTO >> ' + JSON.stringify(this.selectedExerciseDTO));
-    console.log('selectedPersonExerciseDTO >> ' + JSON.stringify(this.selectedPersonExerciseDTO));
+    // console.log('selectedExerciseDTO >> ' + JSON.stringify(this.selectedExerciseDTO));
+    // console.log('selectedPersonExerciseDTO >> ' + JSON.stringify(this.selectedPersonExerciseDTO));
+    Object.assign(this.personExerciseDTO, updatePersonExerciseDTO);
+    console.log('UPDATED personExerciseDTO >> ' + JSON.stringify(this.personExerciseDTO));
+    //
+    // this.personExerciseDTO
     // const persExerciseH2 = this.exerciseDTOs
-    //   .find(e => e.id === updatePersonExercise.id);
+    //   .find(e => e.id === updatePersonExerciseDTO.id);
     // Object.assign(persExerciseH2, updatePersonExercise);
     // this.dataSource = new MatTableDataSource(this.exerciseDTOs);
     // this.dataSource.sort = this.sort;
     // this.dataSource.paginator = this.paginator;
     // window.alert('Customer Saved');
+
+    // TODO use url to update data through Spring Boot
   }
 
   onClosePerson(exercise: ExerciseDTO): void {
