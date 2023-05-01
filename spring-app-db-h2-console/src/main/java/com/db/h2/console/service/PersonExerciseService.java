@@ -8,6 +8,7 @@ import com.db.h2.console.repository.ExerciseRepository;
 import com.db.h2.console.repository.PersonExerciseRepository;
 import entityToDTO.ExerciseEntityToDTO;
 import entityToDTO.PersonExerciseEntityToDTO;
+import org.modelmapper.ModelMapper;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -31,6 +32,7 @@ public class PersonExerciseService {
     public List<PersonExercise> list() {
         return personExerciseRepository.findAll();
     }
+    private static final ModelMapper modelMapper = new ModelMapper();
 
     public PersonExerciseDTO getPersonExerciseById() {
         List<PersonExercise> listAll = personExerciseRepository.findAll();
@@ -58,5 +60,35 @@ public class PersonExerciseService {
         //return personExerciseRepository.getPersonExerciseById(listAll.get(0).getId());
     }
 
+    public PersonExerciseDTO updatePersonExercise(PersonExerciseDTO personExerciseDTO) {
+
+        System.err.println("personExerciseDTO >> " + personExerciseDTO);
+
+        PersonExercise personExercise = modelMapper.map(personExerciseDTO, PersonExercise.class);
+        System.err.println("personExercise.getId() >> " + personExercise.getId());
+        System.err.println("personExercise >> " + personExercise);
+
+        PersonExercise updatedPersonExercise = personExerciseRepository.save(personExercise);
+
+        PersonExerciseEntityToDTO personExerciseEntityToDTO = new PersonExerciseEntityToDTO();
+        PersonExerciseDTO updatedPersonExerciseDTO = personExerciseEntityToDTO.convertPersonExercise(updatedPersonExercise);
+        System.err.println("updatedPersonExerciseDTO >> " + updatedPersonExerciseDTO);
+
+        System.err.println("updatedPersonExerciseDTO.getId() >> " + updatedPersonExerciseDTO.getId());
+        System.err.println("updatedPersonExerciseDTO >> " + updatedPersonExerciseDTO);
+
+        List<Exercise> exerciseENTITYs = this.exerciseRepository.findAllExerciseById(personExercise.getId());
+        System.err.println("exerciseENTITYs.size() >> " + exerciseENTITYs.size());
+        System.err.println("exerciseENTITYs >> " + exerciseENTITYs);
+
+        ExerciseEntityToDTO exerciseEntityToDTO = new ExerciseEntityToDTO();
+        List<ExerciseDTO> exerciseDTOs = exerciseEntityToDTO.convertExercise(exerciseENTITYs);
+        System.err.println("exerciseDTOTypeTokens >> " + exerciseDTOs);
+
+        updatedPersonExerciseDTO.setExerciseDTOs(exerciseDTOs);
+
+        return updatedPersonExerciseDTO;
+
+    }
 
 }
