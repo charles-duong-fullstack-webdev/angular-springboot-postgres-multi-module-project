@@ -83,9 +83,11 @@ export class RestApiService {
   }
 
   // httpClientClient API delete() method => Delete PersonExersiceDTO
-  deletePersonExersiceDTO(id: any) {
+  deleteExersice(perId: any, exId: any) {
     return this.httpClient
-      .delete<PersonExerciseDTO>(this.apiURL + '/PersonExerciseDTO/' + id, this.httpClientOptions)
+      .delete<PersonExerciseDTO>(this.apiURL + '/delete/personId/' + perId + /exserciseId/ + exId,
+        this.httpClientOptions
+      )
       .pipe(retry(1), catchError(this.handleError));
   }
 

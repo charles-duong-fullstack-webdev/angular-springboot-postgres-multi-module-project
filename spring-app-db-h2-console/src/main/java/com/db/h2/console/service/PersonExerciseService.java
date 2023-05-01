@@ -34,7 +34,35 @@ public class PersonExerciseService {
     }
     private static final ModelMapper modelMapper = new ModelMapper();
 
-    public PersonExerciseDTO getPersonExerciseById() {
+    public PersonExerciseDTO getPersonExerciseById(Long personExerciseId) {
+        PersonExerciseDTO personExerciseDTO = buildPersonExerciseDTOById(personExerciseId);
+        return personExerciseDTO;
+
+    }
+
+    private PersonExerciseDTO buildPersonExerciseDTOById(Long personExerciseId) {
+        PersonExercise personExercise = this.personExerciseRepository.getPersonExerciseById(personExerciseId);
+        System.err.println("personExercise.getId() >> " + personExercise.getId());
+        System.err.println("personExercise >> " + personExercise);
+
+        List<Exercise> exerciseENTITYs = this.exerciseRepository.findAllExerciseById(personExercise.getId());
+        System.err.println("exerciseENTITYs.size() >> " + exerciseENTITYs.size());
+        System.err.println("exerciseENTITYs >> " + exerciseENTITYs);
+
+        ExerciseEntityToDTO exerciseEntityToDTO = new ExerciseEntityToDTO();
+        List<ExerciseDTO> exerciseDTOs = exerciseEntityToDTO.convertExercise(exerciseENTITYs);
+        System.err.println("exerciseDTOTypeTokens >> " + exerciseDTOs);
+
+        PersonExerciseEntityToDTO personExerciseEntityToDTO = new PersonExerciseEntityToDTO();
+        PersonExerciseDTO personExerciseDTO = personExerciseEntityToDTO.convertPersonExercise(personExercise);
+        System.err.println("personExerciseDTO >> " + personExerciseDTO);
+
+        personExerciseDTO.setExerciseDTOs(exerciseDTOs);
+        System.err.println("personExerciseDTO >> " + personExerciseDTO);
+        return personExerciseDTO;
+    }
+
+    public PersonExerciseDTO getPersonExercise() {
         List<PersonExercise> listAll = personExerciseRepository.findAll();
         System.err.println("<<<<< getPersonExerciseById getId: " + listAll.get(0).getId());
         Long personExerciseId = listAll.get(0).getId();
@@ -89,6 +117,13 @@ public class PersonExerciseService {
 
         return updatedPersonExerciseDTO;
 
+    }
+
+    public PersonExerciseDTO deleteExercise(Long personId, Long exerciseId) {
+        System.err.println("PersonExerciseService deleteExercise personId"+personId+" exerciseId="+ exerciseId);
+        this.exerciseRepository.deleteExerciseById(personId, exerciseId);
+        PersonExerciseDTO deletedPersonExerciseDTO = buildPersonExerciseDTOById(personId);
+        return deletedPersonExerciseDTO;
     }
 
 }

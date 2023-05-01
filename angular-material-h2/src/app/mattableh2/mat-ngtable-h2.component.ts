@@ -96,9 +96,9 @@ export class MatNgtableH2Component implements OnInit, AfterViewInit, OnDestroy {
     this.dataSource.filter = filterValue.trim().toLowerCase();
   }
 
-  onDelete(element: PersonExerciseDTO): void {
-    window.alert('Delete ID/firstName:' + element.id + '/' + element.firstName);
-    this.deleteExerciseWithoutDeleteH2(element);
+  onDelete(elementExerciseDTO: ExerciseDTO): void {
+    window.alert('Delete elementExerciseDTO ID/name:' + elementExerciseDTO.id + '/' + elementExerciseDTO.name);
+    this.deleteExerciseWithoutDeleteH2(elementExerciseDTO);
   }
 
   onEdit(exercise: ExerciseDTO): void {
@@ -149,12 +149,26 @@ export class MatNgtableH2Component implements OnInit, AfterViewInit, OnDestroy {
     this.matableh2Service.setEditExercise(element);
   }
 
-  deleteExerciseWithoutDeleteH2(element: PersonExerciseDTO): void {
-    const indexToDelete = this.exerciseDTOs.findIndex(
-      (exerciseElement) => exerciseElement.id === element.id
-    );
-    this.exerciseDTOs.splice(indexToDelete, 1);
-    this.dataSource = new MatTableDataSource(this.exerciseDTOs);
+  deleteExerciseWithoutDeleteH2(exerciseDTO: ExerciseDTO): void {
+    // const indexToDelete = this.exerciseDTOs.findIndex(
+    //   (exerciseElement) => exerciseElement.id === element.id
+    // );
+    // this.exerciseDTOs.splice(indexToDelete, 1);
+    // this.dataSource = new MatTableDataSource(this.exerciseDTOs);
+
+    this.restApiService.deleteExersice(this.personExerciseDTO.id, exerciseDTO.id)
+      .subscribe((deletePersonExcerciseDTO: PersonExerciseDTO) => {
+      console.log('deletePersonExcerciseDTO id >>' + deletePersonExcerciseDTO.id);
+      console.log('deletePersonExcerciseDTO firstName >>' + deletePersonExcerciseDTO.firstName);
+      // this.personExerciseDTO = responsePersonExcerciseDTO;
+      // this.exerciseDTOs = responsePersonExcerciseDTO.exerciseDTOs;
+      // console.log('responsePersonExcerciseDTO.exerciseDTOs[0].id >>' +
+      //   responsePersonExcerciseDTO.exerciseDTOs[0].id);
+      // console.log('exerciseDTOs.length >>' + this.exerciseDTOs.length);
+      // this.dataSource = new MatTableDataSource(this.exerciseDTOs);
+      // this.dataSource.sort = this.sort;
+      // this.dataSource.paginator = this.paginator;
+    });
   }
 
 }
