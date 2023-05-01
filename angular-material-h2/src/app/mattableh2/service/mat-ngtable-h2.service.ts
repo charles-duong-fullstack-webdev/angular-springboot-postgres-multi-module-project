@@ -24,29 +24,29 @@ export class MatNgtableH2Service {
 
   currentMessage = this.messageSource.asObservable();
 
-  private getUrl = 'http://localhost:8084/api/mattableh2/exercise';
+  // private getUrl = 'http://localhost:8084/api/mattableh2/exercise';
   private personExerciseH2: PersonExerciseDTO;
   // private personExerciseH2ForDialog: PersonExerciseDTO;
 
   constructor(private httpClient: HttpClient) {
   }
+  //
+  // getExercise(): Observable<PersonExerciseDTO> {
+  //   return this.httpClient.get<PersonExerciseDTO>(this.getUrl).pipe(
+  //     map((response) => response)
+  //   );
+  // }
 
-  getExercise(): Observable<PersonExerciseDTO> {
-    return this.httpClient.get<PersonExerciseDTO>(this.getUrl).pipe(
-      map((response) => response)
-    );
-  }
+  // changeMessage(message: string) {
+  //   this.messageSource.next(message);
+  // }
 
-  changeMessage(message: string) {
-    this.messageSource.next(message);
-  }
-
-  // TODO how to passing data to dialg person info - personH2 is null
-  getPersonExerciseH2(): PersonExerciseDTO {
-    // this.personExerciseH2.personH2.name = this.exercisePersonInfo.name;
-    // alert('this.personExerciseH2.personH2.name: ' + this.personExerciseH2.personH2.name);
-    return this.personExerciseH2;
-  }
+  // // TODO how to passing data to dialg person info - personH2 is null
+  // getPersonExerciseH2(): PersonExerciseDTO {
+  //   // this.personExerciseH2.personH2.name = this.exercisePersonInfo.name;
+  //   // alert('this.personExerciseH2.personH2.name: ' + this.personExerciseH2.personH2.name);
+  //   return this.personExerciseH2;
+  // }
 
   setEditExercise(value: PersonExerciseDTO) {
     this.personExerciseH2 = value;

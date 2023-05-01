@@ -1,9 +1,9 @@
-import {HttpClient, HttpHeaders} from '@angular/common/http';
 import {Injectable} from '@angular/core';
-import {catchError, retry} from 'rxjs/operators';
+import {catchError, map, retry} from 'rxjs/operators';
 import {Observable} from 'rxjs-compat/Observable';
 import {PersonExerciseDTO} from '../mattableh2/models/person-exercise-DTO';
 import {throwError} from 'rxjs/internal/observable/throwError';
+import {HttpClient, HttpHeaders} from '@angular/common/http';
 
 /**
  * see training.service.ts
@@ -13,61 +13,68 @@ import {throwError} from 'rxjs/internal/observable/throwError';
 })
 export class RestApiService {
   // Define API
-  apiURL = 'http://localhost:3000';
+  private apiURL = 'http://localhost:8084/api/mattableh2/exercise';
 
-  constructor(private http: HttpClient) {
+  constructor(private httpClient: HttpClient) {
   }
 
   /*========================================
     CRUD Methods for consuming RESTful API
   =========================================*/
-  // Http Options
-  httpOptions = {
+  // httpClient Options
+  httpClientOptions = {
     headers: new HttpHeaders({
       'Content-Type': 'application/json',
     }),
   };
 
-  // HttpClient API get() method => Fetch PersonExersiceDTOs list
+  // httpClientClient API get() method => Fetch PersonExersiceDTO
+  getPersonExerciseDTO(): Observable<PersonExerciseDTO> {
+    return this.httpClient.get<PersonExerciseDTO>(this.apiURL).pipe(
+      map((response) => response), catchError(this.handleError)
+    );
+  }
+
+  // httpClientClient API get() method => Fetch PersonExersiceDTOs list
   getPersonExersiceDTOs(): Observable<PersonExerciseDTO> {
-    return this.http
+    return this.httpClient
       .get<PersonExerciseDTO>(this.apiURL + '/PersonExerciseDTO')
       .pipe(retry(1), catchError(this.handleError));
   }
 
-  // HttpClient API get() method => Fetch PersonExersiceDTO
+  // httpClientClient API get() method => Fetch PersonExersiceDTO
   getPersonExersiceDTO(id: any): Observable<PersonExerciseDTO> {
-    return this.http
+    return this.httpClient
       .get<PersonExerciseDTO>(this.apiURL + '/PersonExersiceDTOs/' + id)
       .pipe(retry(1), catchError(this.handleError));
   }
 
-  // HttpClient API post() method => Create PersonExersiceDTO
+  // httpClientClient API post() method => Create PersonExersiceDTO
   createPersonExersiceDTO(PersonExersiceDTO: any): Observable<PersonExerciseDTO> {
-    return this.http
+    return this.httpClient
       .post<PersonExerciseDTO>(
         this.apiURL + '/PersonExerciseDTO',
         JSON.stringify(PersonExerciseDTO),
-        this.httpOptions
+        this.httpClientOptions
       )
       .pipe(retry(1), catchError(this.handleError));
   }
 
-  // HttpClient API put() method => Update PersonExersiceDTO
+  // httpClientClient API put() method => Update PersonExersiceDTO
   updatePersonExersiceDTO(id: any, PersonExersiceDTO: any): Observable<PersonExerciseDTO> {
-    return this.http
+    return this.httpClient
       .put<PersonExerciseDTO>(
         this.apiURL + '/PersonExersiceDTOs/' + id,
         JSON.stringify(PersonExersiceDTO),
-        this.httpOptions
+        this.httpClientOptions
       )
       .pipe(retry(1), catchError(this.handleError));
   }
 
-  // HttpClient API delete() method => Delete PersonExersiceDTO
+  // httpClientClient API delete() method => Delete PersonExersiceDTO
   deletePersonExersiceDTO(id: any) {
-    return this.http
-      .delete<PersonExerciseDTO>(this.apiURL + '/PersonExerciseDTO/' + id, this.httpOptions)
+    return this.httpClient
+      .delete<PersonExerciseDTO>(this.apiURL + '/PersonExerciseDTO/' + id, this.httpClientOptions)
       .pipe(retry(1), catchError(this.handleError));
   }
 

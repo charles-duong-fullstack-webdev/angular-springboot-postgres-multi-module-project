@@ -10,6 +10,7 @@ import {
 import {Subscription} from 'rxjs/Subscription';
 import {ExerciseDTO} from './models/exerciseDTO';
 import {$EQ} from "codelyzer/angular/styles/chars";
+import {RestApiService} from "../service/rest-api-service";
 
 
 @Component({
@@ -40,12 +41,12 @@ export class MatNgtableH2Component implements OnInit, AfterViewInit, OnDestroy {
   @ViewChild(MatPaginator, {static: false}) paginator: MatPaginator;
 
   constructor(private matableh2Service: MatNgtableH2Service, private dialog: MatDialog,
-              private matFormH2DialogPersonInfoComponent: MatFormH2DialogPersonInfoComponent) {
+              private restApiService: RestApiService) {
   }
 
   ngOnInit() {
     this.subscriptionMessage = this.matableh2Service.currentMessage.subscribe(message => this.message = message);
-    this.matableh2Service.getExercise().subscribe((responsePersonExcerciseDTO: PersonExerciseDTO) => {
+    this.restApiService.getPersonExerciseDTO().subscribe((responsePersonExcerciseDTO: PersonExerciseDTO) => {
       console.log('responsePersonExcerciseDTO id >>' + responsePersonExcerciseDTO.id);
       console.log('responsePersonExcerciseDTO firstName >>' + responsePersonExcerciseDTO.firstName);
       this.personExerciseDTO = responsePersonExcerciseDTO;
