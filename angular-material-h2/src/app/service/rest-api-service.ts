@@ -61,10 +61,21 @@ export class RestApiService {
   }
 
   // httpClientClient API put() method => Update PersonExersiceDTO
-  updatePersonExersiceDTO(id: any, PersonExersiceDTO: any): Observable<PersonExerciseDTO> {
+  updatePersonExersiceDTOById(id: any, PersonExersiceDTO: any): Observable<PersonExerciseDTO> {
     return this.httpClient
       .put<PersonExerciseDTO>(
         this.apiURL + '/PersonExersiceDTOs/' + id,
+        JSON.stringify(PersonExersiceDTO),
+        this.httpClientOptions
+      )
+      .pipe(retry(1), catchError(this.handleError));
+  }
+
+  // httpClientClient API put() method => Update PersonExersiceDTO
+  updatePersonExersice(PersonExersiceDTO: any): Observable<PersonExerciseDTO> {
+    return this.httpClient
+      .put<PersonExerciseDTO>(
+        this.apiURL + '/updatePersonExersice',
         JSON.stringify(PersonExersiceDTO),
         this.httpClientOptions
       )

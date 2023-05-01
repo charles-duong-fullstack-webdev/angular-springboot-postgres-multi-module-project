@@ -4,13 +4,9 @@ import {MatNgtableH2Service} from './service/mat-ngtable-h2.service';
 import {MatDialog, MatDialogConfig} from '@angular/material/dialog';
 import {MatNgdialogH2Component} from '../matdialogh2/mat-ngdialog-h2.component';
 import {PersonExerciseDTO} from './models/person-exercise-DTO';
-import {
-  MatFormH2DialogPersonInfoComponent
-} from '../matformh2/matformh2dialogpersoninfo/mat-form-h2-dialog-person-info.component';
 import {Subscription} from 'rxjs/Subscription';
 import {ExerciseDTO} from './models/exerciseDTO';
-import {$EQ} from "codelyzer/angular/styles/chars";
-import {RestApiService} from "../service/rest-api-service";
+import {RestApiService} from '../service/rest-api-service';
 
 
 @Component({
@@ -128,17 +124,19 @@ export class MatNgtableH2Component implements OnInit, AfterViewInit, OnDestroy {
     // console.log('selectedPersonExerciseDTO >> ' + JSON.stringify(this.selectedPersonExerciseDTO));
     Object.assign(this.personExerciseDTO, updatePersonExerciseDTO);
     console.log('UPDATED personExerciseDTO >> ' + JSON.stringify(this.personExerciseDTO));
-    //
-    // this.personExerciseDTO
-    // const persExerciseH2 = this.exerciseDTOs
-    //   .find(e => e.id === updatePersonExerciseDTO.id);
-    // Object.assign(persExerciseH2, updatePersonExercise);
-    // this.dataSource = new MatTableDataSource(this.exerciseDTOs);
-    // this.dataSource.sort = this.sort;
-    // this.dataSource.paginator = this.paginator;
-    // window.alert('Customer Saved');
 
-    // TODO use url to update data through Spring Boot
+    this.restApiService.updatePersonExersice(this.personExerciseDTO).subscribe((responsePersonExcerciseDTO: PersonExerciseDTO) => {
+      console.log('responsePersonExcerciseDTO id >>' + responsePersonExcerciseDTO.id);
+      console.log('responsePersonExcerciseDTO firstName >>' + responsePersonExcerciseDTO.firstName);
+      this.personExerciseDTO = responsePersonExcerciseDTO;
+      this.exerciseDTOs = responsePersonExcerciseDTO.exerciseDTOs;
+      console.log('responsePersonExcerciseDTO.exerciseDTOs[0].id >>' +
+        responsePersonExcerciseDTO.exerciseDTOs[0].id);
+      console.log('exerciseDTOs.length >>' + this.exerciseDTOs.length);
+      this.dataSource = new MatTableDataSource(this.exerciseDTOs);
+      this.dataSource.sort = this.sort;
+      this.dataSource.paginator = this.paginator;
+    });
   }
 
   onClosePerson(exercise: ExerciseDTO): void {
@@ -159,5 +157,4 @@ export class MatNgtableH2Component implements OnInit, AfterViewInit, OnDestroy {
     this.dataSource = new MatTableDataSource(this.exerciseDTOs);
   }
 
-  protected readonly $EQ = $EQ;
 }
