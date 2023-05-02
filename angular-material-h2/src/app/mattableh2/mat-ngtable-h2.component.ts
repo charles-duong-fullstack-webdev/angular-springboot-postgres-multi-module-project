@@ -42,19 +42,24 @@ export class MatNgtableH2Component implements OnInit, AfterViewInit, OnDestroy {
 
   ngOnInit() {
     this.subscriptionMessage = this.matableh2Service.currentMessage.subscribe(message => this.message = message);
-    this.restApiService.getPersonExerciseDTO().subscribe((responsePersonExcerciseDTO: PersonExerciseDTO) => {
-      console.log('responsePersonExcerciseDTO id >>' + responsePersonExcerciseDTO.id);
-      console.log('responsePersonExcerciseDTO firstName >>' + responsePersonExcerciseDTO.firstName);
-      this.personExerciseDTO = responsePersonExcerciseDTO;
-      this.exerciseDTOs = responsePersonExcerciseDTO.exerciseDTOs;
-      console.log('responsePersonExcerciseDTO.exerciseDTOs[0].id >>' +
-        responsePersonExcerciseDTO.exerciseDTOs[0].id);
-      console.log('exerciseDTOs.length >>' + this.exerciseDTOs.length);
-      this.dataSource = new MatTableDataSource(this.exerciseDTOs);
-      this.dataSource.sort = this.sort;
-      this.dataSource.paginator = this.paginator;
+    this.restApiService.getPersonExerciseDTO().subscribe((getPersonExcerciseDTO: PersonExerciseDTO) => {
+      console.log('ngOnInit >> getPersonExcerciseDTO id >>' + getPersonExcerciseDTO.id);
+      console.log('ngOnInit >> getPersonExcerciseDTO firstName >>' + getPersonExcerciseDTO.firstName);
+      this.setupTableDataSource(getPersonExcerciseDTO);
     });
   }
+
+  setupTableDataSource(responsePersonExcerciseDTO: PersonExerciseDTO) {
+    this.personExerciseDTO = responsePersonExcerciseDTO;
+    this.exerciseDTOs = responsePersonExcerciseDTO.exerciseDTOs;
+    console.log('setupTableDataSource responsePersonExcerciseDTO.exerciseDTOs[0].id >>' +
+      responsePersonExcerciseDTO.exerciseDTOs[0].id);
+    console.log('setupTableDataSource >> exerciseDTOs.length >>' + this.exerciseDTOs.length);
+    this.dataSource = new MatTableDataSource(this.exerciseDTOs);
+    this.dataSource.sort = this.sort;
+    this.dataSource.paginator = this.paginator;
+  }
+
 
   ngAfterViewInit() {
     this.dataSource.sort = this.sort;
@@ -125,17 +130,10 @@ export class MatNgtableH2Component implements OnInit, AfterViewInit, OnDestroy {
     Object.assign(this.personExerciseDTO, updatePersonExerciseDTO);
     console.log('UPDATED personExerciseDTO >> ' + JSON.stringify(this.personExerciseDTO));
 
-    this.restApiService.updatePersonExersice(this.personExerciseDTO).subscribe((responsePersonExcerciseDTO: PersonExerciseDTO) => {
-      console.log('responsePersonExcerciseDTO id >>' + responsePersonExcerciseDTO.id);
-      console.log('responsePersonExcerciseDTO firstName >>' + responsePersonExcerciseDTO.firstName);
-      this.personExerciseDTO = responsePersonExcerciseDTO;
-      this.exerciseDTOs = responsePersonExcerciseDTO.exerciseDTOs;
-      console.log('responsePersonExcerciseDTO.exerciseDTOs[0].id >>' +
-        responsePersonExcerciseDTO.exerciseDTOs[0].id);
-      console.log('exerciseDTOs.length >>' + this.exerciseDTOs.length);
-      this.dataSource = new MatTableDataSource(this.exerciseDTOs);
-      this.dataSource.sort = this.sort;
-      this.dataSource.paginator = this.paginator;
+    this.restApiService.updatePersonExersice(this.personExerciseDTO).subscribe((updatedPersonExcerciseDTO: PersonExerciseDTO) => {
+      console.log('updatePersonExersice >> updatedPersonExcerciseDTO id >>' + updatedPersonExcerciseDTO.id);
+      console.log('updatePersonExersice >> updatedPersonExcerciseDTO firstName >>' + updatedPersonExcerciseDTO.firstName);
+      this.setupTableDataSource(updatedPersonExcerciseDTO);
     });
   }
 
@@ -157,18 +155,11 @@ export class MatNgtableH2Component implements OnInit, AfterViewInit, OnDestroy {
     // this.dataSource = new MatTableDataSource(this.exerciseDTOs);
 
     this.restApiService.deleteExersice(this.personExerciseDTO.id, exerciseDTO.id)
-      .subscribe((deletePersonExcerciseDTO: PersonExerciseDTO) => {
-      console.log('deletePersonExcerciseDTO id >>' + deletePersonExcerciseDTO.id);
-      console.log('deletePersonExcerciseDTO firstName >>' + deletePersonExcerciseDTO.firstName);
-      // this.personExerciseDTO = responsePersonExcerciseDTO;
-      // this.exerciseDTOs = responsePersonExcerciseDTO.exerciseDTOs;
-      // console.log('responsePersonExcerciseDTO.exerciseDTOs[0].id >>' +
-      //   responsePersonExcerciseDTO.exerciseDTOs[0].id);
-      // console.log('exerciseDTOs.length >>' + this.exerciseDTOs.length);
-      // this.dataSource = new MatTableDataSource(this.exerciseDTOs);
-      // this.dataSource.sort = this.sort;
-      // this.dataSource.paginator = this.paginator;
-    });
+      .subscribe((deletedPersonExcerciseDTO: PersonExerciseDTO) => {
+        console.log('deleteExersice >> deletedPersonExcerciseDTO id >>' + deletedPersonExcerciseDTO.id);
+        console.log('deleteExersice >> deletedPersonExcerciseDTO firstName >>' + deletedPersonExcerciseDTO.firstName);
+        this.setupTableDataSource(deletedPersonExcerciseDTO);
+      });
   }
 
 }
