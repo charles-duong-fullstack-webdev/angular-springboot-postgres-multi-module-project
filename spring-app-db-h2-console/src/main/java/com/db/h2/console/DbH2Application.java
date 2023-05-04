@@ -12,13 +12,11 @@ import com.db.h2.console.repository.PersonExerciseRepository;
 import entityToDTO.ExerciseEntityToDTO;
 import entityToDTO.PersonExerciseEntityToDTO;
 import org.modelmapper.ModelMapper;
-import org.modelmapper.TypeToken;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.CommandLineRunner;
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
 
-import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.Date;
 import java.util.List;
@@ -48,19 +46,26 @@ public class DbH2Application implements CommandLineRunner {
     @Autowired
     private BiOneToManyRepository biOneToManyRepository;
 
+    /**
+     * By using the insertDataToTables() @see "application-automation-loader.properties"
+     * ----
+     * Now we use @see "application.properties" by using *.sql to load data to Database (H2)
+     * spring.jpa.hibernate.ddl-auto=none
+     * spring.datasource.schema=classpath:scripts/schema-h2.sql
+     * spring.datasource.data=classpath:scripts/data-h2.sql
+     */
     @Override
     public void run(String... args) throws Exception {
+        //this.insertDataToTables();
+    }
+
+    private void insertDataToTables() {
         Long personExerciseId = insertDataToPersonExerciseTable();
         selectDataFromPersonExerciseTableAndConvertToDTO(personExerciseId);
         insertDataToBiOneToManyExampleTable();
     }
 
     private Long insertDataToPersonExerciseTable() {
-        //        this.exerciseRepository.save(new Exercise(1L, "Ramesh1", 26L, 333L));
-//        this.exerciseRepository.save(new Exercise(2L, "Ramesh2", 200L, 344L));
-//        this.exerciseRepository.save(new Exercise(3L, "Ramesh3", 2100L, 355L));
-//        this.exerciseRepository.save(new Exercise(4L, "Ramesh4", 234L, 355L));
-
         PersonExercise personExercise = new PersonExercise(
                 "Toni", "Duong", "cduong@test.com", new Date(),
                 "Martins 11, 3261 Suberg", "Switzerland", "M");
@@ -94,25 +99,25 @@ public class DbH2Application implements CommandLineRunner {
     /**
      * 2.2. Type Token
      * see https://www.baeldung.com/java-modelmapper-lists
-     *
+     * <p>
      * ModelMapper uses TypeToken to map generic types. To see why this is necessary,
      * let's see what happens when we map an Integer list to a Character list:
-     *
+     * <p>
      * List<Integer> integers = new ArrayList<Integer>();
      * integers.add(1);
      * integers.add(2);
      * integers.add(3);
-     *
+     * <p>
      * List<Character> characters = new ArrayList<Character>();
      * modelMapper.map(integers, characters);
      * Copy
      * Further, if we print out the elements of the characters list we would see an empty list.
      * This is due to the occurrence of type erasure during runtime execution.
-     *
+     * <p>
      * If we change our map call to use TypeToken, though, we can create a type literal for List<Character>:
-     *
+     * <p>
      * List<Character> characters
-     *     = modelMapper.map(integers, new TypeToken<List<Character>>() {}.getType());
+     * = modelMapper.map(integers, new TypeToken<List<Character>>() {}.getType());
      * Copy
      * At compile time, the TokenType anonymous inner case preserves the List<Character> parameter type,
      * and this time our conversion is successful.
@@ -128,11 +133,11 @@ public class DbH2Application implements CommandLineRunner {
         System.err.println("exerciseENTITYs >> " + exerciseENTITYs);
 
         ExerciseEntityToDTO exerciseEntityToDTO = new ExerciseEntityToDTO();
-        List<ExerciseDTO> exerciseDTOs  = exerciseEntityToDTO.convertExercise(exerciseENTITYs);
+        List<ExerciseDTO> exerciseDTOs = exerciseEntityToDTO.convertExercise(exerciseENTITYs);
         System.err.println("exerciseDTOTypeTokens >> " + exerciseDTOs);
 
         PersonExerciseEntityToDTO personExerciseEntityToDTO = new PersonExerciseEntityToDTO();
-        PersonExerciseDTO personExerciseDTO  = personExerciseEntityToDTO.convertPersonExercise(personExercise);
+        PersonExerciseDTO personExerciseDTO = personExerciseEntityToDTO.convertPersonExercise(personExercise);
         System.err.println("personExerciseDTO >> " + personExerciseDTO);
 
         personExerciseDTO.setExerciseDTOs(exerciseDTOs);

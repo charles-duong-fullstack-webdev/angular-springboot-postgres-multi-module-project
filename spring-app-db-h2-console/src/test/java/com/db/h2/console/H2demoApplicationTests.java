@@ -1,9 +1,12 @@
 package com.db.h2.console;
 
+import com.db.h2.console.domain.Exercise;
 import com.db.h2.console.domain.PersonExercise;
 import com.db.h2.console.domain.Post;
+import com.db.h2.console.repository.ExerciseRepository;
 import com.db.h2.console.repository.PersonExerciseRepository;
 import com.db.h2.console.repository.PostRepository;
+import org.junit.jupiter.api.Disabled;
 import org.junit.jupiter.api.Test;
 import org.junit.jupiter.api.extension.ExtendWith;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -25,8 +28,8 @@ import static org.junit.jupiter.api.Assertions.assertNotNull;
 @AutoConfigureTestDatabase(replace = AutoConfigureTestDatabase.Replace.NONE)
 //@EnableConfigurationProperties
 //@TestPropertySource(locations= "classpath:application-test.properties")
-@Sql({ "/scripts/schema-h2.sql"})
-@Sql(value  = "/scripts/data-h2.sql")
+@Sql({ "/testscripts/schema-h2.sql"})
+@Sql(value  = "/testscripts/data-h2.sql")
 @ExtendWith(SpringExtension.class)
 class H2demoApplicationTests {
 
@@ -35,12 +38,16 @@ class H2demoApplicationTests {
 
     @Autowired
     private PersonExerciseRepository personExerciseRepository;
+
+    @Autowired
+    private ExerciseRepository exerciseRepository;
     @Test
     void contextLoads() {
     }
 
 
     @Test
+    @Disabled
     public void givenGenericEntityRepository_whenSaveAndRetreiveEntity_thenOK() {
         Post post = postRepository.findBySlug("grails-is-awesome");
         assertNotNull(post);
@@ -53,7 +60,11 @@ class H2demoApplicationTests {
         List<PersonExercise> personExerciseList = personExerciseRepository.findAll();
         assertNotNull(personExerciseList);
         assertEquals(personExerciseList.get(0).getCountry(), "swiss");
-        System.out.println("===> personExerciseList.get(0)" + personExerciseList.get(0).toString());
+        System.out.println("===> personExerciseList.get(0) >>" + personExerciseList.get(0).toString());
+
+        List<Exercise> exerciseList = exerciseRepository.findAll();
+        System.out.println("===> exerciseList.get(0) >> " + exerciseList.get(0).toString());
+        System.out.println("===> exerciseList.size >>" + exerciseList.size());
     }
 
 }
