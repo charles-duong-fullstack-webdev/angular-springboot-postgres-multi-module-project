@@ -1,25 +1,28 @@
 package com.db.h2.console.domain;
 
 import javax.persistence.Entity;
+import javax.persistence.GeneratedValue;
+import javax.persistence.GenerationType;
+import javax.persistence.Id;
 import java.time.LocalDate;
 
 @Entity
-public class Login extends Base {
+public class Login extends BaseEntity {
 
+    @Id
+    @GeneratedValue(strategy = GenerationType.AUTO)
+    private Long id;
     private String userid;
     private String password;
 
-    public Login(String createdBy, String modifiedBy, LocalDate createdDate, LocalDate modifiedDate, String userid, String password) {
-        super(createdBy, modifiedBy, createdDate, modifiedDate);
-        this.userid = userid;
-        this.password = password;
-    }
-
     public Login() {
     }
+    public Long getId() {
+        return id;
+    }
 
-    public Login(String userid) {
-        this.userid = userid;
+    public void setId(Long id) {
+        this.id = id;
     }
 
     public String getUserid() {
@@ -38,13 +41,9 @@ public class Login extends Base {
         this.password = password;
     }
 
-    @Override
-    public String toString() {
-        return "Login{" +
-                "userid='" + userid + '\'' +
-                ", password='" + password + '\'' +
-                '}';
-    }
+
+
+
 
 
 }
