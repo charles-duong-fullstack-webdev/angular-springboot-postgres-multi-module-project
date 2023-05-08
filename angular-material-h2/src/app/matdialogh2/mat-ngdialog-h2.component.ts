@@ -27,12 +27,12 @@ export class MatNgdialogH2Component implements OnInit {
   }
 
   save() {
-    window.alert('save this.form.value:' + this.form.value);
+    // window.alert('save this.form.value:' + this.form.value);
     this.dialogRef.close(this.form.value);
   }
 
   close() {
-    window.alert('close this.form.value:' + this.form.value);
+    // window.alert('close this.form.value:' + this.form.value);
     this.dialogRef.close();
   }
 

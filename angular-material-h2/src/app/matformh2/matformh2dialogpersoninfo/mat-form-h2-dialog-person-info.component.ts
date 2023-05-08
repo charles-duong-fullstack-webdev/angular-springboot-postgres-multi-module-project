@@ -3,6 +3,7 @@ import {FormBuilder, FormGroup, Validators} from '@angular/forms';
 import {MatNgtableH2Service} from '../../mattableh2/service/mat-ngtable-h2.service';
 import {PersonExerciseDTO} from '../../mattableh2/models/person-exercise-DTO';
 import {ExerciseDTO} from '../../mattableh2/models/exerciseDTO';
+import {ActivatedRoute, Router} from "@angular/router";
 
 @Injectable({
   providedIn: 'root'
@@ -24,7 +25,8 @@ export class MatFormH2DialogPersonInfoComponent implements OnInit {
 
   form: FormGroup = new FormGroup({});
 
-  constructor(private fb: FormBuilder, private matNgtableH2Service: MatNgtableH2Service) {
+  constructor(private fb: FormBuilder, private matNgtableH2Service: MatNgtableH2Service,
+              private route: ActivatedRoute, private router: Router) {
   }
 
   ngOnInit(): void {
@@ -103,5 +105,8 @@ export class MatFormH2DialogPersonInfoComponent implements OnInit {
 
   saveDetails(form: any) {
     alert('SUCCESS!! :-)\n\n' + JSON.stringify(form.value, null, 4));
+    this.router.navigate(['/ngTableH2']);
+    // this.router.navigate(['/heroes', { id: heroId }]);
+
   }
 }

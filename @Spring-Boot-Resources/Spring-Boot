@@ -25,3 +25,27 @@ https://www.baeldung.com/liquibase-refactor-schema-of-java-app
 
 javascript - How can I find and update values in an array of objects? - Stack Overflow
 https://stackoverflow.com/questions/35206125/how-can-i-find-and-update-values-in-an-array-of-objects
+
+ModelMapper skip a field - Stack Overflow
+https://stackoverflow.com/questions/49074784/modelmapper-skip-a-field
+
+Skipping Fields with ModelMapper – Amy's Programming Corner
+https://amydegregorio.com/2018/05/23/skipping-fields-with-modelmapper/
+
+Using Custom ModelMapper Converters and Mappings – Amy's Programming Corner
+https://amydegregorio.com/2018/01/17/using-custom-modelmapper-converters-and-mappings/
+
+java - Invalid DateTimeFormat when inserting date in H2 in memory DB - Stack Overflow
+https://stackoverflow.com/questions/70442279/invalid-datetimeformat-when-inserting-date-in-h2-in-memory-db
+
+java - Invalid DateTimeFormat when inserting date in H2 in memory DB - Stack Overflow
+https://stackoverflow.com/questions/70442279/invalid-datetimeformat-when-inserting-date-in-h2-in-memory-db
+
+milliseconds - H2 database string to timestamp - Stack Overflow
+https://stackoverflow.com/questions/14138532/h2-database-string-to-timestamp
+
+Hibernate/jpa Persisting Java Date to H2 DB Sql TimeStamp - Stack Overflow
+https://stackoverflow.com/questions/24779890/hibernate-jpa-persisting-java-date-to-h2-db-sql-timestamp
+
+How can we use H2 to test SQL Server code that involves date to string conversions? - Stack Overflow
+https://stackoverflow.com/questions/39951141/how-can-we-use-h2-to-test-sql-server-code-that-involves-date-to-string-conversion
