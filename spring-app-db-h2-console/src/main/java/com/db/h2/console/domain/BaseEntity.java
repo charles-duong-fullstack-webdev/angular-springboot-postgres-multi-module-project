@@ -5,13 +5,12 @@ import org.springframework.data.annotation.CreatedDate;
 import org.springframework.data.annotation.LastModifiedBy;
 import org.springframework.data.annotation.LastModifiedDate;
 
-import javax.persistence.EntityListeners;
 import javax.persistence.MappedSuperclass;
 import java.time.LocalDateTime;
 
 
 @MappedSuperclass
-@EntityListeners({EntityListener.class})
+//@EntityListeners({EntityListener.class})
 public abstract class BaseEntity {
 
     @CreatedBy
@@ -19,11 +18,11 @@ public abstract class BaseEntity {
     @LastModifiedBy
     private String modifiedBy;
 
-    //@Temporal(TemporalType.TIMESTAMP)
     @CreatedDate
     private LocalDateTime createdDate;
     @LastModifiedDate
     private LocalDateTime modifiedDate;
+
     public String getCreatedBy() {
         return createdBy;
     }
@@ -55,7 +54,6 @@ public abstract class BaseEntity {
     public void setModifiedDate(LocalDateTime modifiedDate) {
         this.modifiedDate = modifiedDate;
     }
-
 
 
 }
