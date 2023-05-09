@@ -5,8 +5,20 @@ import org.springframework.data.annotation.CreatedDate;
 import org.springframework.data.annotation.LastModifiedBy;
 import org.springframework.data.annotation.LastModifiedDate;
 
+import javax.persistence.Column;
 import javax.persistence.MappedSuperclass;
+import javax.validation.constraints.NotNull;
+import javax.validation.constraints.Size;
 import java.time.LocalDateTime;
+
+//import org.apache.commons.lang3.builder.ToStringBuilder;
+//import org.apache.commons.lang3.builder.ToStringStyle;
+//
+//import javax.persistence.*;
+//import javax.validation.constraints.NotNull;
+//import javax.validation.constraints.Size;
+//import java.time.LocalDateTime;
+//import java.util.Objects;
 
 
 @MappedSuperclass
@@ -14,12 +26,23 @@ import java.time.LocalDateTime;
 public abstract class BaseEntity {
 
     @CreatedBy
+    @NotNull
+    @Size(max = 100)
     private String createdBy;
     @LastModifiedBy
+    @NotNull
+    @Size(max = 100)
     private String modifiedBy;
 
+    @Column(name = "createdDate")
+    @NotNull
+    @Size(min = 26, max = 30)
     @CreatedDate
     private LocalDateTime createdDate;
+
+    @Column(name = "modifiedDate")
+    @NotNull
+    @Size(min = 26, max = 30)
     @LastModifiedDate
     private LocalDateTime modifiedDate;
 
