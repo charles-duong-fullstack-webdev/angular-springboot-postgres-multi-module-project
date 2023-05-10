@@ -32,14 +32,14 @@ class LoginRepositoryTest {
     @Autowired
     private EntityManager entityManager;
 
-    private Login Login1, Login2, Login3;
+    private Login login1, Login2, Login3;
 
 
     @BeforeEach
     public void init() {
         loginRepository.deleteAll();
 
-//        Login1 = loginRepository.save(createLogin("1111", "Login 1", "Bug", JIRA, LocalDateTime.parse("2019-02-01T00:00:00")));
+        login1 = loginRepository.save(createLogin("test5@test.com", "test5"));
 //        Login2 = loginRepository.save(createLogin("2222", "Login 2", "Change Request", JIRA, null));
 //        Login3 = loginRepository.save(createLogin("3333", "Login 3", "Bug", REMEDY, LocalDateTime.parse("2019-02-02T00:00:00")));
     }
@@ -47,6 +47,11 @@ class LoginRepositoryTest {
     @Test
     @Transactional
     public void findAll_checkOrderAndData() {
+
+//        javax.validation.UnexpectedTypeException:HV000030:
+//        No validator could be found for constraint 'javax.validation.constraints.Size' validating type
+//        'java.time.LocalDateTime'.Check configuration for 'createdDate'
+
         List<Login> Logins = loginRepository.findAll();
 
 //        assertThat(Logins).containsExactly(Login1, Login2, Login3);
@@ -89,23 +94,16 @@ class LoginRepositoryTest {
     }
 
 
-    private Login createLogin(String externalId, String title, String type, LocalDateTime closeTimestamp) {
-        Login Login = new Login();
-//        Login.setExternalId(externalId);
-//        Login.setTitle(title);
-//        Login.setType(type);
-//        Login.setDescription("description");
-//        Login.setCategory("category");
-//        Login.setPriority("priority");
-//        Login.setStatus("status");
-//        Login.setResolution("resolution");
-//        Login.setAssignedGroup("assignedGroup");
-//        Login.setSubmitTimestamp(LocalDateTime.parse("2019-01-01T00:00:00"));
-//        Login.setCloseTimestamp(closeTimestamp);
-//        Login.setCompany("company");
-//        Login.setOrganization("organization");
-//        Login.setSource(source);
-        return Login;
+    private Login createLogin(String userid, String password) {
+        Login login = new Login();
+        login.setUserid(userid);
+        login.setPassword(password);
+        login.setCreatedBy("I-Am");
+        login.setModifiedBy("I-Am");
+        login.setCreatedDate(LocalDateTime.parse("2019-01-01T00:00:00"));
+        login.setModifiedDate(LocalDateTime.parse("2019-01-01T00:00:00"));
+
+        return login;
     }
 
 }

@@ -27,7 +27,6 @@ public abstract class BaseEntity {
 
     @CreatedBy
     @NotNull
-    @Size(max = 100)
     private String createdBy;
     @LastModifiedBy
     @NotNull
@@ -36,7 +35,6 @@ public abstract class BaseEntity {
 
     @Column(name = "createdDate")
     @NotNull
-    @Size(min = 26, max = 30)
     @CreatedDate
     private LocalDateTime createdDate;
 
