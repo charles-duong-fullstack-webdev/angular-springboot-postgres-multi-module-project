@@ -1,0 +1,29 @@
+spring:
+  datasource:
+    driverClassName: org.hsqldb.jdbcDriver
+    url: jdbc:hsqldb:mem:testdb
+    username: sa
+    password: sa
+    schema: /db-schema-ddl.sql
+    data: /initial-test-data-calendar.sql,/initial-test-data-message.sql,/initial-test-data-feed-notification.sql,/initial-test-data-feed.sql
+  flyway:
+    enabled: false
+  jpa:
+    database: HSQL
+    show-sql: true
+    hibernate.ddl-auto: update
+    properties:
+      hibernate.dialect: org.hibernate.dialect.HSQLDialect
+
+ptss:
+  schedulerMillis: 30000
+  mail-sender:
+    endpointAddress: http://dummy.ch
+    username: DUMMY_USER
+    password: 12345678
+    senderEmail: sender@dummy.ch
+    recepientEmail: mail@dummy.ch
+
+management:
+  server:
+    address: 0.0.0.0     # ${NODENAME_MGT} kann auf Jenkins nicht aufgelöst werden
