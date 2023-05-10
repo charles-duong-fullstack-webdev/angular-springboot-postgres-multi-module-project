@@ -2,6 +2,7 @@ package com.db.h2.console.login.domain;
 
 import com.db.h2.console.domain.Login;
 import com.db.h2.console.repository.LoginRepository;
+import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 import org.junit.jupiter.api.extension.ExtendWith;
@@ -16,6 +17,12 @@ import org.springframework.transaction.annotation.Transactional;
 import javax.persistence.EntityManager;
 import java.time.LocalDateTime;
 import java.util.List;
+
+import static java.util.concurrent.TimeUnit.SECONDS;
+import static org.assertj.core.api.AssertionsForClassTypes.within;
+import static org.hamcrest.MatcherAssert.assertThat;
+import static org.hamcrest.Matchers.*;
+//import static org.junit.jupiter.api.Assertions.assertEquals;
 
 //@SpringBootTest(webEnvironment = SpringBootTest.WebEnvironment.NONE, classes = {TestHsqlConfiguration.class})
 @SpringBootTest
@@ -32,36 +39,55 @@ class LoginRepositoryTest {
     @Autowired
     private EntityManager entityManager;
 
-    private Login login1, Login2, Login3;
+    private Login login1, login2, login3;
+    //@Autowired
+    //private AssertTrueValidator assertTrue;
 
 
     @BeforeEach
     public void init() {
         loginRepository.deleteAll();
 
-        login1 = loginRepository.save(createLogin("test5@test.com", "test5"));
-//        Login2 = loginRepository.save(createLogin("2222", "Login 2", "Change Request", JIRA, null));
-//        Login3 = loginRepository.save(createLogin("3333", "Login 3", "Bug", REMEDY, LocalDateTime.parse("2019-02-02T00:00:00")));
+        Long maxId = loginRepository.getMaxLoginId();
+        String user = "test%s@test.com";
+        String password = "test%s@test.com";
+        if (maxId == null) {
+            maxId = 1L;
+        }
+
+        login1 = loginRepository.save(createLogin(
+                String.format(user, maxId), String.format(password, maxId++)));
+
+        login2 = loginRepository.save(createLogin(
+                String.format(user, maxId), String.format(password, maxId++)));
+
+        login3 = loginRepository.save(createLogin(
+                String.format(user, maxId), String.format(password, maxId++)));
+
     }
 
     @Test
     @Transactional
-    public void findAll_checkOrderAndData() {
+    public void findAllOrderById() {
 
-//        javax.validation.UnexpectedTypeException:HV000030:
-//        No validator could be found for constraint 'javax.validation.constraints.Size' validating type
-//        'java.time.LocalDateTime'.Check configuration for 'createdDate'
+        List<Login> logins = loginRepository.findAll();
 
-        List<Login> Logins = loginRepository.findAll();
 
-//        assertThat(Logins).containsExactly(Login1, Login2, Login3);
-//        assertThat(Logins.get(0)).hasExternalId("1111").hasTitle("Login 1").hasType("Bug").hasSource(JIRA)
-//                .hasDescription("description").hasCategory("category").hasPriority("priority").hasStatus("status").hasResolution("resolution").hasAssignedGroup("assignedGroup")
-//                .hasSubmitDate(LocalDateTime.parse("2019-01-01T00:00:00")).hasCloseDate(LocalDateTime.parse("2019-02-01T00:00:00"))
-//                .hasCompany("company").hasOrganization("organization")
-//                .hasVersion(0).hasEingabeUser("unknown").hasMutationUser("unknown");
-//        assertThat(Logins.get(0).getEingabeTimestamp()).isCloseTo(LocalDateTime.now(), within(1, SECONDS));
-//        assertThat(Logins.get(0).getMutationTimestamp()).isCloseTo(LocalDateTime.now(), within(1, SECONDS));
+        for (Login login : logins) {
+            System.out.print(login);
+        }
+
+        Assertions.assertEquals(3, logins.size());
+        assertThat(logins, containsInAnyOrder(login1, login2, login3));
+
+        Assertions.assertEquals(logins.get(0).getId(), login1.getId());
+        Assertions.assertEquals(logins.get(1).getId(), login2.getId());
+        Assertions.assertEquals(logins.get(2).getId(), login3.getId());
+
+        Assertions.assertNotNull(logins.get(0).getModifiedDate());
+        Assertions.assertNotNull(logins.get(1).getModifiedDate());
+        Assertions.assertNotNull(logins.get(2).getModifiedDate());
+
     }
 
     @Test

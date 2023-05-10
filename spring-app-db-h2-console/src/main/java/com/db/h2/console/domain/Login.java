@@ -4,7 +4,6 @@ import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
-import java.time.LocalDate;
 
 @Entity
 public class Login extends BaseEntity {
@@ -12,11 +11,14 @@ public class Login extends BaseEntity {
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
     private Long id;
+
+
     private String userid;
     private String password;
 
     public Login() {
     }
+
     public Long getId() {
         return id;
     }
@@ -41,9 +43,18 @@ public class Login extends BaseEntity {
         this.password = password;
     }
 
-
-
-
+    @Override
+    public String toString() {
+        return "Login{" +
+                "id=" + id +
+                ", userid='" + userid + '\'' +
+                ", password='" + password + '\'' +
+                ", createdBy='" + getCreatedBy() + '\'' +
+                ", createdDate='" + getCreatedDate() + '\'' +
+                ", modifiedBy='" + getModifiedBy() + '\'' +
+                ", modifiedDate='" + getModifiedDate() + '\'' +
+                '}';
+    }
 
 
 }
