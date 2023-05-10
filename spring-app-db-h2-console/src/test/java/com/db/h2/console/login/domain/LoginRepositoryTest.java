@@ -18,11 +18,9 @@ import javax.persistence.EntityManager;
 import java.time.LocalDateTime;
 import java.util.List;
 
-import static java.util.concurrent.TimeUnit.SECONDS;
-import static org.assertj.core.api.AssertionsForClassTypes.within;
 import static org.hamcrest.MatcherAssert.assertThat;
-import static org.hamcrest.Matchers.*;
-//import static org.junit.jupiter.api.Assertions.assertEquals;
+import static org.hamcrest.Matchers.containsInAnyOrder;
+
 
 //@SpringBootTest(webEnvironment = SpringBootTest.WebEnvironment.NONE, classes = {TestHsqlConfiguration.class})
 @SpringBootTest
@@ -39,10 +37,7 @@ class LoginRepositoryTest {
     @Autowired
     private EntityManager entityManager;
 
-    private Login login1, login2, login3;
-    //@Autowired
-    //private AssertTrueValidator assertTrue;
-
+    private Login login1, login2, login3, login4;
 
     @BeforeEach
     public void init() {
@@ -64,6 +59,18 @@ class LoginRepositoryTest {
         login3 = loginRepository.save(createLogin(
                 String.format(user, maxId), String.format(password, maxId++)));
 
+        maxId = loginRepository.getMaxLoginId();
+        maxId++;
+
+        login4 = loginRepository.save(createLogin(
+                String.format(user, maxId), String.format(password, maxId)));
+
+        List<Login> debuglogins = loginRepository.findAll();
+
+        for (Login login : debuglogins) {
+            System.err.println(login);
+        }
+
     }
 
     @Test
@@ -71,14 +78,13 @@ class LoginRepositoryTest {
     public void findAllOrderById() {
 
         List<Login> logins = loginRepository.findAll();
+//
+//        for (Login login : logins) {
+//            System.out.println(login);
+//        }
 
-
-        for (Login login : logins) {
-            System.out.print(login);
-        }
-
-        Assertions.assertEquals(3, logins.size());
-        assertThat(logins, containsInAnyOrder(login1, login2, login3));
+        Assertions.assertEquals(4, logins.size());
+        assertThat(logins, containsInAnyOrder(login1, login2, login3, login4));
 
         Assertions.assertEquals(logins.get(0).getId(), login1.getId());
         Assertions.assertEquals(logins.get(1).getId(), login2.getId());
