@@ -33,11 +33,10 @@ export class SignupComponent implements OnInit {
     this.restApiService.getDefaultLoginDTO().subscribe((loginDTO: LoginDTO) => {
       console.log('ngOnInit >> getDefaultLoginDTO id >>' + loginDTO.id);
       console.log('ngOnInit >> getDefaultLoginDTO userid >>' + loginDTO.userid);
+      console.log('form.value.userid: ' + form.value.email);
+      form.controls['email'].setValue(loginDTO.userid);
+      form.controls['password'].setValue(loginDTO.password);
     });
-    // do whatever logic, and if login failed, reset like below
-    console.log('form.value.userid: ' + form.value.email);
-    form.controls['email'].setValue('email@hhh.ch');
-    form.controls['password'].setValue('password');
   }
 
 }

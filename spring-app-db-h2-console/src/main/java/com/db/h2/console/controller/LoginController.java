@@ -22,13 +22,6 @@ public class LoginController {
     }
 
 
-//    @RequestMapping("/mattableh2/exercise")
-//    public PersonExerciseDTO getPersonExercise(Model model) {
-//
-//        return personExerciseService.getPersonExercise();
-//
-//    }
-
     @RequestMapping("/defaultlogin")
     public Login buildDefaultLogin() {
         return loginService.buildDefaultLogin();
