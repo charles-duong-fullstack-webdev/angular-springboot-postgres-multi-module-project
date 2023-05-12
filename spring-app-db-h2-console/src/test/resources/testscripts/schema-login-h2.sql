@@ -7,6 +7,7 @@ CREATE TABLE login
     id            BIGINT NOT NULL,
     created_by    VARCHAR(255),
     modified_by   VARCHAR(255),
+    birthday      DATE,
     created_date  TIMESTAMP,
     modified_date TIMESTAMP,
     userid        VARCHAR(255),

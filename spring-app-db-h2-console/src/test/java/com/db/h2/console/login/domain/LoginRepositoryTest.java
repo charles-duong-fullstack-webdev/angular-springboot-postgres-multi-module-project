@@ -15,6 +15,7 @@ import org.springframework.test.context.junit.jupiter.SpringExtension;
 import org.springframework.transaction.annotation.Transactional;
 
 import javax.persistence.EntityManager;
+import java.time.LocalDate;
 import java.time.LocalDateTime;
 import java.util.List;
 
@@ -26,8 +27,8 @@ import static org.hamcrest.Matchers.containsInAnyOrder;
 @SpringBootTest
 @TestPropertySource(locations = "classpath:application-test.properties")
 @AutoConfigureTestDatabase(replace = AutoConfigureTestDatabase.Replace.NONE)
-@Sql({"/testscripts/schema-h2.sql"})
-@Sql(value = "/testscripts/data-h2.sql")
+@Sql({"/testscripts/schema-login-h2.sql"})
+@Sql(value = "/testscripts/data-login-h2.sql")
 @ExtendWith(SpringExtension.class)
 class LoginRepositoryTest {
 
@@ -41,8 +42,10 @@ class LoginRepositoryTest {
 
     @BeforeEach
     public void init() {
-        loginRepository.deleteAll();
+        //generateLogins();
+    }
 
+    private void generateLogins() {
         Long maxId = loginRepository.getMaxLoginId();
         String user = "test%s@test.com";
         String password = "test%s@test.com";
@@ -70,20 +73,43 @@ class LoginRepositoryTest {
         for (Login login : debuglogins) {
             System.err.println(login);
         }
+    }
+
+    @Test
+    @Transactional
+    public void findAllLoginLoadedByScriptsOrderById() {
+
+        List<Login> logins = loginRepository.findAll();
+
+        for (Login login : logins) {
+            System.err.println("findAllOrderById > " + login);
+        }
+
+//        Assertions.assertEquals(logins.get(0).getId(), login1.getId());
+//        Assertions.assertEquals(logins.get(1).getId(), login2.getId());
+//        Assertions.assertEquals(logins.get(2).getId(), login3.getId());
+//
+//        Assertions.assertNotNull(logins.get(0).getModifiedDate());
+//        Assertions.assertNotNull(logins.get(1).getModifiedDate());
+//        Assertions.assertNotNull(logins.get(2).getModifiedDate());
 
     }
 
     @Test
     @Transactional
-    public void findAllOrderById() {
+    public void deleteAndfindAllNewInsertedLoginsOrderById() {
+
+        loginRepository.deleteAll();
+        generateLogins();
 
         List<Login> logins = loginRepository.findAll();
-//
-//        for (Login login : logins) {
-//            System.out.println(login);
-//        }
+
+        for (Login login : logins) {
+            System.err.println("findAllOrderById > " + login);
+        }
 
         Assertions.assertEquals(4, logins.size());
+
         assertThat(logins, containsInAnyOrder(login1, login2, login3, login4));
 
         Assertions.assertEquals(logins.get(0).getId(), login1.getId());
@@ -95,6 +121,7 @@ class LoginRepositoryTest {
         Assertions.assertNotNull(logins.get(2).getModifiedDate());
 
     }
+
 
     @Test
     @Transactional
@@ -125,6 +152,13 @@ class LoginRepositoryTest {
 //        assertThat(loginRepository.findByMutationTimestamp(LocalDateTime.parse("2019-01-01T00:00:40"))).containsExactly();
     }
 
+    @Test
+    @Transactional
+    public void deleteAllLogins() {
+        loginRepository.deleteAll();
+        List<Login> logins = loginRepository.findAll();
+        Assertions.assertEquals(0, logins.size());
+    }
 
     private Login createLogin(String userid, String password) {
         Login login = new Login();
@@ -132,6 +166,7 @@ class LoginRepositoryTest {
         login.setPassword(password);
         login.setCreatedBy("I-Am");
         login.setModifiedBy("I-Am");
+        login.setBirthday(LocalDate.of(1981, 12, 10));
         login.setCreatedDate(LocalDateTime.parse("2019-01-01T00:00:00"));
         login.setModifiedDate(LocalDateTime.parse("2019-01-01T00:00:00"));
 

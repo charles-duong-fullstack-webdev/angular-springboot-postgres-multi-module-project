@@ -2,15 +2,10 @@ package com.db.h2.console.domain;
 
 import org.hibernate.annotations.GenericGenerator;
 import org.hibernate.annotations.Parameter;
-import org.springframework.data.annotation.CreatedDate;
-import org.springframework.format.annotation.DateTimeFormat;
-import reactor.util.annotation.Nullable;
 
 import javax.persistence.*;
 import javax.validation.constraints.NotNull;
 import java.time.LocalDate;
-import java.time.LocalDateTime;
-import java.util.Date;
 
 @Entity
 public class Login extends BaseEntity {
@@ -84,6 +79,7 @@ public class Login extends BaseEntity {
                 "id=" + id +
                 ", userid='" + userid + '\'' +
                 ", password='" + password + '\'' +
+                ", birthday='" + birthday + '\'' +
                 ", createdBy='" + getCreatedBy() + '\'' +
                 ", createdDate='" + getCreatedDate() + '\'' +
                 ", modifiedBy='" + getModifiedBy() + '\'' +

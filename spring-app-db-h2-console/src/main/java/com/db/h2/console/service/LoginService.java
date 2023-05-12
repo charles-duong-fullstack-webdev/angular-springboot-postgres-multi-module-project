@@ -28,7 +28,7 @@ public class LoginService {
     public Login buildDefaultLogin() {
         Long maxId = this.loginRepository.getMaxLoginId();
         String user = "test%s@test.com";
-        String password = "test%s@test.com";
+        String password = "test%s";
         if (maxId == null) {
             maxId = 0L;
         }
