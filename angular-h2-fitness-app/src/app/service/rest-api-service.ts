@@ -29,7 +29,7 @@ export class RestApiService {
   };
 
   getDefaultLoginDTO(): Observable<LoginDTO> {
-    return this.httpClient.get<LoginDTO>(this.apiURL + '/default-login').pipe(
+    return this.httpClient.get<LoginDTO>(this.apiURL + '/defaultlogin').pipe(
       map((response) => response), catchError(this.handleError)
     );
   }
