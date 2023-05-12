@@ -5,6 +5,7 @@ import com.db.h2.console.repository.LoginRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import java.time.LocalDate;
 import java.time.LocalDateTime;
 import java.util.List;
 
@@ -43,8 +44,10 @@ public class LoginService {
         login.setPassword(password);
         login.setCreatedBy("I-Am");
         login.setModifiedBy("I-Am");
-        login.setCreatedDate(LocalDateTime.parse("2019-01-01T00:00:00"));
-        login.setModifiedDate(LocalDateTime.parse("2019-01-01T00:00:00"));
+        login.setBirthday(LocalDate.of(1981, 12, 10));
+        login.setCreatedDate(LocalDateTime.parse("2023-01-01T00:00:00"));
+        login.setModifiedDate(LocalDateTime.of(2023, 5, 1,
+                8, 0, 0));
 
         return login;
     }

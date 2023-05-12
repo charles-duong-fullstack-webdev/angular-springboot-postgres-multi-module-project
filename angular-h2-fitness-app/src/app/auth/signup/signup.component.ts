@@ -36,6 +36,7 @@ export class SignupComponent implements OnInit {
       console.log('form.value.userid: ' + form.value.email);
       form.controls['email'].setValue(loginDTO.userid);
       form.controls['password'].setValue(loginDTO.password);
+      form.controls['birthday'].setValue(loginDTO.birthday);
     });
   }
 

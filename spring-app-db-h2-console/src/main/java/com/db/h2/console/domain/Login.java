@@ -2,11 +2,15 @@ package com.db.h2.console.domain;
 
 import org.hibernate.annotations.GenericGenerator;
 import org.hibernate.annotations.Parameter;
+import org.springframework.data.annotation.CreatedDate;
+import org.springframework.format.annotation.DateTimeFormat;
+import reactor.util.annotation.Nullable;
 
-import javax.persistence.Entity;
-import javax.persistence.GeneratedValue;
-import javax.persistence.GenerationType;
-import javax.persistence.Id;
+import javax.persistence.*;
+import javax.validation.constraints.NotNull;
+import java.time.LocalDate;
+import java.time.LocalDateTime;
+import java.util.Date;
 
 @Entity
 public class Login extends BaseEntity {
@@ -27,6 +31,18 @@ public class Login extends BaseEntity {
     private String userid;
     private String password;
 
+
+    @Column(name = "birthday")
+    @NotNull
+//    @CreatedDate
+//    private LocalDateTime birthday;
+
+//    @Temporal(TemporalType.DATE)
+//    @DateTimeFormat(style = "S-")
+//    private Date birthday;
+
+    private LocalDate birthday;
+
     public Login() {
     }
 
@@ -36,6 +52,14 @@ public class Login extends BaseEntity {
 
     public void setId(Long id) {
         this.id = id;
+    }
+
+    public LocalDate getBirthday() {
+        return birthday;
+    }
+
+    public void setBirthday(LocalDate birthday) {
+        this.birthday = birthday;
     }
 
     public String getUserid() {
