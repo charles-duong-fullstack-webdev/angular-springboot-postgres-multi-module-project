@@ -1,8 +1,9 @@
-import { Component, OnInit } from '@angular/core';
-import { NgForm } from '@angular/forms';
+import {Component, OnInit} from '@angular/core';
+import {NgForm} from '@angular/forms';
 
-import { AuthService } from '../auth.service';
-import {RestApiService} from "../../service/rest-api-service";
+import {AuthService} from '../auth.service';
+import {RestApiService} from '../../service/rest-api-service';
+import {LoginDTO} from '../../models/loginDTO';
 
 @Component({
   selector: 'app-signup',
@@ -12,20 +13,13 @@ import {RestApiService} from "../../service/rest-api-service";
 export class SignupComponent implements OnInit {
   maxDate;
 
-  constructor(private authService: AuthService, private restApiService: RestApiService) { }
-
-
-  ngOnInit() {
-     this.restApiService.getPersonExerciseDTO().subscribe((getPersonExcerciseDTO: Login) => {
-      console.log('ngOnInit >> getPersonExcerciseDTO id >>' + getPersonExcerciseDTO.id);
-      console.log('ngOnInit >> getPersonExcerciseDTO firstName >>' + getPersonExcerciseDTO.firstName);
-      this.setupTableDataSource(getPersonExcerciseDTO);
-    });
+  constructor(private authService: AuthService, private restApiService: RestApiService) {
   }
 
   ngOnInit() {
     this.maxDate = new Date();
     this.maxDate.setFullYear(this.maxDate.getFullYear() - 18);
+
   }
 
   onSubmit(form: NgForm) {
@@ -35,9 +29,15 @@ export class SignupComponent implements OnInit {
     });
   }
 
-  onSetDefaultLogin() {
-    // email: form.value.email,
-    //   password: form.value.password
+  onGetDefaultLogin(form: NgForm) {
+    this.restApiService.getDefaultLoginDTO().subscribe((loginDTO: LoginDTO) => {
+      console.log('ngOnInit >> getDefaultLoginDTO id >>' + loginDTO.id);
+      console.log('ngOnInit >> getDefaultLoginDTO userid >>' + loginDTO.userid);
+    });
+    // do whatever logic, and if login failed, reset like below
+    console.log('form.value.userid: ' + form.value.email);
+    form.controls['email'].setValue('email@hhh.ch');
+    form.controls['password'].setValue('password');
   }
 
 }

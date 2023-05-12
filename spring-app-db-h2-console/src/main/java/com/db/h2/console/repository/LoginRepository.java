@@ -10,14 +10,11 @@ import org.springframework.transaction.annotation.Transactional;
 import java.util.List;
 
 public interface LoginRepository extends CrudRepository<Login, Long> {
-    //List<Login> findAll();
 
     @Query("SELECT l from Login l order by l.id")
     List<Login> findAll();
 
     @Query("SELECT max(l.id) from Login l")
-    //@Query(value = "SELECT max(price) FROM Product")
-    public //BigDecimal max()
     Long getMaxLoginId();
 
     @Query("SELECT l from Login l where l.id = :loginId and l.userid = :userid")

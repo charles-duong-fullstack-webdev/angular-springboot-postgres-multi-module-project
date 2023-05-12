@@ -1,9 +1,9 @@
 import {Injectable} from '@angular/core';
-import {catchError, map, retry} from 'rxjs/operators';
+import {catchError, map} from 'rxjs/operators';
 import {Observable} from 'rxjs-compat/Observable';
-import {PersonExerciseDTO} from '../mattableh2/models/person-exercise-DTO';
 import {throwError} from 'rxjs/internal/observable/throwError';
 import {HttpClient, HttpHeaders} from '@angular/common/http';
+import {LoginDTO} from "../models/loginDTO";
 
 /**
  * see training.service.ts
@@ -13,7 +13,7 @@ import {HttpClient, HttpHeaders} from '@angular/common/http';
 })
 export class RestApiService {
   // Define API
-  private apiURL = 'http://localhost:8084/api/mattableh2/exercise';
+  private apiURL = 'http://localhost:8084/api/fitness';
 
   constructor(private httpClient: HttpClient) {
   }
@@ -28,12 +28,12 @@ export class RestApiService {
     }),
   };
 
-  // httpClientClient API get() method => Fetch PersonExersiceDTO
-  getPersonExerciseDTO(): Observable<Login> {
-    return this.httpClient.get<PersonExerciseDTO>(this.apiURL).pipe(
+  getDefaultLoginDTO(): Observable<LoginDTO> {
+    return this.httpClient.get<LoginDTO>(this.apiURL + '/default-login').pipe(
       map((response) => response), catchError(this.handleError)
     );
   }
+
   //
   // getPersonExerciseDTO(): Observable<PersonExerciseDTO> {
   //   return this.httpClient.get<PersonExerciseDTO>(this.apiURL).pipe(

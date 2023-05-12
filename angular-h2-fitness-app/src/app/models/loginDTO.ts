@@ -1,6 +1,5 @@
-export class ExerciseDTO {
+export class LoginDTO {
   id: number;
-  name: string;
-  duration: number;
-  calories: number;
+  userid: string;
+  password: string;
 }

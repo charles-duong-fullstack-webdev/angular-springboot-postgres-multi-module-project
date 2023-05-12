@@ -1,5 +1,8 @@
 package com.db.h2.console.domain;
 
+import org.hibernate.annotations.GenericGenerator;
+import org.hibernate.annotations.Parameter;
+
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
@@ -8,10 +11,18 @@ import javax.persistence.Id;
 @Entity
 public class Login extends BaseEntity {
 
+    @GenericGenerator(
+            name = "LoginSequenceGenerator",
+            strategy = "org.hibernate.id.enhanced.SequenceStyleGenerator",
+            parameters = {
+                    @Parameter(name = "sequence_name", value = "login_sequence"),
+                    @Parameter(name = "initial_value", value = "1"),
+                    @Parameter(name = "increment_size", value = "1")
+            }
+    )
     @Id
-    @GeneratedValue(strategy = GenerationType.AUTO)
+    @GeneratedValue(strategy = GenerationType.SEQUENCE, generator = "LoginSequenceGenerator")
     private Long id;
-
 
     private String userid;
     private String password;
@@ -55,6 +66,5 @@ public class Login extends BaseEntity {
                 ", modifiedDate='" + getModifiedDate() + '\'' +
                 '}';
     }
-
 
 }

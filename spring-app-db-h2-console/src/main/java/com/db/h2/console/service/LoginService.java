@@ -25,14 +25,14 @@ public class LoginService {
     }
 
     public Login buildDefaultLogin() {
-        Long maxId = loginRepository.getMaxLoginId();
+        Long maxId = this.loginRepository.getMaxLoginId();
         String user = "test%s@test.com";
         String password = "test%s@test.com";
         if (maxId == null) {
             maxId = 0L;
         }
         maxId++;
-        Login login = loginRepository.save(createLogin(
+        Login login = this.loginRepository.save(createLogin(
                 String.format(user, maxId), String.format(password, maxId)));
         return login;
     }
