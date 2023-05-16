@@ -1,5 +1,5 @@
 import {Injectable} from '@angular/core';
-import {catchError, map} from 'rxjs/operators';
+import {catchError, map, retry} from 'rxjs/operators';
 import {Observable} from 'rxjs-compat/Observable';
 import {throwError} from 'rxjs/internal/observable/throwError';
 import {HttpClient, HttpHeaders} from '@angular/common/http';
@@ -34,6 +34,17 @@ export class RestApiService {
     );
   }
 
+  // httpClientClient API post() method => Create LoginDTO
+  createLoginDTO(loginDTO: LoginDTO): Observable<LoginDTO> {
+    return this.httpClient
+      .post<LoginDTO>(
+        this.apiURL + '/createlogin',
+        JSON.stringify(LoginDTO),
+        this.httpClientOptions
+      )
+      .pipe(retry(1), catchError(this.handleError));
+  }
+
   //
   // getPersonExerciseDTO(): Observable<PersonExerciseDTO> {
   //   return this.httpClient.get<PersonExerciseDTO>(this.apiURL).pipe(
@@ -41,22 +52,22 @@ export class RestApiService {
   //   );
   // }
   //
-  // // httpClientClient API get() method => Fetch PersonExersiceDTOs list
-  // getPersonExersiceDTOs(): Observable<PersonExerciseDTO> {
+  // // httpClientClient API get() method => Fetch LoginDTOs list
+  // getLoginDTOs(): Observable<PersonExerciseDTO> {
   //   return this.httpClient
   //     .get<PersonExerciseDTO>(this.apiURL + '/PersonExerciseDTO')
   //     .pipe(retry(1), catchError(this.handleError));
   // }
   //
-  // // httpClientClient API get() method => Fetch PersonExersiceDTO
-  // getPersonExersiceDTO(id: any): Observable<PersonExerciseDTO> {
+  // // httpClientClient API get() method => Fetch LoginDTO
+  // getLoginDTO(id: any): Observable<PersonExerciseDTO> {
   //   return this.httpClient
-  //     .get<PersonExerciseDTO>(this.apiURL + '/PersonExersiceDTOs/' + id)
+  //     .get<PersonExerciseDTO>(this.apiURL + '/LoginDTOs/' + id)
   //     .pipe(retry(1), catchError(this.handleError));
   // }
   //
-  // // httpClientClient API post() method => Create PersonExersiceDTO
-  // createPersonExersiceDTO(PersonExersiceDTO: any): Observable<PersonExerciseDTO> {
+  // // httpClientClient API post() method => Create LoginDTO
+  // createLoginDTO(LoginDTO: any): Observable<PersonExerciseDTO> {
   //   return this.httpClient
   //     .post<PersonExerciseDTO>(
   //       this.apiURL + '/PersonExerciseDTO',
@@ -66,29 +77,29 @@ export class RestApiService {
   //     .pipe(retry(1), catchError(this.handleError));
   // }
   //
-  // // httpClientClient API put() method => Update PersonExersiceDTO
-  // updatePersonExersiceDTOById(id: any, PersonExersiceDTO: any): Observable<PersonExerciseDTO> {
+  // // httpClientClient API put() method => Update LoginDTO
+  // updateLoginDTOById(id: any, LoginDTO: any): Observable<PersonExerciseDTO> {
   //   return this.httpClient
   //     .put<PersonExerciseDTO>(
-  //       this.apiURL + '/PersonExersiceDTOs/' + id,
-  //       JSON.stringify(PersonExersiceDTO),
+  //       this.apiURL + '/LoginDTOs/' + id,
+  //       JSON.stringify(LoginDTO),
   //       this.httpClientOptions
   //     )
   //     .pipe(retry(1), catchError(this.handleError));
   // }
   //
-  // // httpClientClient API put() method => Update PersonExersiceDTO
-  // updatePersonExersice(PersonExersiceDTO: any): Observable<PersonExerciseDTO> {
+  // // httpClientClient API put() method => Update LoginDTO
+  // updateLogin(LoginDTO: any): Observable<PersonExerciseDTO> {
   //   return this.httpClient
   //     .put<PersonExerciseDTO>(
-  //       this.apiURL + '/updatePersonExersice',
-  //       JSON.stringify(PersonExersiceDTO),
+  //       this.apiURL + '/updateLogin',
+  //       JSON.stringify(LoginDTO),
   //       this.httpClientOptions
   //     )
   //     .pipe(retry(1), catchError(this.handleError));
   // }
   //
-  // // httpClientClient API delete() method => Delete PersonExersiceDTO
+  // // httpClientClient API delete() method => Delete LoginDTO
   // deleteExersice(perId: any, exId: any) {
   //   return this.httpClient
   //     .delete<PersonExerciseDTO>(this.apiURL + '/delete/personId/' + perId + /exserciseId/ + exId,
