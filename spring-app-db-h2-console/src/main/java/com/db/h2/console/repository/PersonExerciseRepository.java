@@ -18,7 +18,7 @@ public interface PersonExerciseRepository extends CrudRepository<PersonExercise,
     @Query(value = "SELECT e FROM PersonExercise e ORDER BY e.email")
     public List<PersonExercise> findAllSortedByEmail();
 
-    @Query(value = "SELECT * FROM PersonExercise ORDER BY email", nativeQuery = true)
-    public List<PersonExercise> findAllSortedByEmailUsingNative();
+//    @Query(value = "SELECT * FROM PersonExercise ORDER BY email", nativeQuery = true)
+//    public List<PersonExercise> findAllSortedByEmailUsingNative();
 
 }
