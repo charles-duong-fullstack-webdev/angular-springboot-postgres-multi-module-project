@@ -52,5 +52,16 @@ public class LoginService {
         return login;
     }
 
+    public Login sigupLogin(Login login) {
+        System.err.println("sigupLogin: "+login);
+        if (login.getId() == null || login.getId() == 0) {
+            Long maxId = this.loginRepository.getMaxLoginId();
+            return this.loginRepository.save(createLogin(
+                    String.format(login.getUserid(), maxId), String.format(login.getPassword(), maxId)));
+        }
+        loginRepository.findById(login.getId());
+        Login saveLogin = loginRepository.save(login);
+        return saveLogin;
+    }
 
 }

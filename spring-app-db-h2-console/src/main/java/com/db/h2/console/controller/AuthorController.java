@@ -3,9 +3,11 @@ package com.db.h2.console.controller;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
+import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 
 import com.db.h2.console.service.AuthorService;
+import org.springframework.web.bind.annotation.ResponseBody;
 
 @Controller
 @RequestMapping("/authors")
@@ -29,4 +31,8 @@ public class AuthorController {
 	public String view(Model model){
 		return "author/view";
 	}
+
+
+
+
 }

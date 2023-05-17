@@ -34,8 +34,14 @@ export class RestApiService {
     );
   }
 
+
+  public signupByLoginInfo(loginDTO: LoginDTO): Observable<LoginDTO> {
+    console.log("loginDTO.userid: " + loginDTO.userid);
+    return this.httpClient.post<LoginDTO>(this.apiURL + '/signup', loginDTO);
+  }
+
   // httpClientClient API post() method => Create LoginDTO
-  signupByLoginInfo(loginDTO: LoginDTO): Observable<LoginDTO> {
+  signupByLoginInfoOther(loginDTO: LoginDTO): Observable<LoginDTO> {
     return this.httpClient
       .post<LoginDTO>(
         this.apiURL + '/signup',

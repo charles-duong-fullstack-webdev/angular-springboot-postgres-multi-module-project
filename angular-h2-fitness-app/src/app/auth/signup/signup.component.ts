@@ -28,13 +28,18 @@ export class SignupComponent implements OnInit {
     //   email: form.value.email,
     //   password: form.value.password
     // });
+    // this.signupLoginDTO.id = form.value.id;
+    // this.signupLoginDTO.id = 0;
     this.signupLoginDTO.userid = form.value.email;
     this.signupLoginDTO.password = form.value.password;
     this.signupLoginDTO.birthday = form.value.birthday;
+    console.log('onSubmit id >>' + this.signupLoginDTO.id);
+    console.log('onSubmit userid >>' + this.signupLoginDTO.userid);
+    console.log('onSubmit form.value.email: ' + this.signupLoginDTO.userid);
     this.restApiService.signupByLoginInfo(this.signupLoginDTO).subscribe((loginDTO: LoginDTO) => {
-      console.log('onSubmit id >>' + loginDTO.id);
-      console.log('onSubmit userid >>' + loginDTO.userid);
-      console.log('onSubmit form.value.email: ' + form.value.email);
+      console.log('onSubmit this.restApiService.signupByLoginInfo id >>' + loginDTO.id);
+      console.log('onSubmit this.restApiService.signupByLoginInfo userid >>' + loginDTO.userid);
+      console.log('onSubmit this.restApiService.signupByLoginInfo form.value.email: ' + form.value.email);
       form.controls['email'].setValue(loginDTO.userid);
       form.controls['password'].setValue(loginDTO.password);
       form.controls['birthday'].setValue(loginDTO.birthday);
