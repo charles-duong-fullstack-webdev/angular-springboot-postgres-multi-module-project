@@ -35,10 +35,10 @@ export class RestApiService {
   }
 
   // httpClientClient API post() method => Create LoginDTO
-  createLoginDTO(loginDTO: LoginDTO): Observable<LoginDTO> {
+  signupByLoginInfo(loginDTO: LoginDTO): Observable<LoginDTO> {
     return this.httpClient
       .post<LoginDTO>(
-        this.apiURL + '/createlogin',
+        this.apiURL + '/signup',
         JSON.stringify(LoginDTO),
         this.httpClientOptions
       )

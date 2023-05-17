@@ -12,6 +12,7 @@ import {LoginDTO} from '../../models/loginDTO';
 })
 export class SignupComponent implements OnInit {
   maxDate;
+  signupLoginDTO: LoginDTO = new LoginDTO();
 
   constructor(private authService: AuthService, private restApiService: RestApiService) {
   }
@@ -23,17 +24,28 @@ export class SignupComponent implements OnInit {
   }
 
   onSubmit(form: NgForm) {
-    this.authService.registerUser({
-      email: form.value.email,
-      password: form.value.password
+    // this.authService.registerUser({
+    //   email: form.value.email,
+    //   password: form.value.password
+    // });
+    this.signupLoginDTO.userid = form.value.email;
+    this.signupLoginDTO.password = form.value.password;
+    this.signupLoginDTO.birthday = form.value.birthday;
+    this.restApiService.signupByLoginInfo(this.signupLoginDTO).subscribe((loginDTO: LoginDTO) => {
+      console.log('onSubmit id >>' + loginDTO.id);
+      console.log('onSubmit userid >>' + loginDTO.userid);
+      console.log('onSubmit form.value.email: ' + form.value.email);
+      form.controls['email'].setValue(loginDTO.userid);
+      form.controls['password'].setValue(loginDTO.password);
+      form.controls['birthday'].setValue(loginDTO.birthday);
     });
   }
 
   onGetDefaultLogin(form: NgForm) {
     this.restApiService.getDefaultLoginDTO().subscribe((loginDTO: LoginDTO) => {
-      console.log('ngOnInit >> getDefaultLoginDTO id >>' + loginDTO.id);
-      console.log('ngOnInit >> getDefaultLoginDTO userid >>' + loginDTO.userid);
-      console.log('form.value.userid: ' + form.value.email);
+      console.log('onGetDefaultLogin id >>' + loginDTO.id);
+      console.log('onGetDefaultLogin userid >>' + loginDTO.userid);
+      console.log('onGetDefaultLogin form.value.email: ' + form.value.email);
       form.controls['email'].setValue(loginDTO.userid);
       form.controls['password'].setValue(loginDTO.password);
       form.controls['birthday'].setValue(loginDTO.birthday);
