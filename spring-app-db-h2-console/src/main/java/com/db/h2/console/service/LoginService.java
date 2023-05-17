@@ -61,6 +61,7 @@ public class LoginService {
     public LoginDTO sigupLogin(LoginDTO loginDTO) {
         System.err.println("sigupLogin: "+loginDTO);
         Long maxId = this.loginRepository.getMaxLoginId();
+
 //        if (login.getId() == null || login.getId() == 0) {
 //            Long maxId = this.loginRepository.getMaxLoginId();
 //            return this.loginRepository.save(createLogin(
