@@ -1,5 +1,6 @@
 package com.db.h2.console.service;
 
+import com.db.h2.console.DTO.LoginDTO;
 import com.db.h2.console.domain.Login;
 import com.db.h2.console.repository.LoginRepository;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -52,16 +53,17 @@ public class LoginService {
         return login;
     }
 
-    public Login sigupLogin(Login login) {
-        System.err.println("sigupLogin: "+login);
-        if (login.getId() == null || login.getId() == 0) {
-            Long maxId = this.loginRepository.getMaxLoginId();
-            return this.loginRepository.save(createLogin(
-                    String.format(login.getUserid(), maxId), String.format(login.getPassword(), maxId)));
-        }
-        loginRepository.findById(login.getId());
-        Login saveLogin = loginRepository.save(login);
-        return saveLogin;
+    public LoginDTO sigupLogin(LoginDTO loginDTO) {
+        System.err.println("sigupLogin: "+loginDTO);
+//        if (login.getId() == null || login.getId() == 0) {
+//            Long maxId = this.loginRepository.getMaxLoginId();
+//            return this.loginRepository.save(createLogin(
+//                    String.format(login.getUserid(), maxId), String.format(login.getPassword(), maxId)));
+//        }
+//        loginRepository.findById(loginDTO.getId());
+//        Login saveLogin = loginRepository.save(login);
+//        return saveLogin;
+        return new LoginDTO();
     }
 
 }
