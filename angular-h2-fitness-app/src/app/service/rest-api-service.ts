@@ -4,6 +4,9 @@ import {Observable} from 'rxjs-compat/Observable';
 import {throwError} from 'rxjs/internal/observable/throwError';
 import {HttpClient, HttpHeaders} from '@angular/common/http';
 import {LoginDTO} from "../models/loginDTO";
+import {Subject} from "rxjs/Subject";
+import {Router} from "@angular/router";
+import {TrainingService} from "../training/training.service";
 
 /**
  * see training.service.ts
@@ -12,10 +15,15 @@ import {LoginDTO} from "../models/loginDTO";
   providedIn: 'root'
 })
 export class RestApiService {
+  authChange = new Subject<boolean>();
+
   // Define API
   private apiURL = 'http://localhost:8084/api/fitness';
 
-  constructor(private httpClient: HttpClient) {
+  constructor(
+    private httpClient: HttpClient,
+    private router: Router,
+    private trainingService: TrainingService) {
   }
 
   /*========================================
@@ -53,6 +61,7 @@ export class RestApiService {
         this.handleError
       ));
   }
+
 
   //
   // getPersonExerciseDTO(): Observable<PersonExerciseDTO> {
