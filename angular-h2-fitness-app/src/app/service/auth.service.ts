@@ -3,8 +3,8 @@ import { Router } from '@angular/router';
 import { Subject } from 'rxjs/Subject';
 import { AngularFireAuth } from 'angularfire2/auth';
 
-import { User } from './user.model';
-import { AuthData } from './auth-data.model';
+import { User } from '../models/user.model';
+import { AuthData } from '../models/auth-data.model';
 import { TrainingService } from '../training/training.service';
 
 @Injectable()

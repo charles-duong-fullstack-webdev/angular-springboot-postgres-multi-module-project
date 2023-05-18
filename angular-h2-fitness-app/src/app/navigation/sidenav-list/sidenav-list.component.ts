@@ -7,7 +7,7 @@ import {
 } from '@angular/core';
 import { Subscription } from 'rxjs/Subscription';
 
-import { AuthService } from '../../auth/auth.service';
+import { AuthService } from '../../service/auth.service';
 
 @Component({
   selector: 'app-sidenav-list',

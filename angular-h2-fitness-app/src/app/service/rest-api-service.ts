@@ -35,20 +35,23 @@ export class RestApiService {
   }
 
 
-  public signupByLoginInfo(loginDTO: LoginDTO): Observable<LoginDTO> {
-    console.log("loginDTO.userid: " + loginDTO.userid);
-    return this.httpClient.post<LoginDTO>(this.apiURL + '/signup', loginDTO);
-  }
+  // TODO Other possibility -> This method works as well
+  // public registerUser(loginDTO: LoginDTO): Observable<LoginDTO> {
+  //   console.log("loginDTO.userid: " + loginDTO.userid);
+  //   return this.httpClient.post<LoginDTO>(this.apiURL + '/signup', loginDTO);
+  // }
 
   // httpClientClient API post() method => Create LoginDTO
-  signupByLoginInfoOther(loginDTO: LoginDTO): Observable<LoginDTO> {
+  registerUser(loginDTO: LoginDTO): Observable<LoginDTO> {
     return this.httpClient
       .post<LoginDTO>(
         this.apiURL + '/signup',
-        JSON.stringify(LoginDTO),
+        loginDTO,
         this.httpClientOptions
       )
-      .pipe(retry(1), catchError(this.handleError));
+      .pipe(retry(1), catchError(
+        this.handleError
+      ));
   }
 
   //
@@ -124,6 +127,7 @@ export class RestApiService {
       // Get server-side error
       errorMessage = `Error Code: ${error.status}\nMessage: ${error.message}`;
     }
+    console.log("handleError >> " + errorMessage);
     window.alert(errorMessage);
     return throwError(() => {
       return errorMessage;
