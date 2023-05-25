@@ -23,8 +23,17 @@
       <mat-hint>Please enter your password.</mat-hint>
       <mat-error>Missing password.</mat-error>
     </mat-form-field>
-    <button type="submit" mat-raised-button color="primary" [disabled]="loginForm.invalid">Submit</button>
+
+    <div mat-dialog-actions align="end">
+      <button type="submit" mat-raised-button color="primary" [disabled]="loginForm.invalid">Submit</button>
+      <button type="button" mat-raised-button (click)="onGetDefaultLogin()">
+        Set Default Login
+      </button>
+    </div>
+
   </form>
+
+
 </section>
 
 <!-- <ol>

@@ -1,7 +1,8 @@
-import { Component, OnInit } from '@angular/core';
-import { FormGroup, FormControl, Validators } from '@angular/forms';
+import {Component, OnInit} from '@angular/core';
+import {FormControl, FormGroup, Validators} from '@angular/forms';
 
-import { AuthService } from '../../service/auth.service';
+import {AuthService} from '../../service/auth.service';
+import {LoginDTO} from "../../models/loginDTO";
 
 @Component({
   selector: 'app-login',
@@ -11,14 +12,15 @@ import { AuthService } from '../../service/auth.service';
 export class LoginComponent implements OnInit {
   loginForm: FormGroup;
 
-  constructor(private authService: AuthService) {}
+  constructor(private authService: AuthService) {
+  }
 
   ngOnInit() {
     this.loginForm = new FormGroup({
       email: new FormControl('', {
         validators: [Validators.required, Validators.email]
       }),
-      password: new FormControl('', { validators: [Validators.required] })
+      password: new FormControl('', {validators: [Validators.required]})
     });
   }
 
@@ -26,6 +28,17 @@ export class LoginComponent implements OnInit {
     this.authService.login({
       email: this.loginForm.value.email,
       password: this.loginForm.value.password
+    });
+  }
+
+  onGetDefaultLogin() {
+
+    this.authService.getDefaultLoginDTO().subscribe((loginDTO: LoginDTO) => {
+      console.log('getDefaultLoginDTO id >>' + loginDTO.id);
+      console.log('getDefaultLoginDTO userid >>' + loginDTO.userid);
+      console.log('getDefaultLoginDTO password >>' + loginDTO.password);
+      this.loginForm.get('email').setValue(loginDTO.userid);
+      this.loginForm.get('password').setValue(loginDTO.password);
     });
   }
 }
