@@ -1,7 +1,6 @@
 import {Injectable} from '@angular/core';
 import {Router} from '@angular/router';
 import {Subject} from 'rxjs/Subject';
-import {AuthData} from '../models/auth-data.model';
 import {TrainingService} from '../training/training.service';
 import {LoginDTO} from "../models/loginDTO";
 import {Observable} from "rxjs-compat/Observable";
@@ -68,21 +67,17 @@ export class AuthService {
         this.apiURL + '/signup',
         loginDTO,
         this.httpClientOptions
-      )
-      .pipe(retry(1), catchError(
-        this.handleError
-      ));
+      ).pipe(
+        map((response) => response), catchError(this.handleError)
+      );
   }
 
-  login(authData: AuthData) {
-    // this.afAuth.auth
-    //   .signInWithEmailAndPassword(authData.email, authData.password)
-    //   .then(result => {
-    //     console.log(result);
-    //   })
-    //   .catch(error => {
-    //     console.log(error);
-    //   });
+  login(userid: any, password: any) {
+    return this.httpClient
+      .get<Boolean>(this.apiURL + '/checklogin/userid/' + userid + /password/ + password,
+        this.httpClientOptions
+      )
+      .pipe(retry(1), catchError(this.handleError));
   }
 
   logout() {

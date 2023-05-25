@@ -25,10 +25,12 @@ export class LoginComponent implements OnInit {
   }
 
   onSubmit() {
-    this.authService.login({
-      email: this.loginForm.value.email,
-      password: this.loginForm.value.password
-    });
+    const email = this.loginForm.get('email').value;
+    const password= this.loginForm.get('password').value;
+    console.log('onSubmit email >>' + email);
+    console.log('onSubmit password >>' + password);
+    this.authService.login(email, password);
+
   }
 
   onGetDefaultLogin() {
