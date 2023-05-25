@@ -1,12 +1,9 @@
 package com.db.h2.console.service;
 
 import com.db.h2.console.DTO.LoginDTO;
-import com.db.h2.console.DTO.PersonExerciseDTO;
 import com.db.h2.console.domain.Login;
-import com.db.h2.console.domain.PersonExercise;
 import com.db.h2.console.repository.LoginRepository;
 import entityToDTO.LoginEntityToDTO;
-import entityToDTO.PersonExerciseEntityToDTO;
 import org.modelmapper.ModelMapper;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -21,6 +18,7 @@ public class LoginService {
 
     private LoginRepository loginRepository;
     private static final ModelMapper modelMapper = new ModelMapper();
+
     @Autowired
     public LoginService(LoginRepository loginRepository) {
         this.loginRepository = loginRepository;
@@ -64,8 +62,17 @@ public class LoginService {
         return login;
     }
 
+    public Boolean selectLoginByUseridAndPassword(String userid, String password) {
+        List<Login> logins = this.loginRepository.selectLoginByUseridAndPassword(userid, password);
+        System.err.println("selectLoginByUseridAndPassword >> logins: " + logins);
+        if (logins != null && logins.size() > 0) {
+            return true;
+        }
+        return false;
+    }
+
     public LoginDTO sigupLogin(LoginDTO loginDTO) {
-        System.err.println("sigupLogin: "+loginDTO);
+        System.err.println("sigupLogin: " + loginDTO);
         Long maxId = this.loginRepository.getMaxLoginId();
 
 //        if (login.getId() == null || login.getId() == 0) {

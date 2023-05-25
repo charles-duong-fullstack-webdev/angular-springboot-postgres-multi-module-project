@@ -20,6 +20,9 @@ public interface LoginRepository extends CrudRepository<Login, Long> {
     @Query("SELECT l from Login l where l.id = :loginId and l.userid = :userid")
     List<Login> find(@Param("loginId") String externalId, @Param("userid") String source);
 
+    @Query(value = "SELECT l from Login l WHERE l.userid = :userid AND l.password = :password")
+    List<Login> selectLoginByUseridAndPassword(String userid, String password);
+
     @Modifying
     @Transactional
     @Query("DELETE from Login l where l.id = :loginId and l.userid = :userid")

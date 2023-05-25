@@ -26,11 +26,12 @@ export class LoginComponent implements OnInit {
 
   onSubmit() {
     const email = this.loginForm.get('email').value;
-    const password= this.loginForm.get('password').value;
+    const password = this.loginForm.get('password').value;
     console.log('onSubmit email >>' + email);
     console.log('onSubmit password >>' + password);
-    this.authService.login(email, password);
-
+    this.authService.login(email, password).subscribe((isExist: Boolean) => {
+      console.log('login >>' + isExist);
+    });
   }
 
   onGetDefaultLogin() {
@@ -43,3 +44,4 @@ export class LoginComponent implements OnInit {
     });
   }
 }
+

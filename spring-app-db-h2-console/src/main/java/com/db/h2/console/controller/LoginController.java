@@ -33,6 +33,13 @@ public class LoginController {
         return loginService.buildDefaultLogin();
     }
 
+    @RequestMapping(value = "/checklogin/userid/{userid}/password/{password}")
+    public Boolean checkLogin(@PathVariable String userid, @PathVariable String password) {
+        System.err.println("checkLogin userid >>  " + userid);
+        System.err.println("checkLogin password >> " + password);
+        return loginService.selectLoginByUseridAndPassword(userid, password);
+    }
+
     @PostMapping("/signup")
     public LoginDTO signupWithLogin(@Valid @RequestBody LoginDTO loginDTO) {
         //System.err.println("signupWithLogin: " + loginDTO);
