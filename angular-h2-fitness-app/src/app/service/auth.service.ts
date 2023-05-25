@@ -35,6 +35,12 @@ export class AuthService {
     }),
   };
 
+  getDefaultSignupDTO(): Observable<LoginDTO> {
+    return this.httpClient.get<LoginDTO>(this.apiURL + '/defaultsignup').pipe(
+      map((response) => response), catchError(this.handleError)
+    );
+  }
+
   getDefaultLoginDTO(): Observable<LoginDTO> {
     return this.httpClient.get<LoginDTO>(this.apiURL + '/defaultlogin').pipe(
       map((response) => response), catchError(this.handleError)

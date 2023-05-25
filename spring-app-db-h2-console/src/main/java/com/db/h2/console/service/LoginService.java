@@ -31,7 +31,7 @@ public class LoginService {
         return loginRepository.findAll();
     }
 
-    public Login buildDefaultLogin() {
+    public Login buildDefaultSignup() {
         Long maxId = this.loginRepository.getMaxLoginId();
         String user = "test%s@test.com";
         String password = "test%spassword";
@@ -41,6 +41,12 @@ public class LoginService {
         maxId++;
         Login login = this.loginRepository.save(createLogin(
                 String.format(user, maxId), String.format(password, maxId)));
+        return login;
+    }
+
+    public Login buildDefaultLogin() {
+        Long maxId = this.loginRepository.getMaxLoginId();
+        Login login = this.loginRepository.findById(maxId).get();
         return login;
     }
 

@@ -32,7 +32,6 @@ export class LoginComponent implements OnInit {
   }
 
   onGetDefaultLogin() {
-
     this.authService.getDefaultLoginDTO().subscribe((loginDTO: LoginDTO) => {
       console.log('getDefaultLoginDTO id >>' + loginDTO.id);
       console.log('getDefaultLoginDTO userid >>' + loginDTO.userid);

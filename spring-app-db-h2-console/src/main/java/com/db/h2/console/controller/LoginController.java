@@ -23,6 +23,11 @@ public class LoginController {
     }
 
 
+    @RequestMapping("/defaultsignup")
+    public Login buildDefaultSigup() {
+        return loginService.buildDefaultSignup();
+    }
+
     @RequestMapping("/defaultlogin")
     public Login buildDefaultLogin() {
         return loginService.buildDefaultLogin();
