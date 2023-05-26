@@ -2,6 +2,8 @@ package com.db.h2.console.service;
 
 import com.db.h2.console.DTO.LoginDTO;
 import com.db.h2.console.domain.Login;
+import com.db.h2.console.errorhandler.LoginAlreadyExistsException;
+import com.db.h2.console.errorhandler.NoSuchLoginExistsException;
 import com.db.h2.console.repository.LoginRepository;
 import entityToDTO.LoginEntityToDTO;
 import org.modelmapper.ModelMapper;
@@ -67,12 +69,20 @@ public class LoginService {
         System.err.println("selectLoginByUseridAndPassword >> logins: " + logins);
         if (logins != null && logins.size() > 0) {
             return true;
+        } else {
+           throw new NoSuchLoginExistsException("NO LOGIN PRESENT WITH USERID = " + userid);
         }
-        return false;
     }
 
     public LoginDTO sigupLogin(LoginDTO loginDTO) {
         System.err.println("sigupLogin: " + loginDTO);
+
+        List<Login> logins = this.loginRepository.selectLoginByUseridAndPassword(
+                loginDTO.getUserid(), loginDTO.getPassword());
+        if (logins != null && logins.size() >0 ) {
+            throw new LoginAlreadyExistsException("Login already exists!!");
+        }
+
         Long maxId = this.loginRepository.getMaxLoginId();
 
 //        if (login.getId() == null || login.getId() == 0) {
@@ -90,10 +100,11 @@ public class LoginService {
         System.err.println("login.getId() >> " + login.getId());
         System.err.println("login >> " + login);
 
-        Login createLogin = this.loginRepository.save(createLogin(
+        // SAVE
+        Login updateLogin = this.loginRepository.save(createLogin(
                 String.format(login.getUserid(), maxId), String.format(login.getPassword(), maxId)));
-        System.err.println("createLogin >> " + createLogin);
-        Login updateLogin = loginRepository.save(createLogin);
+        System.err.println("updateLogin >> " + updateLogin);
+        //Login updateLogin = loginRepository.save(createLogin);
 
         LoginEntityToDTO loginEntityToDTO = new LoginEntityToDTO();
         LoginDTO updateLoginDTO = loginEntityToDTO.convertLogin(updateLogin);
