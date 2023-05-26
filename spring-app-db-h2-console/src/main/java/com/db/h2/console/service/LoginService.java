@@ -70,8 +70,9 @@ public class LoginService {
         if (logins != null && logins.size() > 0) {
             return true;
         } else {
-           throw new NoSuchLoginExistsException("NO LOGIN PRESENT WITH USERID = " + userid);
+           //TODO throw new NoSuchLoginExistsException("NO LOGIN PRESENT WITH USERID = " + userid);
         }
+        return false;
     }
 
     public LoginDTO sigupLogin(LoginDTO loginDTO) {
@@ -80,19 +81,10 @@ public class LoginService {
         List<Login> logins = this.loginRepository.selectLoginByUseridAndPassword(
                 loginDTO.getUserid(), loginDTO.getPassword());
         if (logins != null && logins.size() >0 ) {
-            throw new LoginAlreadyExistsException("Login already exists!!");
+            //TODO throw new LoginAlreadyExistsException("Login already exists!!");
         }
 
         Long maxId = this.loginRepository.getMaxLoginId();
-
-//        if (login.getId() == null || login.getId() == 0) {
-//            Long maxId = this.loginRepository.getMaxLoginId();
-//            return this.loginRepository.save(createLogin(
-//                    String.format(login.getUserid(), maxId), String.format(login.getPassword(), maxId)));
-//        }
-//        loginRepository.findById(loginDTO.getId());
-//        Login saveLogin = loginRepository.save(login);
-//        return saveLogin;
 
         System.err.println("LoginDTO >> " + loginDTO);
 
