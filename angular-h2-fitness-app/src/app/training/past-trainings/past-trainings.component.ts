@@ -2,7 +2,7 @@ import { Component, OnInit, ViewChild, AfterViewInit, OnDestroy } from '@angular
 import { MatTableDataSource, MatSort, MatPaginator } from '@angular/material';
 import { Subscription } from 'rxjs';
 
-import { Exercise } from '../exercise.model';
+import { ExerciseDTO } from '../../models/exerciseDTO';
 import { TrainingService } from '../training.service';
 
 @Component({
@@ -12,7 +12,7 @@ import { TrainingService } from '../training.service';
 })
 export class PastTrainingsComponent implements OnInit, AfterViewInit, OnDestroy {
   displayedColumns = ['date', 'name', 'duration', 'calories', 'state'];
-  dataSource = new MatTableDataSource<Exercise>();
+  dataSource = new MatTableDataSource<ExerciseDTO>();
   private exChangedSubscription: Subscription;
 
   @ViewChild(MatSort, { static: false }) sort: MatSort;
@@ -22,7 +22,7 @@ export class PastTrainingsComponent implements OnInit, AfterViewInit, OnDestroy 
 
   ngOnInit() {
     this.exChangedSubscription = this.trainingService.finishedExercisesChanged.subscribe(
-      (exercises: Exercise[]) => {
+      (exercises: ExerciseDTO[]) => {
         this.dataSource.data = exercises;
       }
     );

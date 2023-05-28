@@ -1,12 +1,12 @@
 import {Injectable} from '@angular/core';
 import {Router} from '@angular/router';
 import {Subject} from 'rxjs/Subject';
-import {TrainingService} from '../training/training.service';
 import {LoginDTO} from "../models/loginDTO";
 import {Observable} from "rxjs-compat/Observable";
 import {catchError, map, retry} from "rxjs/operators";
 import {HttpClient, HttpHeaders} from "@angular/common/http";
 import {throwError} from "rxjs/internal/observable/throwError";
+import {ExerciseDTO} from "../models/exerciseDTO";
 
 @Injectable({
   providedIn: 'root'
@@ -20,8 +20,7 @@ export class AuthService {
 
   constructor(
     private httpClient: HttpClient,
-    private router: Router,
-    private trainingService: TrainingService) {
+    private router: Router) {
   }
 
   /*========================================
@@ -40,11 +39,34 @@ export class AuthService {
     );
   }
 
+  fetchAvailableExercises(): ExerciseDTO[] {
+    console.log('run... fetchAvailableExercises ');
+    let availableExercises: ExerciseDTO[] = [];
+    this.fetchAvailableExercisesDTO().subscribe((exercises: ExerciseDTO[]) => {
+      console.log('fetchAvailableExercises id >>' + exercises[0].id);
+      console.log('fetchAvailableExercises name >>' + exercises[0].name);
+      console.log('fetchAvailableExercises calories >>' + exercises[0].calories);
+      availableExercises = exercises;
+      // this.loginForm.get('email').setValue(loginDTO.userid);
+      // this.loginForm.get('password').setValue(loginDTO.password);
+      // this.availableExercises = exercises;
+      // this.exercisesChanged.next([...this.availableExercises]);
+    });
+    return availableExercises;
+  }
+
   getDefaultLoginDTO(): Observable<LoginDTO> {
     return this.httpClient.get<LoginDTO>(this.apiURL + '/defaultlogin').pipe(
       map((response) => response), catchError(this.handleError)
     );
   }
+
+  private fetchAvailableExercisesDTO(): Observable<ExerciseDTO[]> {
+    return this.httpClient.get<ExerciseDTO[]>(this.apiURL + '/fetchAvailableExercises').pipe(
+      map((response) => response), catchError(this.handleError)
+    );
+  }
+
 
   initAuthListener() {
     // this.afAuth.authState.subscribe(user => {
