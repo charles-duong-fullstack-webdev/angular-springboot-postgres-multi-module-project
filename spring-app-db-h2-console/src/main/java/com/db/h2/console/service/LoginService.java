@@ -2,6 +2,7 @@ package com.db.h2.console.service;
 
 import com.db.h2.console.DTO.LoginDTO;
 import com.db.h2.console.domain.Login;
+import com.db.h2.console.errorhandler.LoginNotFoundException;
 import com.db.h2.console.repository.LoginRepository;
 import entityToDTO.LoginEntityToDTO;
 import org.modelmapper.ModelMapper;
@@ -68,10 +69,9 @@ public class LoginService {
         if (logins != null && logins.size() > 0) {
             return true;
         } else {
-            //TODO
-            //throw new NoSuchLoginExistsException("NO LOGIN PRESENT WITH USERID = " + userid);
+            throw new LoginNotFoundException("NO LOGIN PRESENT WITH USERID = " + userid);
         }
-        return false;
+        //return false;
     }
 
     public LoginDTO sigupLogin(LoginDTO loginDTO) {
@@ -79,14 +79,10 @@ public class LoginService {
 
         List<Login> logins = this.loginRepository.selectLoginByUseridAndPassword(
                 loginDTO.getUserid(), loginDTO.getPassword());
-        //TODO
-//        if (logins != null && logins.size() > 0) {
-//            throw new LoginAlreadyExistsException("Login already exists!!");
-//        }
-////            GlobalExceptionHandler g = new GlobalExceptionHandler();
-////            LoginAlreadyExistsException l = new LoginAlreadyExistsException();
-////            throw g.handleAuthenticationException(l);
-//        }
+
+        if (logins == null || logins.size() == 0) {
+            throw new LoginNotFoundException("NO LOGIN PRESENT WITH USERID = " + loginDTO.getUserid());
+        }
 
         Long maxId = this.loginRepository.getMaxLoginId();
 
