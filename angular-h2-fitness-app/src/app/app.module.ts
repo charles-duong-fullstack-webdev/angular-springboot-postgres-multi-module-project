@@ -28,6 +28,7 @@ import {MatButtonModule} from '@angular/material/button';
 import {MatDialogModule} from '@angular/material/dialog';
 import {HttpClientModule} from '@angular/common/http';
 
+// import {HttpErrorInterceptor} from "./service/http-error-interceptor.txt";
 
 @NgModule({
   declarations: [
@@ -58,7 +59,14 @@ import {HttpClientModule} from '@angular/common/http';
     MatDialogModule,
     HttpClientModule
   ],
-  providers: [AuthService, TrainingService, RestApiService],
+  providers: [AuthService, TrainingService, RestApiService,
+    // TODO
+    // {
+    //   provide: HTTP_INTERCEPTORS,
+    //   useClass: HttpErrorInterceptor,
+    //   multi: true
+    // }
+  ],
   bootstrap: [AppComponent],
   entryComponents: [StopTrainingComponent]
 })
