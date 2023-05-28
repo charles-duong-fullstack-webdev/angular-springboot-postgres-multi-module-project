@@ -13,7 +13,7 @@ import {ExerciseDTO} from "../models/exerciseDTO";
 })
 export class AuthService {
   authChange = new Subject<boolean>();
-  private isAuthenticated = false;
+  public isAuthenticated = false;
 
   // Define API
   private apiURL = 'http://localhost:8084/api/fitness';

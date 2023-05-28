@@ -31,6 +31,7 @@ export class LoginComponent implements OnInit {
     console.log('onSubmit password >>' + password);
     this.authService.login(email, password).subscribe((isExist: Boolean) => {
       console.log('login >>' + isExist);
+      this.authService.isAuthenticated = true;
     });
   }
 
