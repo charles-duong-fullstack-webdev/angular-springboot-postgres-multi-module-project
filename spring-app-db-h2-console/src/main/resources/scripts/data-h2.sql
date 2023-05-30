@@ -5,13 +5,13 @@ insert into PUBLIC.PERSON_EXERCISE (ID, FIRST_NAME, LAST_NAME, EMAIL, DOB, ADDRE
 values (NEXTVAL('person_exercise_sequence'), 'Charle', 'Test', 'cccc@gmail.com', '1999-01-01', 'adress', 'swiss', 'm');
 
 INSERT INTO PUBLIC.EXERCISE (ID, NAME, DURATION, CALORIES, PERSON_EXERCISE_ID)
-VALUES (NEXTVAL('exercise_sequence'), 'test5', 55, 555, select max(id) from PUBLIC.PERSON_EXERCISE);
+VALUES (NEXTVAL('exercise_sequence'), 'Crunches', 55, 8, select max(id) from PUBLIC.PERSON_EXERCISE);
 
 INSERT INTO PUBLIC.EXERCISE (ID, NAME, DURATION, CALORIES, PERSON_EXERCISE_ID)
-VALUES (NEXTVAL('exercise_sequence'), 'test6', 66, 666, select max(id) from PUBLIC.PERSON_EXERCISE);
+VALUES (NEXTVAL('exercise_sequence'), 'Touch Toes', 166, 613, select max(id) from PUBLIC.PERSON_EXERCISE);
 
 INSERT INTO PUBLIC.EXERCISE (ID, NAME, DURATION, CALORIES, PERSON_EXERCISE_ID)
-VALUES (NEXTVAL('exercise_sequence'), 'test7', 77, 777, select max(id) from PUBLIC.PERSON_EXERCISE);
+VALUES (NEXTVAL('exercise_sequence'), 'Side Lunges', 120, 17, select max(id) from PUBLIC.PERSON_EXERCISE);
 
 INSERT INTO PUBLIC.EXERCISE (ID, NAME, DURATION, CALORIES, PERSON_EXERCISE_ID)
-VALUES (NEXTVAL('exercise_sequence'), 'test8', 88, 888, select max(id) from PUBLIC.PERSON_EXERCISE);
+VALUES (NEXTVAL('exercise_sequence'), 'Burpees', 88, 8, select max(id) from PUBLIC.PERSON_EXERCISE);
