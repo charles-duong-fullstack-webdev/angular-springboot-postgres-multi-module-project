@@ -1,4 +1,4 @@
-delete from PUBLIC.EXERCISE where id < 1000;
+delete from PUBLIC.LOGIN where id < 1000;
 delete from PUBLIC.LOGIN where id < 1000;
 delete from PUBLIC.LOGIN;
 

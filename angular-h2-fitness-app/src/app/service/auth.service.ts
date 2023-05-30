@@ -17,6 +17,7 @@ export class AuthService {
 
   // Define API
   private apiURL = 'http://localhost:8084/api/fitness';
+  private apiExerciseURL = 'http://localhost:8084/api/fitness/exercise';
 
   constructor(
     private httpClient: HttpClient,
@@ -62,7 +63,7 @@ export class AuthService {
   }
 
   private fetchAvailableExercisesDTO(): Observable<ExerciseDTO[]> {
-    return this.httpClient.get<ExerciseDTO[]>(this.apiURL + '/fetchAvailableExercises').pipe(
+    return this.httpClient.get<ExerciseDTO[]>(this.apiExerciseURL + '/fetchAvailableExercises').pipe(
       map((response) => response), catchError(this.handleError)
     );
   }

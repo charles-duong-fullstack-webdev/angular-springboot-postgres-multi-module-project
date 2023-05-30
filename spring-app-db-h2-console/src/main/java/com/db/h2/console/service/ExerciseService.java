@@ -26,7 +26,7 @@ public class ExerciseService {
         this.exerciseRepository = exerciseRepository;
     }
 
-    public List<ExerciseDTO> list() {
+    public List<ExerciseDTO> listExercises() {
         List<Exercise> listAll = exerciseRepository.findAll();
         System.err.println("<<<<< getPersonExerciseById getId: " + listAll.get(0).getId());
         Long personExerciseId = listAll.get(0).getId();
