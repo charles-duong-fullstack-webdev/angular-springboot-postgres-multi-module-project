@@ -90,6 +90,7 @@ export class TrainingService {
   }
 
   completeExercise() {
+    console.log("TrainingService > completeExercise this.runningExercise > " + JSON.stringify(this.runningExercise));
     this.addDataToDatabase({
       ...this.runningExercise,
       date: new Date(),
@@ -99,10 +100,8 @@ export class TrainingService {
     this.exerciseChanged.next(null);
   }
 
-  cancelExercise(progress
-                   :
-                   number
-  ) {
+  cancelExercise(progress: number) {
+    console.log("TrainingService > cancelExercise this.runningExercise > " + JSON.stringify(this.runningExercise));
     this.addDataToDatabase({
       ...this.runningExercise,
       duration: this.runningExercise.duration * (progress / 100),
@@ -118,14 +117,14 @@ export class TrainingService {
     return {...this.runningExercise};
   }
 
-  fetchCompletedOrCancelledExercisesFireBase() {
-    this.fbSubs.push(this.db
-      .collection('finishedExercises')
-      .valueChanges()
-      .subscribe((exercises: ExerciseDTO[]) => {
-        this.finishedExercisesChanged.next(exercises);
-      }));
-  }
+  // fetchCompletedOrCancelledExercisesFireBase() {
+  //   this.fbSubs.push(this.db
+  //     .collection('finishedExercises')
+  //     .valueChanges()
+  //     .subscribe((exercises: ExerciseDTO[]) => {
+  //       this.finishedExercisesChanged.next(exercises);
+  //     }));
+  // }
 
 // TODO Srping Boot
   fetchCompletedOrCancelledExercises() {
@@ -155,10 +154,8 @@ export class TrainingService {
     this.fbSubs.forEach(sub => sub.unsubscribe());
   }
 
-  private addDataToDatabase(exercise
-                              :
-                              ExerciseDTO
-  ) {
+  // TODO Add new Exercese to DB
+  private addDataToDatabase(exercise: ExerciseDTO) {
     this.db.collection('finishedExercises').add(exercise);
   }
 }

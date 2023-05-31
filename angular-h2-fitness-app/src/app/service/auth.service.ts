@@ -69,6 +69,16 @@ export class AuthService {
     );
   }
 
+  createExersiceDTO(exerciseDTO: ExerciseDTO): Observable<ExerciseDTO> {
+    return this.httpClient
+      .post<ExerciseDTO>(
+        this.apiExerciseURL + '/addExercise',
+        exerciseDTO,
+        this.httpClientOptions
+      )
+      .pipe(retry(1), catchError(this.handleError));
+  }
+
   initAuthListener() {
     // this.afAuth.authState.subscribe(user => {
     //   if (user) {
