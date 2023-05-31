@@ -129,20 +129,26 @@ export class TrainingService {
 
 // TODO Srping Boot
   fetchCompletedOrCancelledExercises() {
-    // this.fbSubs.push(this.db
-    //   .collection('finishedExercises')
-    //   .valueChanges()
-    //   .subscribe((exercises: ExerciseDTO[]) => {
-    //     this.finishedExercisesChanged.next(exercises);
-    //   }));
+    // const exercises: ExerciseDTO[] = [
+    //   {id: 'crunches', name: 'Crunches', duration: 30, calories: 8},
+    //   {id: 'touch-toes', name: 'Touch Toes', duration: 180, calories: 15},
+    //   {id: 'side-lunges', name: 'Side Lunges', duration: 120, calories: 18},
+    //   {id: 'burpees', name: 'Burpees', duration: 60, calories: 8},
+    //   {id: 'burpees', name: 'Burpees-new', duration: 160, calories: 18}
+    // ];
 
-    const exercises: ExerciseDTO[] = [
-      {id: 'crunches', name: 'Crunches', duration: 30, calories: 8},
-      {id: 'touch-toes', name: 'Touch Toes', duration: 180, calories: 15},
-      {id: 'side-lunges', name: 'Side Lunges', duration: 120, calories: 18},
-      {id: 'burpees', name: 'Burpees', duration: 60, calories: 8}
-    ];
-    this.finishedExercisesChanged.next(exercises);
+    this.authService.fetchAvailableExercisesDTO().subscribe((exercises: ExerciseDTO[]) => {
+      console.log('TrainingService > fetchCompletedOrCancelledExercises > fetchAvailableExercises exercises.length >> ' + exercises.length);
+      console.log('TrainingService > fetchCompletedOrCancelledExercises > fetchAvailableExercises id >> ' + exercises[0].id);
+      console.log('TrainingService > fetchCompletedOrCancelledExercises > fetchAvailableExercises name >> ' + exercises[0].name);
+      console.log('TrainingService > fetchCompletedOrCancelledExercises > calories >> ' + exercises[0].calories);
+      console.log('TrainingService > fetchCompletedOrCancelledExercises > calories >> ' + JSON.stringify(exercises));
+      // if WANT TO CRESTE A NEW CONSTANT
+      // this.availableExercises = Object.assign({}, exercises);
+      // this.availableExercises = exercises;
+      // this.exercisesChanged.next([...this.availableExercises]);
+      this.finishedExercisesChanged.next(exercises);
+    });
   }
 
   cancelSubscriptions() {
