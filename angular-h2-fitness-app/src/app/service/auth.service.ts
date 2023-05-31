@@ -40,21 +40,22 @@ export class AuthService {
     );
   }
 
-  fetchAvailableExercises(): ExerciseDTO[] {
-    console.log('run... fetchAvailableExercises ');
-    let availableExercises: ExerciseDTO[] = [];
-    this.fetchAvailableExercisesDTO().subscribe((exercises: ExerciseDTO[]) => {
-      console.log('fetchAvailableExercises id >>' + exercises[0].id);
-      console.log('fetchAvailableExercises name >>' + exercises[0].name);
-      console.log('fetchAvailableExercises calories >>' + exercises[0].calories);
-      availableExercises = exercises;
-      // this.loginForm.get('email').setValue(loginDTO.userid);
-      // this.loginForm.get('password').setValue(loginDTO.password);
-      // this.availableExercises = exercises;
-      // this.exercisesChanged.next([...this.availableExercises]);
-    });
-    return availableExercises;
-  }
+  // fetchAvailableExercises(): ExerciseDTO[] {
+  //   console.log('run... fetchAvailableExercises ');
+  //   let fetchExerciseDTO: ExerciseDTO[] = [];
+  //   this.fetchAvailableExercisesDTO().subscribe((exercises: ExerciseDTO[]) => {
+  //     console.log('fetchAvailableExercises id >>' + exercises[0].id);
+  //     console.log('fetchAvailableExercises name >>' + exercises[0].name);
+  //     console.log('fetchAvailableExercises calories >>' + exercises[0].calories);
+  //     fetchExerciseDTO = Object.assign({}, exercises);
+  //     // this.loginForm.get('email').setValue(loginDTO.userid);
+  //     // this.loginForm.get('password').setValue(loginDTO.password);
+  //     // this.availableExercises = exercises;
+  //     // this.exercisesChanged.next([...this.availableExercises]);
+  //   });
+  //   // console.log('availableExercises id >>' + availableExercises[0].id);
+  //   return fetchExerciseDTO;
+  // }
 
   getDefaultLoginDTO(): Observable<LoginDTO> {
     return this.httpClient.get<LoginDTO>(this.apiURL + '/defaultlogin').pipe(
@@ -62,12 +63,11 @@ export class AuthService {
     );
   }
 
-  private fetchAvailableExercisesDTO(): Observable<ExerciseDTO[]> {
+  fetchAvailableExercisesDTO(): Observable<ExerciseDTO[]> {
     return this.httpClient.get<ExerciseDTO[]>(this.apiExerciseURL + '/fetchAvailableExercises').pipe(
       map((response) => response), catchError(this.handleError)
     );
   }
-
 
   initAuthListener() {
     // this.afAuth.authState.subscribe(user => {

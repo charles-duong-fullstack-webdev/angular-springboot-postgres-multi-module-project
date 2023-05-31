@@ -6,8 +6,6 @@ import 'rxjs/add/operator/map';
 
 import {ExerciseDTO} from '../models/exerciseDTO';
 import {AuthService} from "../service/auth.service";
-import {Observable} from "rxjs-compat/Observable";
-import {catchError, map} from "rxjs/operators";
 import {HttpClient} from "@angular/common/http";
 import {Router} from "@angular/router";
 
@@ -41,28 +39,28 @@ export class TrainingService {
   //   return this.availableExercises.slice();
   // }
 
-  fetchAvailableExercisesFirebase() {
-    this.fbSubs.push(this.db
-      .collection('availableExercises')
-      .snapshotChanges()
-      .map(docArray => {
-        return docArray.map(doc => {
-          return {
-            id: doc.payload.doc.id,
-            name: doc.payload.doc.data()['name'],
-            duration: doc.payload.doc.data()['duration'],
-            calories: doc.payload.doc.data()['calories']
-          };
-        });
-      })
-      .subscribe((exercises: ExerciseDTO[]) => {
-        this.availableExercises = exercises;
-        this.exercisesChanged.next([...this.availableExercises]);
-      }));
-  }
+  // fetchAvailableExercisesFirebase() {
+  //   this.fbSubs.push(this.db
+  //     .collection('availableExercises')
+  //     .snapshotChanges()
+  //     .map(docArray => {
+  //       return docArray.map(doc => {
+  //         return {
+  //           id: doc.payload.doc.id,
+  //           name: doc.payload.doc.data()['name'],
+  //           duration: doc.payload.doc.data()['duration'],
+  //           calories: doc.payload.doc.data()['calories']
+  //         };
+  //       });
+  //     })
+  //     .subscribe((exercises: ExerciseDTO[]) => {
+  //       this.availableExercises = exercises;
+  //       this.exercisesChanged.next([...this.availableExercises]);
+  //     }));
+  // }
 
 
-  public fetchAvailableExercises() {
+  public fetchAvailableExercises(): any {
     // TODO
     // const exercises: ExerciseDTO[] = [
     //   { id: 'crunches', name: 'Crunches', duration: 30, calories: 8 },
@@ -70,19 +68,17 @@ export class TrainingService {
     //   { id: 'side-lunges', name: 'Side Lunges', duration: 120, calories: 18 },
     //   { id: 'burpees', name: 'Burpees', duration: 60, calories: 8 }
     // ];
-    // let exercises: ExerciseDTO[] = [];
-    const exercises = this.authService.fetchAvailableExercises();
-    this.availableExercises = exercises;
-    this.exercisesChanged.next([...this.availableExercises]);
-    // this.authService.fetchAvailableExercises().subscribe((exercises: ExerciseDTO[]) => {
-    //   console.log('fetchAvailableExercises id >>' + exercises[0].id);
-    //   console.log('fetchAvailableExercises name >>' + exercises[0].name);
-    //   console.log('fetchAvailableExercises calories >>' + exercises[0].calories);
-    //   // this.loginForm.get('email').setValue(loginDTO.userid);
-    //   // this.loginForm.get('password').setValue(loginDTO.password);
-    //   this.availableExercises = exercises;
-    //   this.exercisesChanged.next([...this.availableExercises]);
-    // });
+    this.authService.fetchAvailableExercisesDTO().subscribe((exercises: ExerciseDTO[]) => {
+      console.log('TrainingService > fetchAvailableExercises > fetchAvailableExercises exercises.length >> ' + exercises.length);
+      console.log('TrainingService > fetchAvailableExercises > fetchAvailableExercises id >> ' + exercises[0].id);
+      console.log('TrainingService > fetchAvailableExercises > fetchAvailableExercises name >> ' + exercises[0].name);
+      console.log('TrainingService > fetchAvailableExercises > calories >> ' + exercises[0].calories);
+      console.log('TrainingService > fetchAvailableExercises > calories >> ' + JSON.stringify(exercises));
+      // if WANT TO CRESTE A NEW CONSTANT
+      // this.availableExercises = Object.assign({}, exercises);
+      this.availableExercises = exercises;
+      this.exercisesChanged.next([...this.availableExercises]);
+    });
   }
 
   startExercise(selectedId: string) {
@@ -103,7 +99,10 @@ export class TrainingService {
     this.exerciseChanged.next(null);
   }
 
-  cancelExercise(progress: number) {
+  cancelExercise(progress
+                   :
+                   number
+  ) {
     this.addDataToDatabase({
       ...this.runningExercise,
       duration: this.runningExercise.duration * (progress / 100),
@@ -128,7 +127,7 @@ export class TrainingService {
       }));
   }
 
-  // TODO Srping Boot
+// TODO Srping Boot
   fetchCompletedOrCancelledExercises() {
     // this.fbSubs.push(this.db
     //   .collection('finishedExercises')
@@ -137,11 +136,11 @@ export class TrainingService {
     //     this.finishedExercisesChanged.next(exercises);
     //   }));
 
-   const exercises: ExerciseDTO[] = [
-      { id: 'crunches', name: 'Crunches', duration: 30, calories: 8 },
-      { id: 'touch-toes', name: 'Touch Toes', duration: 180, calories: 15 },
-      { id: 'side-lunges', name: 'Side Lunges', duration: 120, calories: 18 },
-      { id: 'burpees', name: 'Burpees', duration: 60, calories: 8 }
+    const exercises: ExerciseDTO[] = [
+      {id: 'crunches', name: 'Crunches', duration: 30, calories: 8},
+      {id: 'touch-toes', name: 'Touch Toes', duration: 180, calories: 15},
+      {id: 'side-lunges', name: 'Side Lunges', duration: 120, calories: 18},
+      {id: 'burpees', name: 'Burpees', duration: 60, calories: 8}
     ];
     this.finishedExercisesChanged.next(exercises);
   }
@@ -150,7 +149,10 @@ export class TrainingService {
     this.fbSubs.forEach(sub => sub.unsubscribe());
   }
 
-  private addDataToDatabase(exercise: ExerciseDTO) {
+  private addDataToDatabase(exercise
+                              :
+                              ExerciseDTO
+  ) {
     this.db.collection('finishedExercises').add(exercise);
   }
 }
