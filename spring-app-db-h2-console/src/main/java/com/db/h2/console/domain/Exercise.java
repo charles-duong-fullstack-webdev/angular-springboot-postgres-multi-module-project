@@ -22,7 +22,6 @@ public class Exercise {
 
     private Long calories;
     @Column(name = "trainingdate")
-    @NotNull
     private LocalDate trainingdate;
     private String state;
     @ManyToOne(fetch = FetchType.LAZY, optional = false)

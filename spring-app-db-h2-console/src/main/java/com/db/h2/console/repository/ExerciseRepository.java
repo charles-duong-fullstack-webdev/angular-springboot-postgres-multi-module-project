@@ -30,7 +30,7 @@ public interface ExerciseRepository extends CrudRepository<Exercise, Long> {
 
     @Modifying
     //@Query(value = "INSERT INTO EXERCISE  Person (id,name,age) select :id,:name,:age from Dual")
-    @Query(value = "INSERT INTO EXERCISE (ID, NAME, DURATION, CALORIES, TRAINGDATE, STATE, PERSON_EXERCISE_ID)" +
+    @Query(value = "INSERT INTO EXERCISE (ID, NAME, DURATION, CALORIES, TRAININGDATE, STATE, PERSON_EXERCISE_ID)" +
             "VALUES (NEXTVAL('exercise_sequence'), :name, :duration, :calories, " +
             ":trainingDate, :state, :perId)", nativeQuery = true)
     @Transactional

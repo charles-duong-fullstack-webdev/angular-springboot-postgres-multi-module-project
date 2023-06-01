@@ -131,7 +131,8 @@ export class TrainingService {
     createNewRunningExercise = this.objectUtilService.copyExerciseDTOIncludeDurationAndCalories(
       createNewRunningExercise,
       duration,
-      calories
+      calories,
+      'cancelled'
     );
     console.log('this.objectUtilService.copyExerciseDTOIncludeDurationAndCalories > '
       + JSON.stringify(createNewRunningExercise));

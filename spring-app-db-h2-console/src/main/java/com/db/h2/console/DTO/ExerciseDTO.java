@@ -1,5 +1,7 @@
 package com.db.h2.console.DTO;
 
+import java.time.LocalDate;
+
 public class ExerciseDTO {
 
     private Long id;
@@ -8,13 +10,43 @@ public class ExerciseDTO {
 
     private Long calories;
 
+    private LocalDate trainingdate;
+
+    private String state;
+
     public ExerciseDTO() {
     }
 
-    public ExerciseDTO(String name, Long duration, Long calories) {
+
+    public ExerciseDTO(Long id, String name, Long duration, Long calories, LocalDate trainingdate, String state) {
+        this.id = id;
         this.name = name;
         this.duration = duration;
         this.calories = calories;
+        this.trainingdate = trainingdate;
+        this.state = state;
+    }
+//    public ExerciseDTO(String name, Long duration, Long calories) {
+//        this.name = name;
+//        this.duration = duration;
+//        this.calories = calories;
+//    }
+
+
+    public LocalDate getTrainingdate() {
+        return trainingdate;
+    }
+
+    public void setTrainingdate(LocalDate trainingdate) {
+        this.trainingdate = trainingdate;
+    }
+
+    public String getState() {
+        return state;
+    }
+
+    public void setState(String state) {
+        this.state = state;
     }
 
     public Long getId() {

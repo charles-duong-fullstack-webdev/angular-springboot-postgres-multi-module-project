@@ -25,7 +25,7 @@ export class ObjectUtilService {
   }
 
   copyExerciseDTOIncludeDurationAndCalories(
-    exerciseDTO: ExerciseDTO, duration: number, calories: number): ExerciseDTO {
+    exerciseDTO: ExerciseDTO, duration: number, calories: number, state: string): ExerciseDTO {
     // let obj = {}, key;
     const obj = Object.assign({}, exerciseDTO);
     let key: any;
@@ -34,6 +34,8 @@ export class ObjectUtilService {
         obj[key] = duration;
       } else if (key === 'calories') {
         obj[key] = calories;
+      } else if (key === 'state') {
+        obj[key] = state;
       }
       // else {
       //   obj[key] = exerciseDTO[key];

@@ -64,7 +64,7 @@ public class ExerciseService {
 
         System.err.println("inserrExercise exercise >> " + exercise);
 
-        this.exerciseRepository.insertExercise(exercise.getName() + " (New)",
+        this.exerciseRepository.insertExercise(exercise.getName(),
                 exercise.getCalories(), exercise.getDuration(), LocalDate.now(),
                 exercise.getState(), personExercise.getId());
 

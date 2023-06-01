@@ -63,8 +63,7 @@ class H2demoApplicationTests {
         System.out.println("===> personExerciseList.get(0) >>" + personExerciseList.get(0).toString());
 
         List<Exercise> exerciseList = exerciseRepository.findAll();
-        System.out.println("===> exerciseList.get(0) >> " + exerciseList.get(0).toString());
-        System.out.println("===> exerciseList.size >>" + exerciseList.size());
+        //System.out.println("===> exerciseList.get(0) >> " + exerciseList);
     }
 
 }
