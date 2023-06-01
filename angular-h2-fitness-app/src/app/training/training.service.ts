@@ -85,6 +85,7 @@ export class TrainingService {
 
   startExercise(selectedId: string) {
     // this.db.doc('availableExercises/' + selectedId).update({lastSelected: new Date()});
+    this.fetchAvailableExercises();
     this.runningExercise = this.availableExercises.find(
       ex => ex.id === selectedId
     );
@@ -186,8 +187,10 @@ export class TrainingService {
     this.db.collection('finishedExercises').add(exercise);
   }
 
-  private addDataToDatabase(exercise: ExerciseDTO): ExerciseDTO {
-    // this.db.collection('finishedExercises').add(exercise);
-    return exercise;
+  private addDataToDatabase(exercise: ExerciseDTO) {
+    this.authService.createExersiceDTO(exercise).subscribe((exercises: ExerciseDTO[]) => {
+      console.log('TrainingService > fetchCompletedOrCancelledExercises > calories >> ' + JSON.stringify(exercises));
+      this.finishedExercisesChanged.next(exercises);
+    });
   }
 }
