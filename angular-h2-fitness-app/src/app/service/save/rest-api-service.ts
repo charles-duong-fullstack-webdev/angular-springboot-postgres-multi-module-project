@@ -3,10 +3,10 @@ import {catchError, map, retry} from 'rxjs/operators';
 import {Observable} from 'rxjs-compat/Observable';
 import {throwError} from 'rxjs/internal/observable/throwError';
 import {HttpClient, HttpHeaders} from '@angular/common/http';
-import {LoginDTO} from "../models/loginDTO";
+import {LoginDTO} from "../../models/loginDTO";
 import {Subject} from "rxjs/Subject";
 import {Router} from "@angular/router";
-import {TrainingService} from "../training/training.service";
+import {TrainingService} from "../../training/training.service";
 
 /**
  * see training.service.ts

@@ -8,6 +8,7 @@ import {ExerciseDTO} from '../models/exerciseDTO';
 import {AuthService} from "../service/auth.service";
 import {HttpClient} from "@angular/common/http";
 import {Router} from "@angular/router";
+import {ObjectUtilService} from "../service/object-util.service";
 
 @Injectable()
 export class TrainingService {
@@ -22,6 +23,7 @@ export class TrainingService {
   constructor(
     private db: AngularFirestore,
     private authService: AuthService,
+    private objectUtilService: ObjectUtilService,
     private httpClient: HttpClient,
     private router: Router) {
   }
@@ -91,7 +93,7 @@ export class TrainingService {
 
   completeExercise() {
     console.log("TrainingService > completeExercise this.runningExercise > " + JSON.stringify(this.runningExercise));
-    this.addDataToDatabase({
+    this.addDataToDatabaseFirebase({
       ...this.runningExercise,
       date: new Date(),
       state: 'completed'
@@ -100,15 +102,40 @@ export class TrainingService {
     this.exerciseChanged.next(null);
   }
 
-  cancelExercise(progress: number) {
+  cancelExerciseFirebase(progress: number) {
     console.log("TrainingService > cancelExercise this.runningExercise > " + JSON.stringify(this.runningExercise));
-    this.addDataToDatabase({
+    this.addDataToDatabaseFirebase({
       ...this.runningExercise,
       duration: this.runningExercise.duration * (progress / 100),
       calories: this.runningExercise.calories * (progress / 100),
       date: new Date(),
       state: 'cancelled'
     });
+    this.runningExercise = null;
+    this.exerciseChanged.next(null);
+  }
+
+  cancelExercise(progress: number) {
+    console.log("TrainingService > cancelExercise this.runningExercise > " + JSON.stringify(this.runningExercise));
+    const duration = this.runningExercise.duration * (progress / 100);
+    const calories = this.runningExercise.calories * (progress / 100);
+    const date = new Date();
+    const state = 'cancelled';
+
+    let createNewRunningExercise: ExerciseDTO;
+    createNewRunningExercise = this.objectUtilService.copyExerciseDTOExcludeId(this.runningExercise);
+    console.log('this.objectUtilService.copyExerciseDTOExcludeId > '
+      + JSON.stringify(createNewRunningExercise));
+
+    createNewRunningExercise = this.objectUtilService.copyExerciseDTOIncludeDurationAndCalories(
+      createNewRunningExercise,
+      duration,
+      calories
+    );
+    console.log('this.objectUtilService.copyExerciseDTOIncludeDurationAndCalories > '
+      + JSON.stringify(createNewRunningExercise));
+
+    this.addDataToDatabase(createNewRunningExercise);
     this.runningExercise = null;
     this.exerciseChanged.next(null);
   }
@@ -155,7 +182,12 @@ export class TrainingService {
   }
 
   // TODO Add new Exercese to DB
-  private addDataToDatabase(exercise: ExerciseDTO) {
+  private addDataToDatabaseFirebase(exercise: ExerciseDTO) {
     this.db.collection('finishedExercises').add(exercise);
+  }
+
+  private addDataToDatabase(exercise: ExerciseDTO): ExerciseDTO {
+    // this.db.collection('finishedExercises').add(exercise);
+    return exercise;
   }
 }

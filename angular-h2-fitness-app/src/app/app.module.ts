@@ -23,10 +23,11 @@ import {StopTrainingComponent} from './training/current-training/stop-training.c
 import {AuthService} from './service/auth.service';
 import {TrainingService} from './training/training.service';
 import {environment} from '../environments/environment';
-import {RestApiService} from './service/rest-api-service';
+import {RestApiService} from './service/save/rest-api-service';
 import {MatButtonModule} from '@angular/material/button';
 import {MatDialogModule} from '@angular/material/dialog';
 import {HttpClientModule} from '@angular/common/http';
+import {ObjectUtilService} from "./service/object-util.service";
 
 // import {HttpErrorInterceptor} from "./service/http-error-interceptor.txt";
 
@@ -59,7 +60,7 @@ import {HttpClientModule} from '@angular/common/http';
     MatDialogModule,
     HttpClientModule
   ],
-  providers: [AuthService, TrainingService, RestApiService,
+  providers: [AuthService, TrainingService, RestApiService, ObjectUtilService
     // TODO
     // {
     //   provide: HTTP_INTERCEPTORS,

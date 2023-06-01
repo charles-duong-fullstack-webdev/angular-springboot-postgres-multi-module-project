@@ -6,3 +6,6 @@ export interface ExerciseDTO {
   date?: Date;
   state?: 'completed' | 'cancelled' | null;
 }
+
+
+

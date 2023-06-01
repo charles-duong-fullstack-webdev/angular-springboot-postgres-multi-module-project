@@ -2,7 +2,7 @@ import {Component, OnInit} from '@angular/core';
 import {NgForm} from '@angular/forms';
 
 import {AuthService} from '../../service/auth.service';
-import {RestApiService} from '../../service/rest-api-service';
+import {RestApiService} from '../../service/save/rest-api-service';
 import {LoginDTO} from '../../models/loginDTO';
 
 @Component({
