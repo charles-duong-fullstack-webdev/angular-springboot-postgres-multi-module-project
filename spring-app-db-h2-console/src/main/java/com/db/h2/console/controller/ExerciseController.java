@@ -1,14 +1,12 @@
 package com.db.h2.console.controller;
 
 import com.db.h2.console.DTO.ExerciseDTO;
+import com.db.h2.console.DTO.PersonExerciseDTO;
 import com.db.h2.console.domain.Exercise;
 import com.db.h2.console.service.ExerciseService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.ui.Model;
-import org.springframework.web.bind.annotation.CrossOrigin;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -32,43 +30,14 @@ public class ExerciseController {
         this.exerciseService = exerciseService;
     }
 
-
     @GetMapping("fetchAvailableExercises")
     public List<ExerciseDTO> fetchAvailableExercises() {
         return this.exerciseService.listExercises();
     }
 
-    @GetMapping("reserve")
-    public List<Exercise> getUsers() {
-        //return this.exerciseService.list();
-        List<Exercise> exercises = new ArrayList<Exercise>();
-        Exercise e1 = new Exercise();
-        e1.setId(1L);
-        e1.setCalories(3L);
-        e1.setName("name");
-        e1.setDuration(2L);
-        exercises.add(e1);
-        exercises.add(e1);
-        return exercises;
+    @PostMapping("/addExercise")
+    public List<ExerciseDTO> insertExercise(@RequestBody ExerciseDTO exerciseDTO) {
+        return exerciseService.inserrExercise(exerciseDTO);
     }
-
-    @RequestMapping("/reserve/exercises")
-    public List<Exercise> list(Model model) {
-
-//        TODO This works fine
-//        List<Exercise> exercises = new ArrayList<Exercise>();
-//        Exercise e1 = new Exercise();
-//        e1.setId(1L);
-//        e1.setCalories(3L);
-//        e1.setName("name");
-//        e1.setDuration(2L);
-//        exercises.add(e1);
-//        exercises.add(e1);
-//        return exercises;
-
-        //return exerciseService.list();
-        return null;
-    }
-
 
 }
