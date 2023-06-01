@@ -3,9 +3,10 @@ export interface ExerciseDTO {
   name: string;
   duration: number;
   calories: number;
-  date?: Date;
-  state?: 'completed' | 'cancelled' | null;
+  trainingdate: Date;
+  state: 'completed' | 'cancelled' | null;
 }
+
 
 
 

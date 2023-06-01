@@ -96,7 +96,7 @@ export class TrainingService {
     console.log("TrainingService > completeExercise this.runningExercise > " + JSON.stringify(this.runningExercise));
     this.addDataToDatabaseFirebase({
       ...this.runningExercise,
-      date: new Date(),
+      trainingdate: new Date(),
       state: 'completed'
     });
     this.runningExercise = null;
@@ -109,7 +109,7 @@ export class TrainingService {
       ...this.runningExercise,
       duration: this.runningExercise.duration * (progress / 100),
       calories: this.runningExercise.calories * (progress / 100),
-      date: new Date(),
+      trainingdate: new Date(),
       state: 'cancelled'
     });
     this.runningExercise = null;

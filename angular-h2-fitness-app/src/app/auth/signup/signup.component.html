@@ -23,11 +23,16 @@
 
 
     <div mat-dialog-actions align="end">
-      <!--        <button mat-raised-button color="primary" type="submit" [disabled]="!form.valid">Submit</button>-->
-      <button type="submit" mat-raised-button color="primary" [disabled]="f.invalid">Submit</button>
-      <button type="button" mat-raised-button (click)="onGetDefaultLogin(f)">
-        Set Default Login
+      <button type="button" mat-raised-button color="primary" (click)="onGetDefaultSignUp(f)">
+        <mat-icon>playlist_add</mat-icon>
+        Set Default SignUp
       </button>
+    </div>
+    <b>Click above Button to generates a SignUp automatically: </b>
+    <b>Then click "Agree to Terms and Conditions."</b>
+
+    <div mat-dialog-actions align="end">
+      <button type="submit" mat-raised-button color="primary" [disabled]="f.invalid">Submit</button>
     </div>
 
   </form>

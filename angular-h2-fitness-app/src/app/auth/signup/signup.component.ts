@@ -45,7 +45,7 @@ export class SignupComponent implements OnInit {
     });
   }
 
-  onGetDefaultLogin(form: NgForm) {
+  onGetDefaultSignUp(form: NgForm) {
     this.authService.getDefaultSignupDTO().subscribe((loginDTO: LoginDTO) => {
       console.log('onGetDefaultLogin id >>' + loginDTO.id);
       console.log('onGetDefaultLogin userid >>' + loginDTO.userid);
