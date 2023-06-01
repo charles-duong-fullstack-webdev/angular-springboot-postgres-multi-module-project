@@ -21,7 +21,7 @@ import {HeaderComponent} from './navigation/header/header.component';
 import {SidenavListComponent} from './navigation/sidenav-list/sidenav-list.component';
 import {StopTrainingComponent} from './training/current-training/stop-training.component';
 import {AuthService} from './service/auth.service';
-import {TrainingService} from './training/training.service';
+import {TrainingService} from './service/training.service';
 import {environment} from '../environments/environment';
 import {RestApiService} from './service/save/rest-api-service';
 import {MatButtonModule} from '@angular/material/button';

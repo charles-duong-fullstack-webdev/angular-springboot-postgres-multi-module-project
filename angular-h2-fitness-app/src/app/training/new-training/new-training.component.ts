@@ -2,7 +2,7 @@ import {Component, OnDestroy, OnInit} from '@angular/core';
 import {NgForm} from '@angular/forms';
 import {Subscription} from 'rxjs';
 
-import {TrainingService} from '../training.service';
+import {TrainingService} from '../../service/training.service';
 import {ExerciseDTO} from '../../models/exerciseDTO';
 
 @Component({

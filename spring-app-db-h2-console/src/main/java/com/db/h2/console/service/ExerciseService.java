@@ -10,6 +10,7 @@ import entityToDTO.ExerciseEntityToDTO;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import java.time.LocalDate;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -64,7 +65,8 @@ public class ExerciseService {
         System.err.println("inserrExercise exercise >> " + exercise);
 
         this.exerciseRepository.insertExercise(exercise.getName() + " (New)",
-                exercise.getCalories(), exercise.getDuration(), personExercise.getId());
+                exercise.getCalories(), exercise.getDuration(), LocalDate.now(),
+                exercise.getState(), personExercise.getId());
 
         return new ArrayList<ExerciseDTO>();
     }

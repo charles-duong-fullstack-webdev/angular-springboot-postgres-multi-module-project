@@ -3,7 +3,7 @@ import { MatTableDataSource, MatSort, MatPaginator } from '@angular/material';
 import { Subscription } from 'rxjs';
 
 import { ExerciseDTO } from '../../models/exerciseDTO';
-import { TrainingService } from '../training.service';
+import { TrainingService } from '../../service/training.service';
 
 @Component({
   selector: 'app-past-trainings',

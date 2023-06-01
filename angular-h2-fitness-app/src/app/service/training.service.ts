@@ -5,10 +5,10 @@ import {Subscription} from 'rxjs/Subscription';
 import 'rxjs/add/operator/map';
 
 import {ExerciseDTO} from '../models/exerciseDTO';
-import {AuthService} from "../service/auth.service";
+import {AuthService} from "./auth.service";
 import {HttpClient} from "@angular/common/http";
 import {Router} from "@angular/router";
-import {ObjectUtilService} from "../service/object-util.service";
+import {ObjectUtilService} from "./object-util.service";
 
 @Injectable()
 export class TrainingService {

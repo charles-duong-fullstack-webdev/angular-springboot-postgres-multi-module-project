@@ -17,6 +17,7 @@ import org.springframework.boot.CommandLineRunner;
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
 
+import java.time.LocalDate;
 import java.util.Arrays;
 import java.util.Date;
 import java.util.List;
@@ -73,10 +74,10 @@ public class DbH2Application implements CommandLineRunner {
         this.personExerciseRepository.save(personExercise);
         System.err.println("personExercise.getId() >> " + personExercise.getId());
 
-        Exercise exercise1 = new Exercise("Ramesh1", 26L, 333L);
-        Exercise exercise2 = new Exercise("Ramesh2", 27L, 444L);
-        Exercise exercise3 = new Exercise("Ramesh3", 28L, 555L);
-        Exercise exercise4 = new Exercise("Ramesh4", 29L, 666L);
+        Exercise exercise1 = new Exercise("Ramesh1", 26L, 333L, LocalDate.of(1981, 12, 10), "complete");
+        Exercise exercise2 = new Exercise("Ramesh2", 27L, 444L, LocalDate.of(1981, 12, 10), "complete");
+        Exercise exercise3 = new Exercise("Ramesh3", 28L, 555L, LocalDate.of(1981, 12, 10), "complete");
+        Exercise exercise4 = new Exercise("Ramesh4", 29L, 666L, LocalDate.of(1981, 12, 10), "cancel");
 
         exercise1.setPersonExercise(personExercise);
         exercise2.setPersonExercise(personExercise);

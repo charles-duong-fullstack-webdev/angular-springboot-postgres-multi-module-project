@@ -8,6 +8,7 @@ import org.springframework.data.repository.query.Param;
 import org.springframework.stereotype.Repository;
 import org.springframework.transaction.annotation.Transactional;
 
+import java.time.LocalDate;
 import java.util.List;
 
 @Repository
@@ -29,12 +30,15 @@ public interface ExerciseRepository extends CrudRepository<Exercise, Long> {
 
     @Modifying
     //@Query(value = "INSERT INTO EXERCISE  Person (id,name,age) select :id,:name,:age from Dual")
-    @Query(value = "INSERT INTO EXERCISE (ID, NAME, DURATION, CALORIES, PERSON_EXERCISE_ID)" +
-            "VALUES (NEXTVAL('exercise_sequence'), :name, :duration, :calories, :perId)", nativeQuery = true)
+    @Query(value = "INSERT INTO EXERCISE (ID, NAME, DURATION, CALORIES, TRAINGDATE, STATE, PERSON_EXERCISE_ID)" +
+            "VALUES (NEXTVAL('exercise_sequence'), :name, :duration, :calories, " +
+            ":trainingDate, :state, :perId)", nativeQuery = true)
     @Transactional
     public int insertExercise(@Param("name") String name,
                               @Param("calories") Long calories,
                               @Param("duration") Long duration,
+                              @Param("trainingDate") LocalDate trainingDate,
+                              @Param("state") String state,
                               @Param("perId") Long perId);
 
 //    @Modifying

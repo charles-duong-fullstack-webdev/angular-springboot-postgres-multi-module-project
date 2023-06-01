@@ -24,6 +24,8 @@ CREATE TABLE exercise
     name               VARCHAR(255),
     duration           BIGINT,
     calories           BIGINT,
+    trainingDate       DATE,
+    state              VARCHAR(50),
     person_exercise_id BIGINT,
     CONSTRAINT pk_exercise PRIMARY KEY (id)
 );

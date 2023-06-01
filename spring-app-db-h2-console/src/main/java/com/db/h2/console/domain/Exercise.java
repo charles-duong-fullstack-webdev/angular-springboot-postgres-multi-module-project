@@ -5,6 +5,8 @@ import org.hibernate.annotations.OnDelete;
 import org.hibernate.annotations.OnDeleteAction;
 
 import javax.persistence.*;
+import javax.validation.constraints.NotNull;
+import java.time.LocalDate;
 
 @Entity
 @Table(name = "exercise")
@@ -14,24 +16,53 @@ public class Exercise {
     @GeneratedValue
     private Long id;
     private String name;
+
+
     private Long duration;
 
     private Long calories;
-
+    @Column(name = "trainingdate")
+    @NotNull
+    private LocalDate trainingdate;
+    private String state;
     @ManyToOne(fetch = FetchType.LAZY, optional = false)
     @JoinColumn(name = "personExercise_id", nullable = false)
     @OnDelete(action = OnDeleteAction.CASCADE)
     @JsonIgnore
     private PersonExercise personExercise;
 
-
     public Exercise() {
     }
 
-    public Exercise(String name, Long duration, Long calories) {
+//    public Exercise(String name, Long duration, Long calories) {
+//        this.name = name;
+//        this.duration = duration;
+//        this.calories = calories;
+//    }
+
+    public Exercise(String name, Long duration, Long calories, LocalDate trainingdate, String state) {
         this.name = name;
         this.duration = duration;
         this.calories = calories;
+        this.trainingdate = trainingdate;
+        this.state = state;
+    }
+
+
+    public String getState() {
+        return state;
+    }
+
+    public void setState(String state) {
+        this.state = state;
+    }
+
+    public LocalDate getTrainingDate() {
+        return trainingdate;
+    }
+
+    public void setTrainingDate(LocalDate trainingDate) {
+        this.trainingdate = trainingDate;
     }
 
     public PersonExercise getPersonExercise() {
@@ -41,6 +72,7 @@ public class Exercise {
     public void setPersonExercise(PersonExercise personExercise) {
         this.personExercise = personExercise;
     }
+
     public Long getId() {
         return id;
     }
@@ -73,6 +105,16 @@ public class Exercise {
         this.calories = calories;
     }
 
+//    @Override
+//    public String toString() {
+//        return "Exercise{" +
+//                "id=" + id +
+//                ", name='" + name + '\'' +
+//                ", duration=" + duration +
+//                ", calories=" + calories +
+//                '}';
+//    }
+
     @Override
     public String toString() {
         return "Exercise{" +
@@ -80,6 +122,9 @@ public class Exercise {
                 ", name='" + name + '\'' +
                 ", duration=" + duration +
                 ", calories=" + calories +
+                ", trainingDate=" + trainingdate +
+                ", state='" + state + '\'' +
+                ", personExercise=" + personExercise +
                 '}';
     }
 }

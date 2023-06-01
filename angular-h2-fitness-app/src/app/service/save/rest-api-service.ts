@@ -6,7 +6,7 @@ import {HttpClient, HttpHeaders} from '@angular/common/http';
 import {LoginDTO} from "../../models/loginDTO";
 import {Subject} from "rxjs/Subject";
 import {Router} from "@angular/router";
-import {TrainingService} from "../../training/training.service";
+import {TrainingService} from "../training.service";
 
 /**
  * see training.service.ts
