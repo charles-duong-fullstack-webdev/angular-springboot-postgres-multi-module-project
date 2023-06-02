@@ -3,6 +3,7 @@ import {FormControl, FormGroup, Validators} from '@angular/forms';
 
 import {AuthService} from '../../service/auth.service';
 import {LoginDTO} from "../../models/loginDTO";
+import {Router} from "@angular/router";
 
 @Component({
   selector: 'app-login',
@@ -12,7 +13,7 @@ import {LoginDTO} from "../../models/loginDTO";
 export class LoginComponent implements OnInit {
   loginForm: FormGroup;
 
-  constructor(private authService: AuthService) {
+  constructor(private authService: AuthService, private router: Router) {
   }
 
   ngOnInit() {
@@ -32,6 +33,8 @@ export class LoginComponent implements OnInit {
     this.authService.login(email, password).subscribe((isExist: Boolean) => {
       console.log('login >>' + isExist);
       this.authService.isAuthenticated = true;
+      this.authService.authChange.next(true);
+      this.router.navigate(['/training']);
     });
   }
 
