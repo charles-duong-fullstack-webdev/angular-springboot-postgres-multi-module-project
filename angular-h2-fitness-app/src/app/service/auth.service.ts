@@ -113,8 +113,13 @@ export class AuthService {
       .pipe(retry(1), catchError(this.handleError));
   }
 
+  // logout() {
+  //   // this.afAuth.auth.signOut();
+  // }
+
   logout() {
-    // this.afAuth.auth.signOut();
+    this.authChange.next(false);
+    this.router.navigate(['/login']);
   }
 
   isAuth() {
